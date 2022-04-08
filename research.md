@@ -58,3 +58,20 @@ Related links to data sets
 
  - https://github.com/coqui-ai/stt
  - Mozilla Deepspeech https://github.com/mozilla/DeepSpeech
+
+
+
+####  Sprach-Erkenner (ASR):
+
+ * Kaldi https://kaldi-asr.org/
+ * Sphinx/pocket-sphinx: https://cmusphinx.github.io/
+
+
+ #### Natural Language Understanding (NLU):
+
+* RASA https://rasa.com/
+
+####  beim stöbern noch gefunden, aber keine Ahnung ob die was taugen:
+
+ * https://rhasspy.readthedocs.io/en/latest/
+ * https://medevel.com/10-open-source-voice-assistants/
