@@ -4,11 +4,11 @@
 
 ### Title (provisional): 
 
-### Extension of Multimodality in speech assistance for people with impairments
+### Extension of Multimodality in Speech Assistance Systems for People with Impairments
 
 
 
-### Research ([Link]())
+### Research ([Link](./research.md))
 
 - Speech Assistance for people with Impairments
 - Multimodal Speech Recognition
