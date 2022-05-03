@@ -8,6 +8,8 @@
 
 [Overleaf Project [Read-Only]](https://www.overleaf.com/read/bcfpfmccrrvq)
 
+[Overview PDF (ger)](tdilger-ma-ueberblick-02.pdf)
+
 
 
 ### Research ([Link](./research.md))
