@@ -1,10 +1,10 @@
 # Smart Home Voice Assistant
 
-
+*Currently under development*
 
 ### Title (provisional): 
 
-### Extension of Multimodality in Speech Assistance Systems for People with Impairments
+**Extension of Multimodality in Speech Assistance Systems for People with Impairments**
 
 [Overleaf Project [Read-Only]](https://www.overleaf.com/read/bcfpfmccrrvq)
 
@@ -30,25 +30,33 @@
 
 ### User Stories
 
-Scene 1: Kitchen, Lights kitchen workspace bright, other lights dimmed. Music playing (e.g. Jazz) in background. Different recipes will be presented.
+**Scene 1**  
+*Kitchen*, *Lights kitchen* workspace bright, other lights dimmed. Music playing (e.g. Jazz) in background. Different recipes will be presented.
 
-Scene 2: Dinner in dining room, lamp bright, other lights dimmed or off, calm music (e.g. Piano).
+**Scene 2**  
+Dinner in *dining room*, lamp bright, other *lights* dimmed or off, calm music (e.g. Piano).
 
-Scene 3: TV, dim lights next to the TV and  switch off others. Start TV. Music off.
+**Scene 3**  
+*Living Room* TV, dim lights next to the TV and switch off others. Start TV. Music off.  
 
+-----
+**Use Case 1**  
+User wants to create *Scene 1*. 
 
+**Use Case 2**  
+User wants to change music in *Scene 2*.
 
-Use Case 1: User wants to create a scene 1. 
+**Use Case 3**  
+User wants to add a *new light*.
 
-Use Case 2: User wants to change music in scene 2.
+**Use Case 4**  
+User wants to add a new scene (*Scene 3*).
 
-Use Case 3: User wants to add a new light.
+**Use Case 5**  
+User wants to know the *current time*.
 
-Use Case 4: User wants to add a new scene (scene 3).
-
-Use Case 5: User wants to know the current time.
-
-Use Case 6: User wants to hear music [title].
+**Use Case 6**  
+User wants to *hear music* [title].
 
 
 
