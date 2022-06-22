@@ -1,0 +1,5 @@
+# This GraphQL Client Configuration file will be created automatically during setup.
+
+host: "localhost"
+port: 13781
+suffix: "/graphql"
