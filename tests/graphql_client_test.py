@@ -16,11 +16,11 @@ def test_no_config_file() -> None:
     assert graphql_client.load_gql_api_endpoint(None) == api_endpoint_url
 
 
-def test_incorrect_config_file() -> None:
+def test_incorrect_config() -> None:
     pass
 
 
-def test_valid_config_file() -> None:
+def test_valid_config() -> None:
     pass
 
 

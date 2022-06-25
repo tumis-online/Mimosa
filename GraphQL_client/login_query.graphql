@@ -1,6 +1,6 @@
 query login {
   login(
-    username: "admin",
+    username: "admin"
     password: "R+gZ+PFuauhav8rRVa3XlWXXSEyi5BcdrbeXLEY3tDQ="
   )
 }

@@ -5,7 +5,7 @@ import hashlib
 import logging
 import os.path
 
-import aiofiles as aiofiles
+import aiofiles
 import yaml
 from yaml.loader import SafeLoader
 from gql import Client, gql
@@ -55,13 +55,13 @@ def load_gql_api_endpoint(config_file=None) -> str:
     host = data["host"]
     port = data["port"]
     suffix = data["suffix"]
-    api_endpoint = f"http://{data['host']}:{str(data['port'])}{data['suffix']}"
+    api_endpoint = f"http://{host}:{str(port)}{suffix}"
     return api_endpoint
 
 
-def send_graphql_request(session, graphql_request: str) -> str:
+async def send_graphql_request(session, graphql_request: str) -> str:
     """Executing a single query.
-    :return result
+    :return result of GraphQL request
     """
     query = gql(graphql_request)
     result = await session.execute(query)
@@ -70,7 +70,7 @@ def send_graphql_request(session, graphql_request: str) -> str:
 
 def send_multiple_graphql_request_files(session, graphql_files: list) -> str:
     """Send multiple query files.
-    :return result
+    :return result of GraphQL request
     """
     logging.info(f"Send multiple GraphQL requests from multiple files: {graphql_files}. {session}")
     query = gql(GQL_MULTIPLE_UPLOAD_MUTATION)
@@ -92,7 +92,7 @@ def send_multiple_graphql_request_files(session, graphql_files: list) -> str:
 
 def send_graphql_request_file(session, graphql_file: str) -> str:
     """Send a query file.
-    :return result
+    :return result of GraphQL request
     """
     logging.info(f"Sending GraphQL request from file: {graphql_file}. {session}")
     file_size = os.path.getsize(graphql_file)
@@ -111,7 +111,7 @@ def send_graphql_request_file(session, graphql_file: str) -> str:
 
 def stream_graphql_request_file(session, graphql_file: str) -> str:
     """Use streaming for big file to limit amount of memory used.
-    :return result
+    :return result of GraphQL request
     """
     logging.info(f"Streaming GraphQL request from file: {graphql_file}. {session}")
     query = gql(GQL_MULTIPLE_UPLOAD_MUTATION)
@@ -132,6 +132,12 @@ def stream_graphql_request_file(session, graphql_file: str) -> str:
 
 
 def __generate_password_hash(password: str) -> bytes:
+    """Generates password hash on client side for BCO to log in analogous to BCO doc:
+    https://basecubeone.org/developer/addon/bco-api-graphql.html#how-to-generate-the-password-hash-on-client-side.
+    1. Encoding the plain text password as UTF16
+    2. Compute a hash of the UTF16 bytes by using the SHA-256 hash generator algorithm
+    3. Encode the result as Base64 and pass it to the login method as passwordHash.
+    """
     hashed_password = base64.b64encode(hashlib.sha256(password.encode("utf-16")).digest())
     return hashed_password
 
@@ -163,8 +169,9 @@ async def main():
         fetch_schema_from_transport=True,
     ) as session:
         # result = send_graphql_request(session, "")
-        result = send_graphql_request_file(session, "test_query.graphql")
-        print(result)
+
+        result = send_graphql_request_file(session, "login_query.graphql")
+        logging.info(result)
 
 
 asyncio.run(main())
