@@ -18,7 +18,8 @@ pipeline:
      "intent_split_symbol": "_"
      # Regular expression to detect tokens
      "token_pattern": None
-   - name: SpacyNLP
+   - name: "SpacyNLP"
+     model: "de_core_news_sm"
    - name: SpacyTokenizer
      # Flag to check whether to split intents
      # "intent_tokenization_flag": False
@@ -36,7 +37,6 @@ pipeline:
      # use match word boundaries for lookup table
      "use_word_boundaries": True
    - name: LexicalSyntacticFeaturizer
-   - name: CountVectorsFeaturizer
    - name: CountVectorsFeaturizer
      analyzer: char_wb
      min_ngram: 1

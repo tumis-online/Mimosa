@@ -1,0 +1,26 @@
+## Default stories configuration.
+#  See https://www.youtube.com/watch?v=8gvGh6H2NO0&list=PL75e0qA87dlEjGAc9j9v3a5h1mxI2Z9fi&index=4
+#  for further examples of Training data and rules
+
+stories:
+  - story: beginning of conversation
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: goodbye
+      - action: utter_goodbye
+      - checkpoint: ask_feedback
+  - story: user provides feedback
+    steps:
+      - checkpoint: ask_feedback
+      - action: utter_ask_feedback
+      - intent: inform
+      - action: utter_thank_you
+      - action: utter_anything_else
+  - story: user doesn't have feedback
+    steps:
+      - checkpoint: ask_feedback
+      - action: utter_ask_feedback
+      - intent: deny
+      - action: utter_no_problem
+      - action: utter_anything_else
