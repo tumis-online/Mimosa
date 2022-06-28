@@ -31,6 +31,10 @@ pipeline:
      # the complete utterance. Available options: 'mean' and 'max'.
      "pooling": "mean"
    - name: RegexFeaturizer
+     # Text will be processed with case sensitive as default
+     "case_sensitive": True
+     # use match word boundaries for lookup table
+     "use_word_boundaries": True
    - name: LexicalSyntacticFeaturizer
    - name: CountVectorsFeaturizer
    - name: CountVectorsFeaturizer
