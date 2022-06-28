@@ -21,17 +21,21 @@ nlu:
       - bis später
       - tschau
   - intent: scenario_request
+    examples:
       - wie funktioniert das
       - was kann ich sagen
       - was kann ich hier sagen
   - intent: ability_request
+    examples:
       - was kannst du
       - was für möglichkeiten habe ich
   - intent: accept
+    examples:
       - okay
       - gut mache ich
       - in ordnung
   - intent: confirm
+    examples:
       - ja
       - ja bitte
       - ja gerne
@@ -39,6 +43,7 @@ nlu:
       - joa
       - gerne
   - intent: negate
+    examples:
       - nein
       - ne
       - auf keinen fall
@@ -47,14 +52,16 @@ nlu:
       - nein danke
       - nicht
   - intent: lights_off
-    - licht aus
-    - lichter aus
-    - mach das licht aus
-    - mach hier die lampen aus
-    - mach überall die lichter aus
+    examples:
+      - licht aus
+      - lichter aus
+      - mach das licht aus
+      - mach hier die lampen aus
+      - mach überall die lichter aus
   - intent: lights_on
-    - licht an
-    - lichter an
-    - mach das licht an
-    - mach hier die lampen an
-    - mach überall die lichter an
+    examples:
+      - licht an
+      - lichter an
+      - mach das licht an
+      - mach hier die lampen an
+      - mach überall die lichter an
