@@ -1,0 +1,60 @@
+## Default nlu configuration.
+#  See https://www.youtube.com/watch?v=8gvGh6H2NO0&list=PL75e0qA87dlEjGAc9j9v3a5h1mxI2Z9fi&index=4
+#  for further examples of Training data and rules
+
+nlu:
+  - intent: greet_smalltalk
+    examples:
+      - hi
+      - hallo
+      - hey
+      - guten tag
+      - guten morgen
+      - wie geht's dir
+  - intent: goodbye
+    examples:
+      - bye
+      - tschüss
+      - auf wiedersehen
+      - machs gut
+      - bis bald
+      - bis später
+      - tschau
+  - intent: scenario_request
+      - wie funktioniert das
+      - was kann ich sagen
+      - was kann ich hier sagen
+  - intent: ability_request
+      - was kannst du
+      - was für möglichkeiten habe ich
+  - intent: accept
+      - okay
+      - gut mache ich
+      - in ordnung
+  - intent: confirm
+      - ja
+      - ja bitte
+      - ja gerne
+      - jo
+      - joa
+      - gerne
+  - intent: negate
+      - nein
+      - ne
+      - auf keinen fall
+      - nö
+      - no
+      - nein danke
+      - nicht
+  - intent: lights_off
+    - licht aus
+    - lichter aus
+    - mach das licht aus
+    - mach hier die lampen aus
+    - mach überall die lichter aus
+  - intent: lights_on
+    - licht an
+    - lichter an
+    - mach das licht an
+    - mach hier die lampen an
+    - mach überall die lichter an
