@@ -89,3 +89,47 @@ stories:
       are you a bot?
     intent: bot_challenge
   - action: utter_iamabot
+
+- story: A test story with a form
+  steps:
+    - user: |
+        hi
+      intent: greet
+    - action: utter_greet
+    - user: |
+        im looking for a restaurant
+      intent: request_restaurant
+    - action: restaurant_form
+    - active_loop: restaurant_form
+    - user: |
+        [afghan](cuisine) food
+      intent: inform
+    - action: restaurant_form
+    - active_loop: null
+    - action: utter_slots_values
+    - user: |
+        thanks
+      intent: thankyou
+    - action: utter_no_worries
+- story: A test story with unexpected input during a form
+  steps:
+  - user: |
+      hi
+    intent: greet
+  - action: utter_greet
+  - user: |
+      im looking for a restaurant
+    intent: request_restaurant
+  - action: restaurant_form
+  - active_loop: restaurant_form
+  - user: |
+      How's the weather?
+    intent: chitchat
+  - action: utter_chitchat
+  - action: restaurant_form
+  - active_loop: null
+  - action: utter_slots_values
+  - user: |
+      thanks
+    intent: thankyou
+  - action: utter_no_worries
