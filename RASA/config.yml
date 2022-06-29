@@ -11,13 +11,13 @@ pipeline:
 # # If you'd like to customize it, uncomment and adjust the pipeline.
 # # See https://rasa.com/docs/rasa/tuning-your-model for more information. -> Recommended pipeline
 # config COMPONENTS: https://rasa.com/docs/rasa/components
-   - name: WhitespaceTokenizer
-     # Flag to check whether to split intents
-     "intent_tokenization_flag": False
-     # Symbol on which intent should be split
-     "intent_split_symbol": "_"
-     # Regular expression to detect tokens
-     "token_pattern": None
+   #- name: WhitespaceTokenizer
+   #  # Flag to check whether to split intents
+   #  "intent_tokenization_flag": False
+   #  # Symbol on which intent should be split
+   #  "intent_split_symbol": "_"
+   #  # Regular expression to detect tokens
+   #  "token_pattern": None
    - name: "SpacyNLP"
      model: "de_core_news_sm"
    - name: SpacyTokenizer

@@ -1,0 +1,16 @@
+query get_lights {
+  unitConfigs(filter: {
+    properties: {
+      unitType: COLORABLE_LIGHT
+    }
+  }) {
+    id
+    labelString
+    placementConfig {
+      location {
+        id
+        labelString
+      }
+    }
+  }
+}

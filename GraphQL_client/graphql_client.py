@@ -24,12 +24,13 @@ GQL_MULTIPLE_UPLOAD_MUTATION = '''
 MAX_LOCAL_FILE_SIZE = 300
 
 
-def parse_graphql_file(request_file) -> str:
+def parse_graphql_file(request_file):
     """Parse to get string of graphql file.
     :return: string of GraphQL file
     """
     with open(request_file, 'r') as request:
-        query = request.read()
+        query_str = request.read()
+    query = gql(query_str)
     return query
 
 
@@ -37,24 +38,26 @@ class GraphQLClientHandler:
     """Handles GQL Client async session for sending requests to API."""
     session: Client
 
-    _executor = ThreadPoolExecutor(1)
-
     def __init__(self, session):
         self.loop = asyncio.get_event_loop()
         self.session = session
 
+    async def receive_requests(self, request, params=None):
+        """Subscriber / Listener for published GraphQL queries."""
+        return await self.send_graphql_request(request, params)
+
     async def async_execute_query(self, query, params=None):
         """Executing GraphQL query asynchronously."""
-        file_upload = False if params is None else True
+        #file_upload = False if params is None else True
+        file_upload = False
         result = await self.session.execute(query, variable_values=params, upload_files=file_upload)
         return result
 
-    async def send_graphql_request(self, graphql_request: str):
+    async def send_graphql_request(self, graphql_request, params=None):
         """Executing a single query.
         :return result of GraphQL request
         """
-        query = gql(graphql_request)
-        result = await self.async_execute_query(query)
+        result = await self.async_execute_query(graphql_request, params)
         return result
 
     async def send_multiple_graphql_request_files(self, graphql_files: list):
@@ -76,7 +79,7 @@ class GraphQLClientHandler:
             file.close()
         return result
 
-    async def send_graphql_request_file(self, graphql_file: str):
+    async def send_graphql_request_file(self, graphql_file):
         """Send a query file.
         :return result of GraphQL request
         """
@@ -92,7 +95,7 @@ class GraphQLClientHandler:
             result = await self.async_execute_query(query, params)
         return result
 
-    async def stream_graphql_request_file(self, graphql_file: str):
+    async def stream_graphql_request_file(self, graphql_file):
         """Use streaming for big file to limit amount of memory used.
         :return result of GraphQL request
         """

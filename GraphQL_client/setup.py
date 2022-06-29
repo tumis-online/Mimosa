@@ -2,19 +2,23 @@ import argparse
 import asyncio
 import base64
 import hashlib
+import os.path
 
 import yaml
 import logging
 
-from gql.transport.requests import log as requests_logger
-from yaml.loader import SafeLoader
 from gql import Client, gql
 from gql.transport.aiohttp import AIOHTTPTransport
+from gql.transport.requests import log as requests_logger
+from yaml.loader import SafeLoader
 
 from GraphQL_client.graphql_client import GraphQLClientHandler, parse_graphql_file
 
 DEFAULT_CONFIG_FILE = "gql-config.yml"
+"""GraphQL Requests"""
 LOGIN_QUERY_FILE = "login_query.graphql"
+GET_LIGHTS_QUERY_FILE = "get_lights_query.graphql"
+SWITCH_LIGHT_MUTATION_FILE = "switch_light_mutation.graphql"
 
 
 def load_gql_api_endpoint(config_file=None) -> str:
@@ -24,7 +28,8 @@ def load_gql_api_endpoint(config_file=None) -> str:
     # Config file provided?
     if config_file is None:
         config_file = DEFAULT_CONFIG_FILE
-
+    if not os.path.exists(config_file):
+        logging.error(f"Config file {config_file} could not be located.")
     # Open and load the config file and return api url
     with open(config_file, 'r') as config:
         data = yaml.load(config, Loader=SafeLoader)
@@ -64,7 +69,8 @@ async def main():
     args = parser.parse_args()
 
     level = logging.DEBUG if hasattr(args, 'debug') else logging.INFO
-    logging.basicConfig(filename='graphql_client.log', encoding='utf-8', level=level)
+    requests_logger.setLevel(logging.WARNING)
+    logging.basicConfig(filename='graphql_client.log', level=level)
     # FORMAT = '%(asctime)s %(level)s - %(message)s'
     # logging.basicConfig(format=FORMAT, encoding='utf-8', level=level)
     api_endpoint = load_gql_api_endpoint(args.config)
@@ -80,12 +86,10 @@ async def main():
     transport = AIOHTTPTransport(url=url, client_session_args={'cookie_jar': jar})
     '''
 
-    requests_logger.setLevel(logging.WARNING)
-
     transport = AIOHTTPTransport(url=api_endpoint, headers={'Authorization': 'token'})
     # Password is default admin base64 password hash from BCO doc:
     # https://basecubeone.org/developer/addon/bco-api-graphql.html#supported-headers
-    login_query = gql(parse_graphql_file(LOGIN_QUERY_FILE))
+    login_query = parse_graphql_file(LOGIN_QUERY_FILE)
     client = Client(transport=transport, fetch_schema_from_transport=True)
     auth_token = str(await client.execute_async(login_query))
     logging.info(f"Token for authentication retrieved: {auth_token}")
@@ -105,6 +109,13 @@ async def main():
         # https://levelup.gitconnected.com/how-to-add-file-upload-to-your-graphql-api-34d51e341f38
         client_handler = GraphQLClientHandler(session)
         logging.info(f"Starting authenticated session...")
-        # response = await client_handler.send_graphql_request()
+
+        get_lights_query = parse_graphql_file(GET_LIGHTS_QUERY_FILE)
+        switch_light_mutation = parse_graphql_file(SWITCH_LIGHT_MUTATION_FILE)
+        # request = await session.execute(get_lights_query)
+        # request = await client_handler.receive_requests(get_lights_query)
+        request = await client_handler.receive_requests(switch_light_mutation, {"state": "ON"})
+        # response = await client_handler.send_graphql_request(request)
+        logging.info(request)
 
 asyncio.run(main())

@@ -2,9 +2,11 @@
 #  See https://www.youtube.com/watch?v=8gvGh6H2NO0&list=PL75e0qA87dlEjGAc9j9v3a5h1mxI2Z9fi&index=4
 #  for further examples of Training data and rules
 
+version: "3.1"
+
 nlu:
-  - intent: greet_smalltalk
-    examples:
+  - intent: greet
+    examples: |
       - hi
       - hallo
       - hey
@@ -12,7 +14,7 @@ nlu:
       - guten morgen
       - wie geht's dir
   - intent: goodbye
-    examples:
+    examples: |
       - bye
       - tschüss
       - auf wiedersehen
@@ -21,29 +23,29 @@ nlu:
       - bis später
       - tschau
   - intent: scenario_request
-    examples:
+    examples: |
       - wie funktioniert das
       - was kann ich sagen
       - was kann ich hier sagen
   - intent: ability_request
-    examples:
+    examples: |
       - was kannst du
       - was für möglichkeiten habe ich
   - intent: accept
-    examples:
+    examples: |
       - okay
       - gut mache ich
       - in ordnung
-  - intent: confirm
-    examples:
+  - intent: affirm
+    examples: |
       - ja
       - ja bitte
       - ja gerne
       - jo
       - joa
       - gerne
-  - intent: negate
-    examples:
+  - intent: deny
+    examples: |
       - nein
       - ne
       - auf keinen fall
@@ -51,15 +53,19 @@ nlu:
       - no
       - nein danke
       - nicht
+  - intent: inform
+    examples: |
+      -
   - intent: lights_off
-    examples:
+    examples: |
       - licht aus
       - lichter aus
       - mach das licht aus
       - mach hier die lampen aus
       - mach überall die lichter aus
   - intent: lights_on
-    examples:
+    examples: |
+      - Kannst du das Licht anmachen?
       - licht an
       - lichter an
       - mach das licht an
