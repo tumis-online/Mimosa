@@ -1,5 +1,5 @@
 """Test module for GraphQL Client."""
-from GraphQL_client import setup
+from bco.api.graphql.client import setup
 
 
 # content of test_class.py

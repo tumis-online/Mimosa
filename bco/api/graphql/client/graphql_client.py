@@ -1,7 +1,6 @@
 import asyncio
 import logging
 import os.path
-from concurrent.futures import ThreadPoolExecutor
 
 import aiofiles
 
@@ -48,7 +47,7 @@ class GraphQLClientHandler:
 
     async def async_execute_query(self, query, params=None):
         """Executing GraphQL query asynchronously."""
-        #file_upload = False if params is None else True
+        # file_upload = False if params is None else True
         file_upload = False
         result = await self.session.execute(query, variable_values=params, upload_files=file_upload)
         return result

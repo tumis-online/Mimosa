@@ -1,0 +1,13 @@
+mutation switch_light($unitId: String, $state: openbase_type_domotic_state_PowerState_State) {
+  unit (unitId: $unitId data: { powerState: {value: $state} }) {
+    id
+    powerState {
+      value
+      responsibleAction{
+        actionState{
+          value
+        }
+      }
+    }
+  }
+}

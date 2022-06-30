@@ -7,18 +7,18 @@ import os.path
 import yaml
 import logging
 
-from gql import Client, gql
+from gql import Client
 from gql.transport.aiohttp import AIOHTTPTransport
 from gql.transport.requests import log as requests_logger
 from yaml.loader import SafeLoader
 
-from GraphQL_client.graphql_client import GraphQLClientHandler, parse_graphql_file
+from bco.api.graphql.client.graphql_client import GraphQLClientHandler, parse_graphql_file
 
 DEFAULT_CONFIG_FILE = "gql-config.yml"
 """GraphQL Requests"""
-LOGIN_QUERY_FILE = "login_query.graphql"
-GET_LIGHTS_QUERY_FILE = "get_lights_query.graphql"
-SWITCH_LIGHT_MUTATION_FILE = "switch_light_mutation.graphql"
+LOGIN_QUERY_FILE = "requests/queries/login_query.graphql"
+GET_LIGHTS_QUERY_FILE = "requests/queries/get_lights_query.graphql"
+SWITCH_LIGHT_MUTATION_FILE = "requests/mutations/switch_light_mutation.graphql"
 
 
 def load_gql_api_endpoint(config_file=None) -> str:
@@ -114,7 +114,13 @@ async def main():
         switch_light_mutation = parse_graphql_file(SWITCH_LIGHT_MUTATION_FILE)
         # request = await session.execute(get_lights_query)
         # request = await client_handler.receive_requests(get_lights_query)
-        request = await client_handler.receive_requests(switch_light_mutation, {"state": "ON"})
+        # unit_id_base64_str = "89783086-0f7e-476e-816d-417f24dc7896"
+        # unit_id_base64_bytes = unit_id_base64_str.encode('ascii')
+        # unit_id_bytes = base64.b64decode(unit_id_base64_bytes)
+        # unit_id = unit_id_bytes.decode('ascii')
+        unit_id = "89783086-0f7e-476e-816d-417f24dc7896"
+        state = "ON"
+        request = await client_handler.receive_requests(switch_light_mutation, {"unitId": unit_id, "state": state})
         # response = await client_handler.send_graphql_request(request)
         logging.info(request)
 
