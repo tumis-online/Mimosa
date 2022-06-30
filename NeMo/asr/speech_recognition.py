@@ -1,9 +1,12 @@
 import nemo.collections.asr as nemo_asr
 import nemo.collections.nlp as nemo_nlp
 
+
+sound_dir = "sounds"
+
 # This will initiate pre-trained model download from NGC
 asr_model = nemo_asr.models.EncDecCTCModelBPE.from_pretrained("stt_de_citrinet_1024")
-transcriptions = asr_model.transcribe(['samples_thorsten-21.06-emotional_neutral.wav'])
+transcriptions = asr_model.transcribe([sound_dir + 'samples_thorsten-21.06-emotional_neutral.wav'])
 print(transcriptions)
 
 # this will also trigger model download
