@@ -36,6 +36,7 @@ def parse_graphql_file(request_file):
 class GraphQLClientHandler:
     """Handles GQL Client async session for sending requests to API."""
     session: Client
+    current_request: str = None
 
     def __init__(self, session):
         self.loop = asyncio.get_event_loop()

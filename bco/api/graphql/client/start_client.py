@@ -1,3 +1,4 @@
+import aiohttp.client_exceptions
 import argparse
 import asyncio
 import base64
@@ -12,7 +13,7 @@ from gql.transport.aiohttp import AIOHTTPTransport
 from gql.transport.requests import log as requests_logger
 from yaml.loader import SafeLoader
 
-from bco.api.graphql.client.graphql_client import GraphQLClientHandler, parse_graphql_file
+from bco.api.graphql.client.gql_client_handler import GraphQLClientHandler, parse_graphql_file
 
 DEFAULT_CONFIG_FILE = "gql-config.yml"
 """GraphQL Requests"""
@@ -46,7 +47,7 @@ def load_gql_api_endpoint(config_file=None) -> str:
     port = data["port"]
     suffix = data["suffix"]
     api_endpoint = f"http://{host}:{str(port)}{suffix}"
-    logging.info(f"Establish GraphQL Client connection to {api_endpoint}")
+    logging.info(f"Establish GraphQL Client connection to {api_endpoint}...")
     return api_endpoint
 
 
@@ -61,41 +62,31 @@ def __generate_password_hash(password: str) -> bytes:
     return hashed_password
 
 
-async def main():
-    parser = argparse.ArgumentParser(description="")
-    parser.add_argument('-v', '--verbose', help='', action='store_true')
-    parser.add_argument('-d', '--debug', help='', action='store_true')
-    parser.add_argument('-c', '--config', help='', nargs=1)
-    args = parser.parse_args()
-
-    level = logging.DEBUG if hasattr(args, 'debug') else logging.INFO
-    requests_logger.setLevel(logging.WARNING)
-    logging.basicConfig(filename='graphql_client.log', level=level)
-    # FORMAT = '%(asctime)s %(level)s - %(message)s'
-    # logging.basicConfig(format=FORMAT, encoding='utf-8', level=level)
-    api_endpoint = load_gql_api_endpoint(args.config)
+async def start_client_handler(config: str):
     # TODO GraphQL subscriptions are not supported on the HTTP transport.
     #  For subscriptions you should use the websockets transport.
     #  https://gql.readthedocs.io/en/latest/transports/aiohttp.html
     # transport = AIOHTTPTransport(url=api_endpoint, headers={'Authorization': 'token'})
-    '''
+    """
     headers={'Authorization': 'token'} ?
     Alternative:  cookies={"cookie1": "val1"}
     Alternative: Cookie Jar
     jar = aiohttp.CookieJar()
     transport = AIOHTTPTransport(url=url, client_session_args={'cookie_jar': jar})
-    '''
-
+    """
+    api_endpoint = load_gql_api_endpoint(config)
     transport = AIOHTTPTransport(url=api_endpoint, headers={'Authorization': 'token'})
     # Password is default admin base64 password hash from BCO doc:
     # https://basecubeone.org/developer/addon/bco-api-graphql.html#supported-headers
     login_query = parse_graphql_file(LOGIN_QUERY_FILE)
-    client = Client(transport=transport, fetch_schema_from_transport=True)
-    auth_token = str(await client.execute_async(login_query))
-    logging.info(f"Token for authentication retrieved: {auth_token}")
-
-    # transport = AIOHTTPTransport(url=api_endpoint, headers={'Authorization': auth_token})
-    transport = AIOHTTPTransport(url=api_endpoint, headers={'Authorization': auth_token})
+    try:
+        client = Client(transport=transport, fetch_schema_from_transport=True)
+        auth_token = str(await client.execute_async(login_query))
+        logging.info(f"Token for authentication retrieved: {auth_token}")
+        transport = AIOHTTPTransport(url=api_endpoint, headers={'Authorization': auth_token})
+    except (aiohttp.ClientError, aiohttp.ClientConnectionError) as err:
+        logging.error(f"Could not connect to client with api endpoint: {api_endpoint}.\n")
+        exit(1)
 
     # Using `async with` on the client will start a connection on the transport
     # and provide a `session` variable to execute queries on this connection
@@ -123,5 +114,21 @@ async def main():
         request = await client_handler.receive_requests(switch_light_mutation, {"unitId": unit_id, "state": state})
         # response = await client_handler.send_graphql_request(request)
         logging.info(request)
+
+
+async def main():
+    parser = argparse.ArgumentParser(description="")
+    parser.add_argument('-v', '--verbose', help='', action='store_true')
+    parser.add_argument('-d', '--debug', help='', action='store_true')
+    parser.add_argument('-c', '--config', help='', nargs=1)
+    args = parser.parse_args()
+
+    level = logging.DEBUG if hasattr(args, 'debug') else logging.INFO
+    requests_logger.setLevel(logging.WARNING)
+    logging.basicConfig(filename='graphql_client.log', level=level)
+    # FORMAT = '%(asctime)s %(level)s - %(message)s'
+    # logging.basicConfig(format=FORMAT, encoding='utf-8', level=level)
+    config = args.config
+    await start_client_handler(config)
 
 asyncio.run(main())
