@@ -14,6 +14,7 @@ from gql.transport.requests import log as requests_logger
 from yaml.loader import SafeLoader
 
 from bco.api.graphql.client.gql_client_handler import GraphQLClientHandler, parse_graphql_file
+from bco.api.graphql.smart_env import State
 
 DEFAULT_CONFIG_FILE = "gql-config.yml"
 """GraphQL Requests"""
@@ -110,8 +111,7 @@ async def start_client_handler(config: str):
         # unit_id_bytes = base64.b64decode(unit_id_base64_bytes)
         # unit_id = unit_id_bytes.decode('ascii')
         unit_id = "89783086-0f7e-476e-816d-417f24dc7896"
-        state = "ON"
-        request = await client_handler.receive_requests(switch_light_mutation, {"unitId": unit_id, "state": state})
+        request = await client_handler.receive_requests(switch_light_mutation, {"unitId": unit_id, "state": State.ON})
         # response = await client_handler.send_graphql_request(request)
         logging.info(request)
 

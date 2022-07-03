@@ -25,3 +25,4 @@ hydra.core
 youtokentome
 sacremoses
 sacrebleu
+hypothesis~=6.48.3
