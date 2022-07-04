@@ -8,16 +8,20 @@ from nemo.collections.asr.models import asr_model
 
 sound_dir = "../sounds/"
 example_sound_dir = sound_dir + "examples/"
-model: asr_model
+
+pretrained_punctuation_model = "punctuation_en_distilbert"
+pretrained_asr_model = "stt_de_citrinet_1024"
+model: asr_model = nemo_asr.models.EncDecCTCModelBPE.from_pretrained(pretrained_asr_model)
 
 
 async def stt_from_stream(stream):
     pass
 
 
-async def stt_from_file(sample_file: path):
+async def stt_from_file(model: asr_model, sample_file: path):
     """
     Takes sample file input and converts it into text.
+    :param model: pretrained NeMo asr model
     :param sample_file: mono and sampled at 16Khz
     :return:
     """
@@ -29,20 +33,20 @@ async def stt_from_file(sample_file: path):
     print(transcriptions)
 
     # this will also trigger model download
-    punctuation = nemo_nlp.models.PunctuationCapitalizationModel.from_pretrained(model_name='punctuation_en_distilbert')
+    punctuation = nemo_nlp.models.PunctuationCapitalizationModel\
+        .from_pretrained(model_name=pretrained_punctuation_model)
     res = punctuation.add_punctuation_capitalization(queries=transcriptions)
     print(res)
 
 
-async def example_to_text():
+async def example_to_text(model: asr_model):
     # This will initiate pre-trained model download from NGC
     sample_file = f"{example_sound_dir}samples_thorsten-21.06-emotional_neutral.wav"
-    await stt_from_file(sample_file)
+    await stt_from_file(model, sample_file)
 
 
 async def main():
-    model = nemo_asr.models.EncDecCTCModelBPE.from_pretrained("stt_de_citrinet_1024")
-    await example_to_text()
+    await example_to_text(model)
 
 
 if __name__ == '__main__':

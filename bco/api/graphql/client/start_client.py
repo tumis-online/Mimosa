@@ -116,7 +116,7 @@ async def start_client_handler(config: str):
         logging.info(request)
 
 
-async def main():
+def main():
     parser = argparse.ArgumentParser(description="")
     parser.add_argument('-v', '--verbose', help='', action='store_true')
     parser.add_argument('-d', '--debug', help='', action='store_true')
@@ -129,6 +129,7 @@ async def main():
     # FORMAT = '%(asctime)s %(level)s - %(message)s'
     # logging.basicConfig(format=FORMAT, encoding='utf-8', level=level)
     config = args.config
-    await start_client_handler(config)
+    asyncio.run(start_client_handler(config))
 
-asyncio.run(main())
+
+main()
