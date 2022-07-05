@@ -7,23 +7,24 @@ import numpy as np
 
 from pathlib import Path
 from tqdm.notebook import tqdm
-
+import soundfile as sf
 from phonemizer.backend import EspeakBackend
 import json
 
+from nemo.collections.tts.models import FastPitchModel
+from nemo.collections.tts.models import Vocoder
 
 """Start FastPitch Model (en)"""
 
 # Load Tacotron2
-from nemo.collections.tts.models import FastPitchModel
+
 spec_generator = FastPitchModel.from_pretrained("tts_en_fastpitch")
 
 # Load vocoder
-from nemo.collections.tts.models import Vocoder
+
 model = Vocoder.from_pretrained(model_name="tts_hifigan")
 
 # Generate audio
-import soundfile as sf
 parsed = spec_generator.parse("You can type your sentence here to get nemo to produce speech.")
 spectrogram = spec_generator.generate_spectrogram(tokens=parsed)
 audio = model.convert_spectrogram_to_audio(spec=spectrogram)
@@ -32,7 +33,6 @@ audio = model.convert_spectrogram_to_audio(spec=spectrogram)
 sf.write("speech.wav", audio.to('cpu').numpy(), 22050)
 
 """End FastPitch Model"""
-
 
 
 backend = EspeakBackend('de')

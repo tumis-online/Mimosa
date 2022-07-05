@@ -46,13 +46,19 @@ responses:
     - text: "Dankeschön."
 
 # SLOTS and ACTIONS taken from https://rasa.com/docs/rasa/domain
+# New slot mappings since 3.0: https://rasa.com/blog/slots-in-rasa-open-source-3-0/
 
 slots:
-  concerts:
-    type: list
+  item:
+    type: text
     influence_conversation: false
     mappings:
-    - type: custom
+    - type: from_intent
+      intent: enable_item
+      value: true
+    - type: from_intent
+      intent: disable_item
+      value: true
   venues:
     type: list
     influence_conversation: false

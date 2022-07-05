@@ -7,6 +7,12 @@
 #  url: http://my-server.com/models/default_core@latest
 #  wait_time_between_pulls:  10   # [optional](default: 100)
 
+# Token Based Auth: https://rasa.com/docs/rasa/http-api/#token-based-auth
+#nlu:
+#  url: "http://localhost:5555"
+#  token: thisismysecret  # [optional]
+#  token_name: rasa_nlu_token # [optional] (default: token)
+
 # Server which runs your custom actions.
 # https://rasa.com/docs/rasa/custom-actions
 

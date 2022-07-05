@@ -58,16 +58,23 @@ nlu:
       -
   - intent: lights_off
     examples: |
-      - licht aus
-      - lichter aus
-      - mach das licht aus
-      - mach hier die lampen aus
-      - mach überall die lichter aus
+      - [licht]{"entity": "ITEM"} aus
+      - [lichter]{"entity": "ITEM"} aus
+      - mach das [licht]{"entity": "ITEM"} aus
+      - mach hier die [lampen]{"entity": "ITEM"} aus
+      - mach überall die [lichter]{"entity": "ITEM"} aus
   - intent: lights_on
     examples: |
-      - Kannst du das Licht anmachen?
-      - licht an
-      - lichter an
-      - mach das licht an
-      - mach hier die lampen an
-      - mach überall die lichter an
+      - Kannst du das [Licht]{"entity": "ITEM", "value": "light"} anmachen?
+      - [licht]{"entity": "ITEM", "value": "light"} an
+      - [lichter]{"entity": "ITEM", "value": "light"} an
+      - mach das [licht]{"entity": "ITEM", "value": "light"} an
+      - mach hier die [lampen]{"entity": "ITEM", "value": "light"} an
+      - mach [überall]{"entity": "LOC"} die [lichter]{"entity": "ITEM", "value": "light"} an
+  - synonym: light
+    examples: |
+      - Licht
+      - Lampe
+      - Glühbirne
+      - Leuchte
+      - Deckenlampe
