@@ -1,11 +1,15 @@
 import os
 
 import rasa
+import rasa.nlu
+from rasa.nlu.run import run_cmdline
 from rasa.shared import data
 
 config = "config.yml"
 training_files = "data/"
 domain = "domain.yml"
+endpoints = "endpoints.yml"
+credentials = "credentials.yml"
 output = "models/"
 
 
@@ -13,6 +17,8 @@ output = "models/"
 if __name__ == '__main__':
     train_result = rasa.train(domain, config, [training_files], output)
     model_path = train_result.model
+    # process_training_data(train_result)
+    # run_cmdline(model_path)
     print(model_path)
 
     nlu_data_directory = data.get_nlu_directory(training_files)
