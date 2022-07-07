@@ -1,0 +1,28 @@
+## Further nlu configuration containing synonyms.
+
+version: "3.1"
+
+nlu:
+  - synonym: bathroom
+    examples: |
+      - badezimmer
+      - bad
+      - toilette
+      - wc
+  - synonym: local_geo
+    examples: |
+      - hier
+      - dort
+      - diese
+      - dieses
+      - das
+      - da vorne
+      - oben
+      - unten
+  - synonym: light
+    examples: |
+      - Licht
+      - Lampe
+      - Glühbirne
+      - Leuchte
+      - Deckenlampe

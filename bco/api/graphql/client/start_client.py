@@ -132,4 +132,5 @@ def main():
     asyncio.run(start_client_handler(config))
 
 
-main()
+if __name__ == '__main__':
+    main()

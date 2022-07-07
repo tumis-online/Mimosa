@@ -6,12 +6,17 @@ intents:
   - affirm
   - deny
   - inform
-  - lights_on
-  - lights_off
   - enable_item
   - disable_item
+  - dim_up
+  - dim_down
   - bot_challenge
   - nlu_fallback
+
+entities:
+  - ITEM
+  - LOC
+  - VALUE
 
 responses:
   utter_greet:
@@ -23,6 +28,7 @@ responses:
 
   utter_did_that_help:
   - text: "Hat das geholfen?"
+  - text: "War das richtig so?"
 
   utter_happy:
   - text: "Super!"
@@ -41,6 +47,9 @@ responses:
 
   utter_anything_else:
     - text: "Okay, das macht nichts."
+
+  utter_action_performed:
+    - text: "Ich habe die Aktion ausgeführt."
 
   utter_thank_you:
     - text: "Dankeschön."

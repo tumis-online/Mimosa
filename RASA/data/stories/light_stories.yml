@@ -1,0 +1,13 @@
+## Stories for conversations with light sources.
+#  Stories have to contain "happy" and "unhappy" paths
+
+version: "3.1"
+
+stories:
+  - story: Turn light on
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: enable_item
+      - action: utter_action_performed
+      - checkpoint: ask_feedback

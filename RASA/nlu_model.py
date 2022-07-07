@@ -1,12 +1,11 @@
 import asyncio
-import os
-
 import rasa
 import rasa.nlu
 from rasa.model import get_latest_model
 from rasa.shared import data
 from rasa.core.agent import Agent
-from rasa.shared.utils.io import json_to_string
+
+from RASA.intent import Entity, Intent
 
 config = "config.yml"
 training_files = "data/"
@@ -18,15 +17,18 @@ model_path = output + "nlu.tar.gz"
 
 
 class Model:
+    current_request: dict
 
     def __init__(self, m_path: str) -> None:
         self.agent = Agent.load(model_path=m_path)
-        print("NLU model loaded")
+        print("NLU model loaded successfully.")
 
-    def message(self, message: str) -> str:
+    def message(self, message: str) -> dict:
         message = message.strip()
         result = asyncio.run(self.agent.parse_message(message))
-        return json_to_string(result)
+        self.current_request = result
+        # return json_to_string(result)
+        return result
 
 
 def train_model():
@@ -49,9 +51,22 @@ if __name__ == '__main__':
     print("Done testing.")
 
     mdl = Model(model_path)
-    sentence = "Mach die Lampe an."
-    print(mdl.message(sentence))
-
+    sentences = ["Mach die Lampe an.", "Dimm die Lampe im Wohnzimmer etwas heller", "Schalte die Lampe im Bad aus"]
+    for sentence in sentences:
+        result = mdl.message(sentence)
+        intent_name = result["intent"]["name"]
+        intent_confidence = result["intent"]["confidence"]
+        req_entities = result["entities"]
+        entities: list[Entity] = []
+        for entity in req_entities:
+            entity_type = entity["entity"]
+            position = (entity["start"], entity["end"])
+            confidence = entity["confidence_entity"]
+            value = entity["value"]
+            entities.append(Entity(entity_type, position, confidence, value))
+        intent = Intent(intent_name, intent_confidence, entities)
+        print(f"intent entities: {intent.entities}")
+    """
     if os.path.isfile("errors.json"):
         print("NLU Errors:")
         print(open("errors.json").read())
@@ -62,3 +77,4 @@ if __name__ == '__main__':
         print("\n")
         print("Core Errors:")
         print(open("results/failed_test_stories.yml").read())
+    """

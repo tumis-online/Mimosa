@@ -1,0 +1,21 @@
+## Further nlu configuration containing lookup tables for entities.
+
+version: "3.1"
+
+nlu:
+  - lookup: LOC
+    examples: |
+      - wohnzimmer
+      - küche
+      - badezimmer
+      - schlafzimmer
+  - lookup: VALUE
+    examples: |
+      - etwas
+      - ein wenig
+      - ein bisschen
+      - minimal
+      - 20%
+      - 10%
+      - 50%
+    
