@@ -8,8 +8,7 @@ intents:
   - inform
   - enable_item
   - disable_item
-  - dim_up
-  - dim_down
+  - dim
   - change_color
   - bot_challenge
   - nlu_fallback
@@ -19,6 +18,8 @@ entities:
   - LOC
   - VALUE
   - COLOR
+  - STATE
+  - BRIGHTNESS
 
 responses:
   utter_greet:

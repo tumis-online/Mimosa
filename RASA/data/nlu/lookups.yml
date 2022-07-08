@@ -18,6 +18,14 @@ nlu:
       - 20%
       - 10%
       - 50%
+  - lookup: STATE
+    examples: |
+      - on
+      - off
+  - lookup: BRIGHTNESS
+    examples: |
+      - up
+      - down
   - lookup: COLOR
     examples: |
       - Blau
