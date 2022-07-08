@@ -23,6 +23,7 @@ pipeline:
    - name: SpacyTokenizer
      # Flag to check whether to split intents
      "intent_tokenization_flag": True
+     case_sensitive: false
      # Symbol on which intent should be split
      # "intent_split_symbol": "_"
      # Regular expression to detect tokens

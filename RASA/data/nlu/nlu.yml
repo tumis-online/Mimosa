@@ -55,37 +55,51 @@ nlu:
       - nicht
   - intent: enable_item
     examples: |
-      - Kannst du das [Licht]{"entity": "ITEM", "value": "light"} anmachen?
-      - [licht]{"entity": "ITEM", "value": "light"} an
-      - [lichter]{"entity": "ITEM", "value": "light"} an
-      - mach [das]{"entity": "LOC", "value": "local_geo"} [licht]{"entity": "ITEM", "value": "light"} an
-      - mach [hier]{"entity": "LOC", "value": "local_geo"} die [lampen]{"entity": "ITEM", "value": "light"} an
-      - mach [überall]{"entity": "LOC"} die [lichter]{"entity": "ITEM", "value": "light"} an
+      - Kannst du [das]{"entity": "LOC", "value": "local_geo"} [Licht]{"entity": "ITEM", "value": "light"} anmachen?
+      - [Licht]{"entity": "ITEM", "value": "light"} an.
+      - [Licht]{"entity": "ITEM", "value": "light"} anschalten im [Schlafzimmer]{"entity": "LOC"}.
+      - Ich hätte das [Licht]{"entity": "ITEM", "value": "light"} gerne an.
+      - Mach das [Licht]{"entity": "ITEM", "value": "light"} an.
+      - Die [Lichter]{"entity": "ITEM", "value": "light"} im [Wohnzimmer]{"entity": "LOC"} sollen an sein.
+      - Mach [die]{"entity": "LOC", "value": "local_geo"} [Lichter]{"entity": "ITEM", "value": "light"} an
+      - mach [überall]{"entity": "LOC"} die [Lichter]{"entity": "ITEM", "value": "light"} an.
+      - Schalte [alle]{"entity": "LOC", "value": "local_geo"} [Lichter]{"entity": "ITEM", "value": "light"} an.
       - Schalte die [Steckdosen]{"entity": "ITEM", "value": "power_socket"} in der [Küche]{"entity": "LOC"} an.
       - Die [Stecker]{"entity": "ITEM", "value": "power_socket"} im [Wohnzimmer]{"entity": "LOC"} sollen [alle]{"entity": "LOC"} an sein.
       - Mach [alle]{"entity": "LOC"} [Steckdosen]{"entity": "ITEM", "value": "power_socket"} an.
   - intent: disable_item
     examples: |
-      - [licht]{"entity": "ITEM", "value": "light"} aus
-      - [lichter]{"entity": "ITEM", "value": "light"} aus
-      - mach das [licht]{"entity": "ITEM", "value": "light"} aus
-      - mach [hier]{"entity": "LOC", "value": "local_geo"} die [lampen]{"entity": "ITEM", "value": "light"} aus
-      - mach [überall]{"entity": "LOC"} die [lichter]{"entity": "ITEM", "value": "light"} aus
+      - [licht]{"entity": "ITEM", "value": "light"} aus.
+      - Schalte [alle]{"entity": "LOC", "value": "local_geo"} [Lichter]{"entity": "ITEM", "value": "light"} aus.
+      - [lichter]{"entity": "ITEM", "value": "light"} aus.
+      - [Licht]{"entity": "ITEM", "value": "light"} im [Badezimmer]{"entity": "LOC", "value": "bathroom"} ausschalten.
+      - mach [das]{"entity": "LOC", "value": "local_geo"} [licht]{"entity": "ITEM", "value": "light"} aus.
+      - mach [hier]{"entity": "LOC", "value": "local_geo"} die [lampen]{"entity": "ITEM", "value": "light"} aus.
+      - mach [überall]{"entity": "LOC"} die [lichter]{"entity": "ITEM", "value": "light"} aus.
       - Schalte im [Wohnzimmer]{"entity": "LOC"} die [Steckdose]{"entity": "ITEM", "value:": "power_socket"} aus.
       - Ich möchte das [alle]{"entity": "LOC"} [Steckdosen]{"entity": "ITEM", "value": "power_socket"} aus sind.
   - intent: dim_up
     examples: |
       - Mach [das]{"entity": "LOC", "value": "local_geo"} [Licht]{"entity": "ITEM", "value": "light"} heller.
+      - Ich möchte [das]{"entity": "LOC", "value": "local_geo"} [Licht]{"entity": "ITEM", "value": "light"} [ein bisschen]{"entity": "VALUE"} heller.
       - Dimm [das]{"entity": "LOC", "value": "local_geo"} [Licht]{"entity": "ITEM", "value": "light"} um [20%]{"entity": "VALUE"} hoch.
       - Dimm [diese]{"entity": "LOC"} [Lampe]{"entity": "ITEM", "value": "light"} [etwas]{"entity": "VALUE"} heller.
-      - Dimme die [Lampen]{"entity": "ITEM", "value": "light"} im [Wohnzimmer]{"entity": "LOC", "value": "wohnzimmer"} [ein wenig]{"entity": "VALUE"} höher.
+      - Dimme die [Lampen]{"entity": "ITEM", "value": "light"} im [Wohnzimmer]{"entity": "LOC"} [ein wenig]{"entity": "VALUE"} höher.
       - Kannst du [das]{"entity": "LOC", "value": "local_geo"} [Licht]{"entity": "ITEM", "value": "light"} heller machen?
       - Das Licht im [Bad]{"entity": "LOC", "value": "bathroom"} soll [ein bisschen]{"entity": "VALUE"} heller sein.
   - intent: dim_down
     examples: |
       - Mach [das]{"entity": "LOC", "value": "local_geo"} [Licht]{"entity": "ITEM", "value": "light"} dunkler.
-      - Dimm [das]{"entity": "LOC", "value": "local_geo"} [Licht]{"entity": "ITEM", "value": "light"} um [20%]{"entity": "VALUE"}.
+      - Dimm [das]{"entity": "LOC", "value": "local_geo"} [Licht]{"entity": "ITEM", "value": "light"} um [30%]{"entity": "VALUE"}.
       - Dimm [diese]{"entity": "LOC", "value": "local_geo"} [Lampe]{"entity": "ITEM", "value": "light"} etwas dunkler.
-      - Dimme die [Lampen]{"entity": "ITEM", "value": "light"} im [Wohnzimmer]{"entity": "LOC", "value": "wohnzimmer"} [etwas]{"entity": "VALUE"} herunter.
+      - Dimme die [Lampen]{"entity": "ITEM", "value": "light"} im [Wohnzimmer]{"entity": "LOC"} [etwas]{"entity": "VALUE"} herunter.
       - Kannst du [das]{"entity": "LOC", "value": "local_geo"} [Licht]{"entity": "ITEM", "value": "light"} dunkler machen?
       - Das Licht im [Bad]{"entity": "LOC", "value": "bathroom"} soll [etwas]{"entity": "VALUE"} dunkler sein.
+  - intent: change_color
+    examples: |
+      - Mach [das]{"entity": "LOC", "value": "local_geo"} [Licht]{"entity": "ITEM", "value": "light"} bitte [grün]{"entity": "COLOR"}.
+      - Kannst du die [Lichter]{"entity": "ITEM", "value": "light"} in der [Toilette]{"entity": "LOC", "value": "bathroom"} [gelb]{"entity": "COLOR"} machen?
+      - Schalte das [Licht]{"entity": "ITEM", "value": "light"} in der [Küche]{"entity": "LOC", "value": "kitchen"} bitte [orange]{"entity": "COLOR"}.
+      - Ich möchte [dieses]{"entity": "LOC", "value": "local_geo"} [Licht]{"entity": "ITEM", "value": "light"} in [blauer Farbe]{"entity": "COLOR"} haben.
+      - Mach bitte [alle]{"entity": "LOC", "value": "local_geo"} [Birnen]{"entity": "ITEM", "value": "light"} im [Bad]{"entity": "LOC", "value": "bathroom"} [lila]{"entity": "COLOR"}.
+      - Schalt die [Leuchte]{"entity": "ITEM", "value": "light"} im [WC]{"entity": "LOC", "value": "bathroom"} [grau]{"entity": "COLOR"}.

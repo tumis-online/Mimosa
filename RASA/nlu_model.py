@@ -51,7 +51,10 @@ if __name__ == '__main__':
     print("Done testing.")
 
     mdl = Model(model_path)
-    sentences = ["Mach die Lampe an.", "Dimm die Lampe im Wohnzimmer etwas heller", "Schalte die Lampe im Bad aus"]
+    sentences = ["Mach die Lampe an.",
+                 "Dimm die Lampe im Wohnzimmer etwas heller",
+                 "Schalte die Lampe im Bad aus",
+                 "Ich möchte die Leuchte im WC blau."]
     for sentence in sentences:
         result = mdl.message(sentence)
         intent_name = result["intent"]["name"]
@@ -65,7 +68,9 @@ if __name__ == '__main__':
             value = entity["value"]
             entities.append(Entity(entity_type, position, confidence, value))
         intent = Intent(intent_name, intent_confidence, entities)
-        print(f"intent entities: {intent.entities}")
+        print(f"intent: {intent.name}, confidence: {intent.confidence}, entities: {intent.entities}")
+        if intent.confidence < 0.8:
+            print(result["intent_ranking"])
     """
     if os.path.isfile("errors.json"):
         print("NLU Errors:")

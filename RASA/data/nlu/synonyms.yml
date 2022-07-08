@@ -9,6 +9,7 @@ nlu:
       - bad
       - toilette
       - wc
+      - WC
   - synonym: local_geo
     examples: |
       - hier
@@ -24,5 +25,6 @@ nlu:
       - Licht
       - Lampe
       - Glühbirne
+      - Birne
       - Leuchte
       - Deckenlampe
