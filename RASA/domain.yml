@@ -20,10 +20,11 @@ entities:
   - COLOR
   - STATE
   - BRIGHTNESS
+  - SCENE
 
 responses:
   utter_greet:
-  - text: "Hey! Wie geht es dir?"
+  - text: "Hallo! Wie geht es dir?"
 
   utter_cheer_up:
   - text: "Hier ist etwas zur Aufheiterung:"
@@ -33,6 +34,11 @@ responses:
   - text: "Hat das geholfen?"
   - text: "War das richtig so?"
 
+  utter_rephrase:
+    - text: "Kannst du das noch einmal wiederholen?"
+    - text: "Leider verstehe ich das nicht richtig."
+    - text: "Ich verstehe nicht. Bitte noch einmal umformulieren."
+
   utter_happy:
   - text: "Super!"
 
@@ -40,7 +46,7 @@ responses:
   - text: "Tschüs."
 
   utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
+  - text: "Ich bin ein Assistenzsystem für Heimautomatisierung."
 
   utter_ask_feedback:
     - text: "War das korrekt?"
@@ -59,8 +65,14 @@ responses:
 
 # SLOTS and ACTIONS taken from https://rasa.com/docs/rasa/domain
 # New slot mappings since 3.0: https://rasa.com/blog/slots-in-rasa-open-source-3-0/
+# Slot name taken from https://rasa.com/docs/rasa/responses/
 
 slots:
+  name:
+    type: text
+    influence_conversation: False
+    mappings:
+      - type: custom
   item:
     type: text
     influence_conversation: false
@@ -71,23 +83,14 @@ slots:
     - type: from_intent
       intent: disable_item
       value: true
-  venues:
-    type: list
-    influence_conversation: false
-    mappings:
-    - type: custom
-  likes_music:
-    type: bool
-    influence_conversation: true
-    mappings:
-    - type: custom
 
 actions:
-  - action_search_concerts
-  - action_search_venues
-  - action_show_concert_reviews
-  - action_show_venue_reviews
-  - action_set_music_preference
+  - action_enable_item
+#  - action_search_concerts
+#  - action_search_venues
+#  - action_show_concert_reviews
+#  - action_show_venue_reviews
+#  - action_set_music_preference
 
 session_config:
   session_expiration_time: 60

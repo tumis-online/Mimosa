@@ -2,40 +2,40 @@
 #### If you want to learn more, please see the docs: https://rasa.com/docs/rasa/testing-your-assistant
 
 stories:
-- story: happy path 1
+- story: greeting happy 1
   steps:
   - user: |
       Hallo!
     intent: greet
   - action: utter_greet
   - user: |
-      amazing
+      Sehr gut
     intent: mood_great
   - action: utter_happy
 
-- story: happy path 2
+- story: greeting happy 2
   steps:
   - user: |
-      hello there!
+      Hi
     intent: greet
   - action: utter_greet
   - user: |
-      amazing
+      Gut
     intent: mood_great
   - action: utter_happy
   - user: |
-      bye-bye!
+      Tschau!
     intent: goodbye
   - action: utter_goodbye
 
-- story: sad path 1
+- story: greeting sad 1
   steps:
   - user: |
-      hello
+      Hallo
     intent: greet
   - action: utter_greet
   - user: |
-      not good
+      Nicht so gut
     intent: mood_unhappy
   - action: utter_cheer_up
   - action: utter_did_that_help
@@ -44,71 +44,67 @@ stories:
     intent: affirm
   - action: utter_happy
 
-- story: sad path 2
+- story: greeting sad 2
   steps:
   - user: |
-      hello
+      Guten Tag
     intent: greet
   - action: utter_greet
   - user: |
-      not good
+      Geht so
     intent: mood_unhappy
   - action: utter_cheer_up
   - action: utter_did_that_help
   - user: |
-      not really
-    intent: deny
-  - action: utter_goodbye
-
-- story: sad path 3
-  steps:
-  - user: |
-      hi
-    intent: greet
-  - action: utter_greet
-  - user: |
-      very terrible
-    intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - user: |
-      no
+      Nicht wirklich
     intent: deny
   - action: utter_goodbye
 
 - story: say goodbye
   steps:
   - user: |
-      bye-bye!
+      Bis dann!
     intent: goodbye
   - action: utter_goodbye
 
 - story: bot challenge
   steps:
   - user: |
-      are you a bot?
+      Bist du ein Roboter?
     intent: bot_challenge
   - action: utter_iamabot
 
-- story: A test story with a form
+- story: Switch Lights on in Livingroom
+  steps:
+  - user: |
+      Mach alle Lichter im Wohnzimmer an.
+    intent: enable_item
+  - action: utter_action_performed
+
+- story: Task not feasible
+  steps:
+    - intent: nlu_fallback
+    - action: utter_rephrase
+
+- story: Add Scene
   steps:
     - user: |
         hi
       intent: greet
     - action: utter_greet
     - user: |
-        im looking for a restaurant
-      intent: request_restaurant
-    - action: restaurant_form
-    - active_loop: restaurant_form
+        ich möchte eine Szene erstellen
+      intent: add_scene
+    - action: scene_form
+    - active_loop: scene_form
     - user: |
         [afghan](cuisine) food
       intent: inform
-    - action: restaurant_form
+    - action: scene_form
     - active_loop: null
     - action: utter_slots_values
     - user: |
-        thanks
+        Danke
       intent: thankyou
     - action: utter_no_worries
 - story: A test story with unexpected input during a form

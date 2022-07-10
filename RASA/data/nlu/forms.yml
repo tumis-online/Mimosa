@@ -1,0 +1,15 @@
+## NLU forms (Slot Filling).
+#  See https://learning.rasa.com/archive/rasa-forms-2/rasa-forms/ (RASA 2.x),
+#  https://learning.rasa.com/rasa-forms-3/ and https://rasa.com/docs/rasa/forms/
+
+version: "3.1"
+
+forms:
+  name_form:
+    first_name:
+    - type: from_text
+    last_name:
+    - type: from_text
+  scene_form:
+    scene_name:
+    - type: text
