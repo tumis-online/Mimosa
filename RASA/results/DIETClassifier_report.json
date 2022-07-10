@@ -1,0 +1,63 @@
+{
+  "LOC": {
+    "precision": 0.8125,
+    "recall": 0.896551724137931,
+    "f1-score": 0.8524590163934426,
+    "support": 29,
+    "confused_with": {}
+  },
+  "COLOR": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 7,
+    "confused_with": {}
+  },
+  "ITEM": {
+    "precision": 0.8108108108108109,
+    "recall": 1.0,
+    "f1-score": 0.8955223880597014,
+    "support": 30,
+    "confused_with": {}
+  },
+  "STATE": {
+    "precision": 0.8571428571428571,
+    "recall": 1.0,
+    "f1-score": 0.923076923076923,
+    "support": 18,
+    "confused_with": {}
+  },
+  "VALUE": {
+    "precision": 0.8461538461538461,
+    "recall": 1.0,
+    "f1-score": 0.9166666666666666,
+    "support": 11,
+    "confused_with": {}
+  },
+  "BRIGHTNESS": {
+    "precision": 1.0,
+    "recall": 0.9,
+    "f1-score": 0.9473684210526316,
+    "support": 10,
+    "confused_with": {}
+  },
+  "micro avg": {
+    "precision": 0.8487394957983193,
+    "recall": 0.9619047619047619,
+    "f1-score": 0.9017857142857143,
+    "support": 105
+  },
+  "macro avg": {
+    "precision": 0.887767919017919,
+    "recall": 0.9660919540229885,
+    "f1-score": 0.9225155692082275,
+    "support": 105
+  },
+  "weighted avg": {
+    "precision": 0.8535532196246481,
+    "recall": 0.9619047619047619,
+    "f1-score": 0.9024703359661441,
+    "support": 105
+  },
+  "accuracy": 0.9455445544554455
+}

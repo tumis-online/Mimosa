@@ -4,18 +4,53 @@ intents:
   - greet
   - goodbye
   - mood_great
+      ignore_entities:
+        - ITEM
+        - LOC
+        - STATE
+        - BRIGHTNESS
+        - COLOR
+        - SCENE
   - mood_unhappy
+      ignore_entities:
+        - ITEM
+        - LOC
+        - STATE
+        - BRIGHTNESS
+        - COLOR
+        - SCENE
   - affirm
   - deny
   - enable_item
+      use_entities:
+        - ITEM
+        - LOC
+        - STATE
   - disable_item
+      use_entities:
+        - ITEM
+        - LOC
+        - STATE
   - dim
+      use_entities:
+        - ITEM
+        - LOC
+        - BRIGHTNESS
+        - VALUE
   - change_color
+      use_entities:
+        - ITEM
+        - LOC
+        - COLOR
   - bot_request
+  - add_scene
   - nlu_fallback
 
 entities:
   - ITEM
+      groups:
+        - light
+        - power_socket
   - LOC
   - VALUE
   - COLOR
@@ -69,23 +104,6 @@ responses:
 # New slot mappings since 3.0: https://rasa.com/blog/slots-in-rasa-open-source-3-0/
 # Slot name taken from https://rasa.com/docs/rasa/responses/
 
-slots:
-  name:
-    type: text
-    influence_conversation: False
-    mappings:
-      - type: custom
-  item:
-    type: text
-    influence_conversation: false
-    mappings:
-    - type: from_intent
-      intent: enable_item
-      value: true
-    - type: from_intent
-      intent: disable_item
-      value: true
-
 actions:
   - action_enable_item
 #  - action_search_concerts
@@ -95,5 +113,5 @@ actions:
 #  - action_set_music_preference
 
 session_config:
-  session_expiration_time: 60
-  carry_over_slots_to_new_session: true
+  session_expiration_time: 0  # value in minutes, 0 means infinitely long
+  carry_over_slots_to_new_session: true  # set to false to forget slots between sessions

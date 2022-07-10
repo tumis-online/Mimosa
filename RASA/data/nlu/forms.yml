@@ -4,12 +4,102 @@
 
 version: "3.1"
 
+slots:
+  first_name:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+  last_name:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+  scene_name:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: scene_form
+  item:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: ITEM
+      conditions:
+        - active_loop: scene_form
+  item_status:
+    type: categorical
+    values:
+      - on
+      - off
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: STATUS
+        conditions:
+          - active_loop: scene_form
+  light_color:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: COLOR
+        conditions:
+          - active_loop: scene_form
+  light_brightness:
+    type: addons.custom_slots.BrightnessSlot
+    values:
+      - low
+      - medium
+      - high
+    influence_conversation: false
+    mappings:
+      - type: custom
+  location:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: LOC
+        conditions:
+          - active_loop: scene_form
+  value:
+    type: int
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: VALUE
+        conditions:
+        - active_loop: scene_form
+  item_config:
+    type: addons.custom_slots.ItemConfigSlot
+      influence_conversation: false
+      mappings:
+        - type: custom
+  scene:
+    type: any
+    mappings:
+      - type: from_intent
+        value: scene
+        intent: add_scene
+
 forms:
   name_form:
-    first_name:
-    - type: from_text
-    last_name:
-    - type: from_text
+    required_slots:
+      - first_name
+      - last_name
+  light_form:
+    required_slots:
+      - scene_name
+      - item
+      - item_status
+      - light_color
+      - value
+      - location
   scene_form:
-    scene_name:
-    - type: text
+    required_slots:
+      - item_config
+

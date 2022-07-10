@@ -1,0 +1,10 @@
+[
+  {
+    "text": "Mir geht es nicht gut",
+    "intent": "mood_unhappy",
+    "intent_prediction": {
+      "name": "mood_great",
+      "confidence": 0.38339728116989136
+    }
+  }
+]

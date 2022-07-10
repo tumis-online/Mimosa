@@ -1,0 +1,548 @@
+[
+  {
+    "text": "Kannst du das Licht anmachen?",
+    "entities": [
+      {
+        "start": 10,
+        "end": 13,
+        "value": "local_geo",
+        "entity": "LOC"
+      },
+      {
+        "start": 14,
+        "end": 19,
+        "value": "light",
+        "entity": "ITEM"
+      },
+      {
+        "start": 20,
+        "end": 28,
+        "value": "on",
+        "entity": "STATE"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "ITEM",
+        "start": 14,
+        "end": 19,
+        "confidence_entity": 0.9627383947372437,
+        "value": "light",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "STATE",
+        "start": 20,
+        "end": 28,
+        "confidence_entity": 0.6932193040847778,
+        "value": "on",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Lampe ausschalten.",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "STATE",
+        "start": 6,
+        "end": 17,
+        "confidence_entity": 0.633905827999115,
+        "value": "off",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "mach das licht aus.",
+    "entities": [
+      {
+        "start": 5,
+        "end": 8,
+        "value": "local_geo",
+        "entity": "LOC"
+      },
+      {
+        "start": 9,
+        "end": 14,
+        "value": "light",
+        "entity": "ITEM"
+      },
+      {
+        "start": 15,
+        "end": 18,
+        "value": "off",
+        "entity": "STATE"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "ITEM",
+        "start": 9,
+        "end": 14,
+        "confidence_entity": 0.9555870890617371,
+        "value": "light",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "STATE",
+        "start": 15,
+        "end": 18,
+        "confidence_entity": 0.9822545647621155,
+        "value": "off",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Mach das Licht heller.",
+    "entities": [
+      {
+        "start": 5,
+        "end": 8,
+        "value": "local_geo",
+        "entity": "LOC"
+      },
+      {
+        "start": 9,
+        "end": 14,
+        "value": "light",
+        "entity": "ITEM"
+      },
+      {
+        "start": 15,
+        "end": 21,
+        "value": "up",
+        "entity": "BRIGHTNESS"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "ITEM",
+        "start": 9,
+        "end": 14,
+        "confidence_entity": 0.9372230172157288,
+        "value": "light",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "BRIGHTNESS",
+        "start": 15,
+        "end": 21,
+        "confidence_entity": 0.9983007311820984,
+        "value": "up",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Dimme die Lampen im Wohnzimmer ein wenig höher.",
+    "entities": [
+      {
+        "start": 0,
+        "end": 5,
+        "value": "Dimme",
+        "entity": "BRIGHTNESS"
+      },
+      {
+        "start": 10,
+        "end": 16,
+        "value": "light",
+        "entity": "ITEM"
+      },
+      {
+        "start": 20,
+        "end": 30,
+        "value": "Wohnzimmer",
+        "entity": "LOC"
+      },
+      {
+        "start": 31,
+        "end": 40,
+        "value": "ein wenig",
+        "entity": "VALUE"
+      },
+      {
+        "start": 41,
+        "end": 46,
+        "value": "up",
+        "entity": "BRIGHTNESS"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "ITEM",
+        "start": 10,
+        "end": 16,
+        "confidence_entity": 0.9582324028015137,
+        "value": "light",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "LOC",
+        "start": 20,
+        "end": 30,
+        "confidence_entity": 0.9299437999725342,
+        "value": "Wohnzimmer",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "VALUE",
+        "start": 31,
+        "end": 40,
+        "confidence_entity": 0.9695026278495789,
+        "value": "ein wenig",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "BRIGHTNESS",
+        "start": 41,
+        "end": 46,
+        "confidence_entity": 0.9969691634178162,
+        "value": "up",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Das Licht im Bad soll ein bisschen heller sein.",
+    "entities": [
+      {
+        "start": 13,
+        "end": 16,
+        "value": "bathroom",
+        "entity": "LOC"
+      },
+      {
+        "start": 22,
+        "end": 34,
+        "value": "ein bisschen",
+        "entity": "VALUE"
+      },
+      {
+        "start": 35,
+        "end": 41,
+        "value": "up",
+        "entity": "BRIGHTNESS"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "ITEM",
+        "start": 4,
+        "end": 9,
+        "confidence_entity": 0.8525580763816833,
+        "value": "light",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "LOC",
+        "start": 13,
+        "end": 16,
+        "confidence_entity": 0.9678414463996887,
+        "value": "bathroom",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "VALUE",
+        "start": 22,
+        "end": 34,
+        "confidence_entity": 0.9737643599510193,
+        "value": "ein bisschen",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "BRIGHTNESS",
+        "start": 35,
+        "end": 41,
+        "confidence_entity": 0.9978939890861511,
+        "value": "up",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Das Licht im Bad soll etwas dunkler sein.",
+    "entities": [
+      {
+        "start": 13,
+        "end": 16,
+        "value": "bathroom",
+        "entity": "LOC"
+      },
+      {
+        "start": 22,
+        "end": 27,
+        "value": "etwas",
+        "entity": "VALUE"
+      },
+      {
+        "start": 28,
+        "end": 35,
+        "value": "down",
+        "entity": "BRIGHTNESS"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "ITEM",
+        "start": 4,
+        "end": 9,
+        "confidence_entity": 0.8547601699829102,
+        "value": "light",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "LOC",
+        "start": 13,
+        "end": 16,
+        "confidence_entity": 0.9690645933151245,
+        "value": "bathroom",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "VALUE",
+        "start": 22,
+        "end": 27,
+        "confidence_entity": 0.988994300365448,
+        "value": "etwas",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "BRIGHTNESS",
+        "start": 28,
+        "end": 35,
+        "confidence_entity": 0.9976740479469299,
+        "value": "down",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Mach die Lampen im Wohnzimmer weiß.",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "ITEM",
+        "start": 9,
+        "end": 15,
+        "confidence_entity": 0.9080467820167542,
+        "value": "light",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "LOC",
+        "start": 19,
+        "end": 29,
+        "confidence_entity": 0.851838231086731,
+        "value": "Wohnzimmer",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "was kann ich hier sagen",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "LOC",
+        "start": 13,
+        "end": 17,
+        "confidence_entity": 0.6552366018295288,
+        "value": "local_geo",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Schalte das Licht in der Küche bitte blau.",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "ITEM",
+        "start": 12,
+        "end": 17,
+        "confidence_entity": 0.826744019985199,
+        "value": "light",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "LOC",
+        "start": 25,
+        "end": 30,
+        "confidence_entity": 0.6347132921218872,
+        "value": "kitchen",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Dimme das Licht um 20% herunter.",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "ITEM",
+        "start": 10,
+        "end": 15,
+        "confidence_entity": 0.8943613767623901,
+        "value": "light",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "VALUE",
+        "start": 19,
+        "end": 22,
+        "confidence_entity": 0.7029096484184265,
+        "value": "20%",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Schalte alle Lichter im Bad aus.",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "LOC",
+        "start": 8,
+        "end": 12,
+        "confidence_entity": 0.9415608048439026,
+        "value": "local_geo",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "ITEM",
+        "start": 13,
+        "end": 20,
+        "confidence_entity": 0.9514960646629333,
+        "value": "light",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "LOC",
+        "start": 24,
+        "end": 27,
+        "confidence_entity": 0.9132977724075317,
+        "value": "bathroom",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "STATE",
+        "start": 28,
+        "end": 31,
+        "confidence_entity": 0.9475429058074951,
+        "value": "off",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Mach das Licht im Schlafzimmer an.",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "ITEM",
+        "start": 9,
+        "end": 14,
+        "confidence_entity": 0.9138628840446472,
+        "value": "light",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "LOC",
+        "start": 18,
+        "end": 30,
+        "confidence_entity": 0.6943461894989014,
+        "value": "Schlafzimmer",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "STATE",
+        "start": 31,
+        "end": 33,
+        "confidence_entity": 0.9767556190490723,
+        "value": "on",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  }
+]

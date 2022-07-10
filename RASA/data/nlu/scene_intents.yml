@@ -1,0 +1,6 @@
+## NLU intents for scenes.
+
+version: "3.1"
+
+nlu:
+  - intent: add_scene
