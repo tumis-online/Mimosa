@@ -40,7 +40,7 @@ stories:
   - action: utter_cheer_up
   - action: utter_did_that_help
   - user: |
-      yes
+      Ja, danke
     intent: affirm
   - action: utter_happy
 
@@ -67,11 +67,11 @@ stories:
     intent: goodbye
   - action: utter_goodbye
 
-- story: bot challenge
+- story: request abilities of bot.
   steps:
   - user: |
       Bist du ein Roboter?
-    intent: bot_challenge
+    intent: bot_request
   - action: utter_iamabot
 
 - story: Switch Lights on in Livingroom
@@ -80,6 +80,34 @@ stories:
       Mach alle Lichter im Wohnzimmer an.
     intent: enable_item
   - action: utter_action_performed
+
+- story: Switch Lights off in kitchen
+  steps:
+    - user: |
+        Schalte in der Küche die Lichter aus.
+      intent: disable_item
+    - action: utter_action_performed
+
+- story: Switch lights in bathroom to color green
+  steps:
+    - user: |
+        Schalte die Lichter im Bad grün.
+      intent: change_color
+    - action: utter_action_performed
+
+- story: Dim light up 10% brighter
+  steps:
+    - user: |
+        Mach das Licht hier 10% heller.
+      intent: dim
+    - action: utter_action_performed
+
+- story: Dim light down in living room
+  steps:
+    - user: |
+        Ich möchte das Licht im Wohnzimmer dunkler haben.
+      intent: dim
+    - action: utter_action_performed
 
 - story: Task not feasible
   steps:

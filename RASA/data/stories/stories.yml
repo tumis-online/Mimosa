@@ -12,13 +12,15 @@ stories:
       - intent: goodbye
       - action: utter_goodbye
       - checkpoint: ask_feedback
-  - story: user provides feedback
+
+  - story: user provides affirm feedback
     steps:
       - checkpoint: ask_feedback
       - action: utter_ask_feedback
-      - intent: inform
+      - intent: affirm
       - action: utter_thank_you
       - action: utter_anything_else
+
   - story: user doesn't have feedback
     steps:
       - checkpoint: ask_feedback
@@ -26,3 +28,41 @@ stories:
       - intent: deny
       - action: utter_no_problem
       - action: utter_anything_else
+
+  - story: greeting happy
+    steps:
+      - user: |
+          Guten Tag
+        intent: greet
+      - action: utter_greet
+      - user: |
+          Mir geht es gut
+        intent: mood_great
+      - action: utter_happy
+      - user: |
+          Bis dann!
+        intent: goodbye
+      - action: utter_goodbye
+
+  - story: greeting sad
+    steps:
+      - user: |
+          Hi
+        intent: greet
+      - action: utter_greet
+      - user: |
+          Heute nicht gut
+        intent: mood_unhappy
+      - action: utter_cheer_up
+      - action: utter_did_that_help
+      - user: |
+          Ja
+        intent: affirm
+      - action: utter_happy
+
+  - story: request abilities of bot.
+    steps:
+      - user: |
+          Was kannst du?
+        intent: bot_request
+      - action: utter_iamabot

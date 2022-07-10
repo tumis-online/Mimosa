@@ -3,14 +3,15 @@ version: "3.1"
 intents:
   - greet
   - goodbye
+  - mood_great
+  - mood_unhappy
   - affirm
   - deny
-  - inform
   - enable_item
   - disable_item
   - dim
   - change_color
-  - bot_challenge
+  - bot_request
   - nlu_fallback
 
 entities:
@@ -47,6 +48,7 @@ responses:
 
   utter_iamabot:
   - text: "Ich bin ein Assistenzsystem für Heimautomatisierung."
+  - text: "Ich unterstütze dich im Umgang mit Smart Home Geräten."
 
   utter_ask_feedback:
     - text: "War das korrekt?"

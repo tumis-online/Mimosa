@@ -23,8 +23,12 @@ nlu:
   - synonym: light
     examples: |
       - Licht
+      - Lichter
       - Lampe
+      - Lampen
       - Glühbirne
+      - Glühbirnen
       - Birne
       - Leuchte
+      - Leuchten
       - Deckenlampe

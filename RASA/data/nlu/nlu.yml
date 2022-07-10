@@ -40,23 +40,20 @@ nlu:
       - Nicht so toll
       - War schon mal besser
       - Geht so
-  - intent: scenario_request
+  - intent: bot_request
     examples: |
+      - Bist du ein Roboter?
       - wie funktioniert das
       - was kann ich sagen
       - was kann ich hier sagen
-  - intent: ability_request
-    examples: |
       - was kannst du
       - was für möglichkeiten habe ich
-  - intent: accept
+  - intent: affirm
     examples: |
       - okay
       - einverstanden
       - richtig
       - in ordnung
-  - intent: affirm
-    examples: |
       - ja
       - jo
       - auf jeden fall

@@ -13,6 +13,7 @@ stories:
         intent: enable_item
       - action: utter_action_performed
       - checkpoint: ask_feedback
+
   - story: Turn light off in bathroom
     steps:
       - intent: greet
@@ -22,10 +23,19 @@ stories:
         intent: disable_item
       - action: utter_action_performed
       - checkpoint: ask_feedback
+
   - story: Dim lights in kitchen off 20%
     steps:
       - user: |
           Dimme das Licht um 20% herunter.
         intent: dim
+      - action: utter_action_performed
+      - checkpoint: ask_feedback
+
+  - story: Change light color in kitchen to blue
+    steps:
+      - user: |
+          Schalte das Licht in der Küche bitte blau.
+        intent: change_color
       - action: utter_action_performed
       - checkpoint: ask_feedback
