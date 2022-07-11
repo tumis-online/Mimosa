@@ -80,6 +80,7 @@ slots:
         conditions:
           - active_loop: scene_form
 
+# Activating via stories or rules
 forms:
   name_form:
     required_slots:

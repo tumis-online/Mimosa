@@ -16,6 +16,6 @@ rules:
       - action: utter_rephrase
   - rule: Activate add scene form
     steps:
-      - intent: Add scene
+      - intent: add_scene
       - action: scene_form
       - active_loop: scene_form

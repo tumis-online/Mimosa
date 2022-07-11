@@ -3,7 +3,7 @@ version: "3.1"
 intents:
   - greet
   - goodbye
-  - mood_great
+  - mood_great:
       ignore_entities:
         - ITEM
         - LOC
@@ -11,7 +11,7 @@ intents:
         - BRIGHTNESS
         - COLOR
         - SCENE
-  - mood_unhappy
+  - mood_unhappy:
       ignore_entities:
         - ITEM
         - LOC
@@ -21,35 +21,35 @@ intents:
         - SCENE
   - affirm
   - deny
-  - enable_item
+  - enable_item:
       use_entities:
         - ITEM
         - LOC
         - STATE
-  - disable_item
+  - disable_item:
       use_entities:
         - ITEM
         - LOC
         - STATE
-  - dim
+  - dim:
       use_entities:
         - ITEM
         - LOC
         - BRIGHTNESS
         - VALUE
-  - change_color
+  - change_color:
       use_entities:
         - ITEM
         - LOC
         - COLOR
   - bot_request
-  - add_scene
+  - add_scene:
       use_entities:
         - NAME
   - nlu_fallback
 
 entities:
-  - ITEM
+  - ITEM:
       groups:
         - light
         - power_socket
@@ -115,11 +115,6 @@ actions:
   - validate_power_socket_form
   - validate_fallback_item_form
   - validate_scene_form
-#  - action_search_concerts
-#  - action_search_venues
-#  - action_show_concert_reviews
-#  - action_show_venue_reviews
-#  - action_set_music_preference
 
 session_config:
   session_expiration_time: 0  # value in minutes, 0 means infinitely long

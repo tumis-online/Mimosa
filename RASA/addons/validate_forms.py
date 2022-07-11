@@ -22,6 +22,7 @@ class ValidateItemConfigForm(FormValidationAction):
         domain: DomainDict,
     ) -> Dict[Text, Any]:
         """Validate item value."""
+        print(domain)
         if slot_value in self.item_db():
             # validation succeeded, set the value of the "item" slot to value
             return {"item": slot_value}
