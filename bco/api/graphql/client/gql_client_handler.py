@@ -33,6 +33,16 @@ def parse_graphql_file(request_file):
     return query
 
 
+async def execute_query(session, query):
+    result = await session.execute(query)
+    print(result)
+
+
+async def execute_subscription(session, subscription):
+    async for result in session.subscribe(subscription):
+        print(result)
+
+
 class GraphQLClientHandler:
     """Handles GQL Client async session for sending requests to API."""
     session: Client
@@ -41,10 +51,6 @@ class GraphQLClientHandler:
     def __init__(self, session):
         self.loop = asyncio.get_event_loop()
         self.session = session
-
-    async def receive_requests(self, request, params=None):
-        """Subscriber / Listener for published GraphQL queries."""
-        return await self.send_graphql_request(request, params)
 
     async def async_execute_query(self, query, params=None):
         """Executing GraphQL query asynchronously."""

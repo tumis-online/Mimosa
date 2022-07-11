@@ -1,4 +1,6 @@
 import asyncio
+import logging
+
 import rasa
 import rasa.nlu
 from rasa.model import get_latest_model
@@ -13,7 +15,7 @@ domain = "domain.yml"
 endpoints = "endpoints.yml"
 credentials = "credentials.yml"
 output = "models/"
-model_path = output + "nlu.tar.gz"
+default_model_path = output + "nlu.tar.gz"
 
 
 class Model:
@@ -40,37 +42,44 @@ def train_model():
     return m_path
 
 
-"""https://rasa.com/docs/rasa/next/jupyter-notebooks/#train-a-model"""
-if __name__ == '__main__':
-    model_path = train_model()
+def test_model():
     nlu_data_directory = data.get_nlu_directory(training_files)
     stories_directory = data.get_core_directory(training_files)
-    print(stories_directory, nlu_data_directory)
-
     rasa.test(model_path, stories_directory, nlu_data_directory)
-    print("Done testing.")
+    logging.info("Done testing.")
 
+
+def send_message(message: str):
+    result = mdl.message(message)
+    intent_name = result["intent"]["name"]
+    intent_confidence = result["intent"]["confidence"]
+    req_entities = result["entities"]
+    entities: list[Entity] = []
+    for entity in req_entities:
+        entity_type = entity["entity"]
+        position = (entity["start"], entity["end"])
+        confidence = entity["confidence_entity"]
+        value = entity["value"]
+        entities.append(Entity(entity_type, position, confidence, value))
+    intent = Intent(intent_name, intent_confidence, entities)
+    logging.info(f"intent: {intent.name}, confidence: {intent.confidence}, entities: {intent.entities}")
+    if intent.confidence < 0.7:
+        logging.info(result["intent_ranking"])
+
+
+"""https://rasa.com/docs/rasa/next/jupyter-notebooks/#train-a-model"""
+if __name__ == '__main__':
+    # model_path = train_model()
+    # test_model()
+
+    model_path = get_latest_model(output)
     mdl = Model(model_path)
     sentences = ["Mach die Lampe an.",
                  "Dimm die Lampe im Wohnzimmer etwas heller",
                  "Schalte die Lampe im Bad aus",
                  "Ich möchte die Leuchte im WC blau."]
     for sentence in sentences:
-        result = mdl.message(sentence)
-        intent_name = result["intent"]["name"]
-        intent_confidence = result["intent"]["confidence"]
-        req_entities = result["entities"]
-        entities: list[Entity] = []
-        for entity in req_entities:
-            entity_type = entity["entity"]
-            position = (entity["start"], entity["end"])
-            confidence = entity["confidence_entity"]
-            value = entity["value"]
-            entities.append(Entity(entity_type, position, confidence, value))
-        intent = Intent(intent_name, intent_confidence, entities)
-        print(f"intent: {intent.name}, confidence: {intent.confidence}, entities: {intent.entities}")
-        if intent.confidence < 0.8:
-            print(result["intent_ranking"])
+        send_message(message=sentence)
     """
     if os.path.isfile("errors.json"):
         print("NLU Errors:")

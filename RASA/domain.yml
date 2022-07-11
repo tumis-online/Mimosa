@@ -44,6 +44,8 @@ intents:
         - COLOR
   - bot_request
   - add_scene
+      use_entities:
+        - NAME
   - nlu_fallback
 
 entities:
@@ -56,7 +58,7 @@ entities:
   - COLOR
   - STATE
   - BRIGHTNESS
-  - SCENE
+  - NAME
 
 responses:
   utter_greet:
@@ -104,8 +106,15 @@ responses:
 # New slot mappings since 3.0: https://rasa.com/blog/slots-in-rasa-open-source-3-0/
 # Slot name taken from https://rasa.com/docs/rasa/responses/
 
+# SLOT VALIDATION https://rasa.com/docs/action-server/validation-action/ predefined action_validate_slot_mappings name.
 actions:
   - action_enable_item
+  - action_validate_slot_mappings
+  - validate_item_config_form
+  - validate_light_form
+  - validate_power_socket_form
+  - validate_fallback_item_form
+  - validate_scene_form
 #  - action_search_concerts
 #  - action_search_venues
 #  - action_show_concert_reviews

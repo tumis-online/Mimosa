@@ -5,15 +5,18 @@ import base64
 import hashlib
 import os.path
 
+import backoff as backoff
 import yaml
 import logging
 
 from gql import Client
 from gql.transport.aiohttp import AIOHTTPTransport
 from gql.transport.requests import log as requests_logger
+from gql.transport.websockets import WebsocketsTransport
 from yaml.loader import SafeLoader
 
-from bco.api.graphql.client.gql_client_handler import GraphQLClientHandler, parse_graphql_file
+from bco.api.graphql.client.gql_client_handler import parse_graphql_file, GraphQLClientHandler, \
+    execute_query
 from bco.api.graphql.smart_env import State
 
 DEFAULT_CONFIG_FILE = "gql-config.yml"
@@ -87,6 +90,7 @@ async def start_client_handler(config: str):
         transport = AIOHTTPTransport(url=api_endpoint, headers={'Authorization': auth_token})
     except (aiohttp.ClientError, aiohttp.ClientConnectionError) as err:
         logging.error(f"Could not connect to client with api endpoint: {api_endpoint}.\n")
+        logging.debug(err)
         exit(1)
 
     # Using `async with` on the client will start a connection on the transport
@@ -111,9 +115,29 @@ async def start_client_handler(config: str):
         # unit_id_bytes = base64.b64decode(unit_id_base64_bytes)
         # unit_id = unit_id_bytes.decode('ascii')
         unit_id = "89783086-0f7e-476e-816d-417f24dc7896"
-        request = await client_handler.receive_requests(switch_light_mutation, {"unitId": unit_id, "state": State.ON})
+        request = await client_handler.send_graphql_request(
+            switch_light_mutation,
+            {"unitId": unit_id, "state": State.ON.value}
+        )
         # response = await client_handler.send_graphql_request(request)
         logging.info(request)
+
+
+@backoff.on_exception(backoff.expo, Exception, max_time=300)
+async def graphql_connection():
+    """Websocket async implementation as described
+    in https://gql.readthedocs.io/en/latest/advanced/async_advanced_usage.html#async-advanced-usage
+    """
+
+    transport = WebsocketsTransport(url="wss://YOUR_URL")
+
+    client = Client(transport=transport, fetch_schema_from_transport=True)
+
+    async with client as session:
+        task1 = asyncio.create_task(execute_query(session, query))
+        task2 = asyncio.create_task(execute_subscription(session))
+
+        await asyncio.gather(task1, task2)
 
 
 def main():
@@ -130,6 +154,7 @@ def main():
     # logging.basicConfig(format=FORMAT, encoding='utf-8', level=level)
     config = args.config
     asyncio.run(start_client_handler(config))
+    # asyncio.run(graphql_connection())
 
 
 if __name__ == '__main__':

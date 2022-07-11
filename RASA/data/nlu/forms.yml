@@ -10,18 +10,13 @@ slots:
     influence_conversation: true
     mappings:
       - type: from_text
+        entity: NAME
   last_name:
     type: text
     influence_conversation: true
     mappings:
       - type: from_text
-  scene_name:
-    type: text
-    influence_conversation: true
-    mappings:
-      - type: from_text
-        conditions:
-          - active_loop: scene_form
+        entity: NAME
   item:
     type: text
     influence_conversation: true
@@ -29,7 +24,7 @@ slots:
     - type: from_entity
       entity: ITEM
       conditions:
-        - active_loop: scene_form
+        - active_loop: item_config_form
   item_status:
     type: categorical
     values:
@@ -39,8 +34,6 @@ slots:
     mappings:
       - type: from_entity
         entity: STATUS
-        conditions:
-          - active_loop: scene_form
   light_color:
     type: text
     influence_conversation: false
@@ -48,9 +41,9 @@ slots:
       - type: from_entity
         entity: COLOR
         conditions:
-          - active_loop: scene_form
+          - active_loop: light_form
   light_brightness:
-    type: addons.custom_slots.BrightnessSlot
+    type: categorical
     values:
       - low
       - medium
@@ -58,6 +51,9 @@ slots:
     influence_conversation: false
     mappings:
       - type: custom
+        action: xxxxx
+        conditions:
+          - active_loop: light_form
   location:
     type: text
     influence_conversation: false
@@ -65,7 +61,7 @@ slots:
       - type: from_entity
         entity: LOC
         conditions:
-          - active_loop: scene_form
+          - active_loop: light_form
   value:
     type: int
     influence_conversation: false
@@ -73,33 +69,41 @@ slots:
       - type: from_entity
         entity: VALUE
         conditions:
-        - active_loop: scene_form
-  item_config:
-    type: addons.custom_slots.ItemConfigSlot
-      influence_conversation: false
-      mappings:
-        - type: custom
-  scene:
-    type: any
+        - active_loop: light_form
+  scene_name:
+    type: text
+    influence_conversation: true
     mappings:
-      - type: from_intent
-        value: scene
+      - type: from_text
+        entity: NAME
         intent: add_scene
+        conditions:
+          - active_loop: scene_form
 
 forms:
   name_form:
     required_slots:
       - first_name
       - last_name
+  item_config_form:
+    required_slots:
+      - item
   light_form:
     required_slots:
-      - scene_name
-      - item
       - item_status
       - light_color
       - value
       - location
+  power_socket_form:
+    required_slots:
+      - item_status
+      - location
+  fallback_item_form:
+    required_slots:
+      - item_status
+      - location
+      - value
   scene_form:
     required_slots:
-      - item_config
+      - scene_name
 
