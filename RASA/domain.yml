@@ -108,6 +108,12 @@ responses:
 
 # SLOT VALIDATION https://rasa.com/docs/action-server/validation-action/ predefined action_validate_slot_mappings name.
 actions:
+  - name_form
+  - item_config_form
+  - light_form
+  - power_socket_form
+  - fallback_item_form
+  - scene_form
   - action_enable_item
   - action_validate_slot_mappings
   - validate_item_config_form
