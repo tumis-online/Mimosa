@@ -17,7 +17,7 @@ nemo_asr_model: asr_model = nemo_asr.models.EncDecCTCModelBPE.from_pretrained(pr
 # Handles Speech to Text from file or from stream
 class STTHandler:
 
-    def __init__(self, model):
+    def __init__(self, model=asr_model):
         self.model = model
 
     @NotImplemented
@@ -27,11 +27,11 @@ class STTHandler:
         """
         pass
 
-    async def stt_from_file(self, sample_file: path):
+    async def stt_from_file(self, sample_file: path) -> str:
         """
         Takes sample file input and converts it into text.
         :param sample_file: mono and sampled at 16Khz
-        :return:
+        :return: text output
         """
         if not exists(sample_file):
             logging.error(f"Could not locate sample file {sample_file}. Exiting asr...")
@@ -45,6 +45,7 @@ class STTHandler:
             .from_pretrained(model_name=pretrained_punctuation_model)
         res = punctuation.add_punctuation_capitalization(queries=transcriptions)
         logging.info(f"Given input: '{res}'")
+        return res
 
 
 async def main():

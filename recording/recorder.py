@@ -57,8 +57,10 @@ async def stream_sound(pa_interface: pyaudio, sample_format: int,
     return frames
 
 
-async def start_recording():
-    """Recording with audio device."""
+async def start_recording() -> str:
+    """Recording with audio device and saving in wav file.
+    :return filename
+    """
     sample_format = AudioSettings.SAMPLE_FORMAT
     channels = AudioSettings.CHANNELS
     sample_rate = AudioSettings.SAMPLE_RATE
@@ -91,6 +93,7 @@ async def start_recording():
     wf.close()
 
     logging.info(f"Saved audio input in {filename}.")
+    return filename
 
 
 if __name__ == '__main__':

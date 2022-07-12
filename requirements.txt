@@ -27,3 +27,6 @@ sacremoses
 sacrebleu
 hypothesis~=6.48.3
 phonemizer~=3.2.1
+pandas
+jieba
+opencc
