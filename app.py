@@ -2,13 +2,13 @@ import argparse
 import asyncio
 import logging
 
-from NeMo.asr.speech_recognition import STTHandler
+from NeMo.src.asr import speech_recognition as asr
 from recording import recorder
 
 
 async def start_app():
     recorded_audio_file = await asyncio.run(recorder.start_recording())
-    stt_handler = STTHandler()
+    stt_handler = asr.STTHandler()
     text_output = await stt_handler.stt_from_file(recorded_audio_file)
     logging.info(text_output)
 

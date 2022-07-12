@@ -1,0 +1,3 @@
+fastapi[all]
+uvicorn[standard]
+starlette==0.20.4
