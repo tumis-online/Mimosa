@@ -20,7 +20,11 @@ class STTHandler:
     def __init__(self, model):
         self.model = model
 
+    @NotImplemented
     async def stt_from_stream(self, stream):
+        """TODO Realise according to https://github.com/NVIDIA/NeMo/blob/main/tutorials/asr/Streaming_ASR.ipynb.
+            Makes use of load_buffers_to_data_layers.py
+        """
         pass
 
     async def stt_from_file(self, sample_file: path):
@@ -40,7 +44,7 @@ class STTHandler:
         punctuation = nemo_nlp.models.PunctuationCapitalizationModel\
             .from_pretrained(model_name=pretrained_punctuation_model)
         res = punctuation.add_punctuation_capitalization(queries=transcriptions)
-        logging.info(res)
+        logging.info(f"Given input: '{res}'")
 
 
 async def main():
