@@ -1,4 +1,6 @@
 import json
+import os
+
 import nemo
 import nemo_text_processing
 import torch
@@ -40,9 +42,10 @@ backend = EspeakBackend('de')
 data_de = "data/thorsten-de"
 
 input_manifest_filepaths = [
-    data_de + "/train_manifest",
-    data_de + "/test_manifest",
-    data_de + "/val_manifest"]
+    os.path.join(data_de, "train_manifest"),
+    os.path.join(data_de, "test_manifest"),
+    os.path.join(data_de, "val_manifest")
+]
 
 for input_manifest_filepath in input_manifest_filepaths:
     output_manifest_filepath = input_manifest_filepath+"_phonemes"
