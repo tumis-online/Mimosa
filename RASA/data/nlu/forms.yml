@@ -34,7 +34,7 @@ slots:
     mappings:
       - type: from_entity
         entity: STATUS
-  light_color:
+  color:
     type: text
     influence_conversation: false
     mappings:
@@ -42,7 +42,7 @@ slots:
         entity: COLOR
         conditions:
           - active_loop: light_form
-  light_brightness:
+  brightness:
     type: categorical
     values:
       - low
@@ -93,7 +93,7 @@ forms:
   light_form:
     required_slots:
       - item_status
-      - light_color
+      - color
       - value
   power_socket_form:
     required_slots:

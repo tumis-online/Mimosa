@@ -8,7 +8,7 @@ from rasa.model import get_latest_model
 from rasa.shared import data
 from rasa.core.agent import Agent
 
-from RASA.intent import Entity, Intent
+from RASA.domain import Intent, Entity
 
 CONFIDENCE_THRESHOLD = 0.7
 
