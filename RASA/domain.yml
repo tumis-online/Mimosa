@@ -42,10 +42,10 @@ intents:
         - ITEM
         - LOC
         - COLOR
-  - bot_request
   - add_scene:
       use_entities:
         - NAME
+  - bot_request
   - nlu_fallback
 
 entities:
@@ -112,6 +112,7 @@ actions:
   - action_disable_item
   - action_dim
   - action_change_color
+  - action_add_scene
   # form actions
   - name_form
   - item_config_form

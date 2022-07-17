@@ -19,3 +19,16 @@ rules:
       - intent: add_scene
       - action: scene_form
       - active_loop: scene_form
+      - action: action_add_scene
+  - rule: Enable item
+    steps:
+      - intent: enable_item
+      - action: item_config_form
+      - active:loop: item_config_form
+      - action: action_enable_item
+  - rule: Disable item
+    steps:
+      - intent: disable_item
+      - action: item_config_form
+      - active:loop: item_config_form
+      - action: action_disable_item

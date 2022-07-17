@@ -6,7 +6,7 @@ from rasa_sdk.events import SlotSet
 class AddSceneAction(Action):
 
     def name(self) -> Text:
-        return "add_scene"
+        return "action_add_scene"
 
     async def run(
         self, dispatcher, tracker: Tracker, domain: Dict[Text, Any],
