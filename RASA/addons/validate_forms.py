@@ -14,6 +14,21 @@ class ValidateItemConfigForm(FormValidationAction):
         """Database of supported items"""
         return ["light", "power_socket"]
 
+    async def required_slots(
+            self,
+            domain_slots: List[Text],
+            dispatcher: "CollectingDispatcher",
+            tracker: "Tracker",
+            domain: "DomainDict",
+    ) -> List[Text]:
+        additional_slots = ["outdoor_seating"]
+        if tracker.slots.get("outdoor_seating") is True:
+            # If the user wants to sit outside, ask
+            # if they want to sit in the shade or in the sun.
+            additional_slots.append("shade_or_sun")
+
+        return additional_slots + domain_slots
+
     def validate_item(
         self,
         slot_value: Any,

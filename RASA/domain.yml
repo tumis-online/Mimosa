@@ -108,14 +108,19 @@ responses:
 
 # SLOT VALIDATION https://rasa.com/docs/action-server/validation-action/ predefined action_validate_slot_mappings name.
 actions:
+  - action_enable_item
+  - action_disable_item
+  - action_dim
+  - action_change_color
+  # form actions
   - name_form
   - item_config_form
   - light_form
   - power_socket_form
   - fallback_item_form
   - scene_form
-  - action_enable_item
-  - action_validate_slot_mappings
+  # validation actions
+  - validate_slot_mappings
   - validate_item_config_form
   - validate_light_form
   - validate_power_socket_form
@@ -124,4 +129,4 @@ actions:
 
 session_config:
   session_expiration_time: 0  # value in minutes, 0 means infinitely long
-  carry_over_slots_to_new_session: true  # set to false to forget slots between sessions
+  carry_over_slots_to_new_session: true  # set to 'false' to forget slots between sessions

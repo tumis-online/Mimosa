@@ -50,8 +50,8 @@ slots:
       - high
     influence_conversation: false
     mappings:
-      - type: custom
-        action: xxxxx
+      - type: from_entity
+        entity: BRIGHTNESS
         conditions:
           - active_loop: light_form
   location:
@@ -89,20 +89,18 @@ forms:
   item_config_form:
     required_slots:
       - item
+      - location
   light_form:
     required_slots:
       - item_status
       - light_color
       - value
-      - location
   power_socket_form:
     required_slots:
       - item_status
-      - location
   fallback_item_form:
     required_slots:
       - item_status
-      - location
       - value
   scene_form:
     required_slots:
