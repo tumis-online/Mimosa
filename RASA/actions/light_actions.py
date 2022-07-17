@@ -14,6 +14,7 @@ class EnableItemAction(Action):
     async def run(
         self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]
     ) -> List[Dict[Text, Any]]:
+        current_user_intent = tracker.get_intent_of_latest_message()
         item = next(tracker.get_latest_entity_values(Entity.ITEM), None)
         pass
 
@@ -26,6 +27,7 @@ class DisableItemAction(Action):
     async def run(
         self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]
     ) -> List[Dict[Text, Any]]:
+        current_user_intent = tracker.get_intent_of_latest_message()
         pass
 
 
@@ -37,6 +39,7 @@ class DimLightAction(Action):
     async def run(
         self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]
     ) -> List[Dict[Text, Any]]:
+        current_user_intent = tracker.get_intent_of_latest_message()
         scene_name = tracker.get_slot('scene_name')
         # TODO action should query graphql api
         q = "select * from restaurants where cuisine='{0}' limit 1".format(scene_name)
@@ -53,6 +56,7 @@ class ChangeColorAction(Action):
     async def run(
         self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]
     ) -> List[Dict[Text, Any]]:
+        current_user_intent = tracker.get_intent_of_latest_message()
         scene_name = tracker.get_slot("scene_name")
         # TODO action should query graphql api
         q = "select * from restaurants where cuisine='{0}' limit 1".format(scene_name)

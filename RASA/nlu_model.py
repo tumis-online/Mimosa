@@ -1,4 +1,5 @@
 import asyncio
+import json
 import logging
 
 import rasa
@@ -8,6 +9,8 @@ from rasa.shared import data
 from rasa.core.agent import Agent
 
 from RASA.intent import Entity, Intent
+
+CONFIDENCE_THRESHOLD = 0.7
 
 config = "config.yml"
 training_files = "data/"
@@ -23,7 +26,7 @@ class Model:
 
     def __init__(self, m_path: str) -> None:
         self.agent = Agent.load(model_path=m_path)
-        print("NLU model loaded successfully.")
+        logging.info("NLU model loaded successfully.")
 
     def message(self, message: str) -> dict:
         message = message.strip()
@@ -38,7 +41,7 @@ def train_model():
     m_path = get_latest_model()
     # process_training_data(train_result)
     # run_cmdline(model_path)
-    print(m_path)
+    logging.info(f"NLU model {m_path} trained successfully.")
     return m_path
 
 
@@ -49,8 +52,7 @@ def test_model():
     logging.info("Done testing.")
 
 
-def send_message(message: str):
-    result = mdl.message(message)
+async def parse_result(result: json) -> Intent:
     intent_name = result["intent"]["name"]
     intent_confidence = result["intent"]["confidence"]
     req_entities = result["entities"]
@@ -62,8 +64,14 @@ def send_message(message: str):
         value = entity["value"]
         entities.append(Entity(entity_type, position, confidence, value))
     intent = Intent(intent_name, intent_confidence, entities)
+    return intent
+
+
+async def send_message(message: str):
+    result = mdl.message(message)
+    intent = await parse_result(result)
     logging.info(f"intent: {intent.name}, confidence: {intent.confidence}, entities: {intent.entities}")
-    if intent.confidence < 0.7:
+    if intent.confidence < CONFIDENCE_THRESHOLD:
         logging.info(result["intent_ranking"])
 
 
@@ -79,7 +87,7 @@ if __name__ == '__main__':
                  "Schalte die Lampe im Bad aus",
                  "Ich möchte die Leuchte im WC blau."]
     for sentence in sentences:
-        send_message(message=sentence)
+        asyncio.run(send_message(message=sentence))
     """
     if os.path.isfile("errors.json"):
         print("NLU Errors:")
