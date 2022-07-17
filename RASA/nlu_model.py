@@ -53,6 +53,11 @@ def test_model():
 
 
 async def parse_result(result: json) -> Intent:
+    """
+    Parses model JSON response.
+    :param result: JSON result of model message
+    :return: Intent with the highest confidence score with provided entities
+    """
     intent_name = result["intent"]["name"]
     intent_confidence = result["intent"]["confidence"]
     req_entities = result["entities"]
@@ -67,7 +72,11 @@ async def parse_result(result: json) -> Intent:
     return intent
 
 
-async def send_message(message: str):
+async def send_message(message: str) -> None:
+    """
+    Sends and parses model message.
+    :param message: text input to model
+    """
     result = mdl.message(message)
     intent = await parse_result(result)
     logging.info(f"intent: {intent.name}, confidence: {intent.confidence}, entities: {intent.entities}")
