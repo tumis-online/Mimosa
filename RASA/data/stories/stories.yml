@@ -9,9 +9,13 @@ stories:
     steps:
       - intent: greet
       - action: utter_greet
+      - user: |
+          Gut
+      - action: utter_happy
+      - user: |
+          Tschüs.
       - intent: goodbye
       - action: utter_goodbye
-      - checkpoint: ask_feedback
 
   - story: user provides affirm feedback
     steps:

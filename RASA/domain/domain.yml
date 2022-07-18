@@ -1,0 +1,201 @@
+version: '3.1'
+slots:
+  first_name:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_text
+      entity: NAME
+  last_name:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_text
+      entity: NAME
+  item:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: ITEM
+  item_state:
+    type: categorical
+    values:
+    - on
+    - off
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: STATE
+  color:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: COLOR
+  brightness:
+    type: categorical
+    values:
+    - low
+    - medium
+    - high
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: BRIGHTNESS
+  location:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: LOC
+  value:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: VALUE
+  scene_name:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_text
+      entity: NAME
+      intent: add_scene
+forms:
+  name_form:
+    required_slots:
+    - first_name
+    - last_name
+  item_config_form:
+    required_slots:
+    - item
+    - location
+  light_form:
+    required_slots:
+    - item_state
+    - color
+    - brightness
+    - value
+  power_socket_form:
+    required_slots:
+    - item_state
+  fallback_item_form:
+    required_slots:
+    - item_state
+    - value
+  scene_form:
+    required_slots:
+    - scene_name
+session_config:
+  session_expiration_time: 0
+  carry_over_slots_to_new_session: true
+intents:
+- add_scene:
+    use_entities:
+    - NAME
+- affirm
+- bot_request
+- change_color:
+    use_entities:
+    - ITEM
+    - LOC
+    - COLOR
+- deny
+- dim:
+    use_entities:
+    - ITEM
+    - LOC
+    - BRIGHTNESS
+    - VALUE
+- disable_item:
+    use_entities:
+    - ITEM
+    - LOC
+    - STATE
+- enable_item:
+    use_entities:
+    - ITEM
+    - LOC
+    - STATE
+- goodbye
+- greet
+- mood_great:
+    ignore_entities:
+    - ITEM
+    - LOC
+    - STATE
+    - BRIGHTNESS
+    - COLOR
+    - SCENE
+- mood_unhappy:
+    ignore_entities:
+    - ITEM
+    - LOC
+    - STATE
+    - BRIGHTNESS
+    - COLOR
+    - SCENE
+- nlu_fallback
+entities:
+- ITEM:
+    groups:
+    - light
+    - power_socket
+- LOC
+- VALUE
+- COLOR
+- STATE
+- BRIGHTNESS
+- NAME
+actions:
+- action_add_scene
+- action_change_color
+- action_dim
+- action_disable_item
+- action_enable_item
+- utter_greet
+- validate_fallback_item_form
+- validate_item_config_form
+- validate_light_form
+- validate_power_socket_form
+- validate_scene_form
+- validate_slot_mappings
+responses:
+  utter_greet:
+  - text: Hallo! Wie geht es dir?
+  utter_cheer_up:
+  - text: 'Hier ist etwas zur Aufheiterung:'
+    image: https://i.imgur.com/nGF1K8f.jpg
+  utter_did_that_help:
+  - text: Hat das geholfen?
+  - text: War das richtig so?
+  utter_rephrase:
+  - text: Kannst du das noch einmal wiederholen?
+  - text: Leider verstehe ich das nicht richtig.
+  - text: Ich verstehe nicht. Bitte noch einmal umformulieren.
+  utter_happy:
+  - text: Super!
+  - text: Klasse!
+  - text: Prima!
+  utter_goodbye:
+  - text: Tschüs.
+  - text: Tschau.
+  - text: Bis zum nächsten Mal!
+  utter_iamabot:
+  - text: Ich bin ein Assistenzsystem für Heimautomatisierung.
+  - text: Ich unterstütze dich im Umgang mit Smart Home Geräten.
+  utter_ask_feedback:
+  - text: War das korrekt?
+  - text: Habe ich das richtig verstanden?
+  utter_no_problem:
+  - text: Kein Problem.
+  utter_anything_else:
+  - text: Okay, das macht nichts.
+  utter_action_performed:
+  - text: Ich habe die Aktion ausgeführt.
+  - text: Alles erledigt.
+  utter_thank_you:
+  - text: Dankeschön.
+  - text: Danke
+  - text: Vielen Dank!

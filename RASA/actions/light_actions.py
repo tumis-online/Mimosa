@@ -1,6 +1,6 @@
 from typing import Text, Dict, Any, List
 from rasa_sdk import Action, Tracker
-from rasa_sdk.events import SlotSet, EventType
+from rasa_sdk.events import SlotSet
 from rasa_sdk.executor import CollectingDispatcher
 from RASA import domain as nlu
 
@@ -17,8 +17,8 @@ class EnableItemAction(Action):
         slot_item = tracker.get_slot(nlu.Slot.ITEM)
         slot_location = tracker.get_slot(nlu.Slot.LOCATION)
         # item = next(tracker.get_latest_entity_values(Entity.ITEM), None)
-        event: EventType
-        pass
+        event = SlotSet(nlu.Slot.ITEM, slot_item)
+        return [event]
 
 
 class DisableItemAction(Action):

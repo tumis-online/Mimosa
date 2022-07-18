@@ -8,27 +8,62 @@ rules:
   - rule: Greeting Rule
     conversation_start: true
     steps:
-    - intent: greet
-    - action: utter_greet
+      - intent: greet
+      - action: utter_greet
+  - rule: Goodbye Rule
+    steps:
+      - intent: goodbye
+      - action: utter_goodbye
   - rule: Ask the user to rephrase in case of low NLU confidence
     steps:
       - intent: nlu_fallback
       - action: utter_rephrase
+  - rule: Activate item config form
+    condition:
+      - slot_was_set:
+          - item
+    steps:
+      - action: item_config_form
+      - active_loop: item_config_form
+  - rule: Enable item
+    condition:
+      - active_loop: item_config_form
+      - slot_was_set:
+          - item
+          - item_state: "on"
+    steps:
+      - intent: enable_item
+      - action: item_config_form
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: action_enable_item
+      - action: utter_action_performed
+  - rule: Disable item
+    condition:
+      - active_loop: item_config_form
+      - slot_was_set:
+          - item
+          - item_state: "off"
+    steps:
+      - intent: disable_item
+      - action: item_config_form
+      - active_loop: null
+      - slot_was_set:
+          - requested_slot: null
+      - action: action_disable_item
+      - action: utter_action_performed
   - rule: Activate add scene form
     steps:
       - intent: add_scene
       - action: scene_form
       - active_loop: scene_form
+  - rule: Submit add scene form
+    condition:
+      - active_loop: scene_form
+    steps:
+      - action: scene_form
+      - slot_was_set:
+        - requested_slot: null
+      - active_loop: null
       - action: action_add_scene
-  - rule: Enable item
-    steps:
-      - intent: enable_item
-      - action: item_config_form
-      - active:loop: item_config_form
-      - action: action_enable_item
-  - rule: Disable item
-    steps:
-      - intent: disable_item
-      - action: item_config_form
-      - active:loop: item_config_form
-      - action: action_disable_item

@@ -1,0 +1,96 @@
+## NLU forms (Slot Filling).
+#  See https://learning.rasa.com/archive/rasa-forms-2/rasa-forms/ (RASA 2.x),
+#  https://learning.rasa.com/rasa-forms-3/ and https://rasa.com/docs/rasa/forms/
+
+version: "3.1"
+
+slots:
+  first_name:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        entity: NAME
+  last_name:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        entity: NAME
+  item:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: ITEM
+  item_state:
+    type: categorical
+    values:
+      - on
+      - off
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: STATE
+  color:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: COLOR
+  brightness:
+    type: categorical
+    values:
+      - low
+      - medium
+      - high
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: BRIGHTNESS
+  location:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: LOC
+  value:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: VALUE
+  scene_name:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        entity: NAME
+        intent: add_scene
+
+# Activating via stories or rules
+forms:
+  name_form:
+    required_slots:
+      - first_name
+      - last_name
+  item_config_form:
+    required_slots:
+      - item
+      - location
+  light_form:
+    required_slots:
+      - item_state
+      - color
+      - brightness
+      - value
+  power_socket_form:
+    required_slots:
+      - item_state
+  fallback_item_form:
+    required_slots:
+      - item_state
+      - value
+  scene_form:
+    required_slots:
+      - scene_name

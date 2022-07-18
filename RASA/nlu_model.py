@@ -1,6 +1,7 @@
 import asyncio
 import json
 import logging
+from os import path
 
 import rasa
 import rasa.nlu
@@ -8,17 +9,18 @@ from rasa.model import get_latest_model
 from rasa.shared import data
 from rasa.core.agent import Agent
 
-from RASA.domain import Intent, Entity
+from domain import Intent, Entity
 
 CONFIDENCE_THRESHOLD = 0.7
 
-config = "config.yml"
-training_files = "data/"
-domain = "domain.yml"
-endpoints = "endpoints.yml"
-credentials = "credentials.yml"
-output = "models/"
-default_model_path = output + "nlu.tar.gz"
+config_file = "config.yml"
+training_files_dir = "data"
+domain_dir = "domain"
+domain_file = path.join(domain_dir, "domain.yml")
+endpoints_file = "endpoints.yml"
+credentials_file = "credentials.yml"
+output_dir = "models"
+default_model_path = path.join(output_dir, "nlu.tar.gz")
 
 
 class Model:
@@ -37,7 +39,7 @@ class Model:
 
 
 def train_model():
-    rasa.train(domain, config, [training_files], output)
+    rasa.train(domain_file, config_file, [training_files_dir], output_dir)
     m_path = get_latest_model()
     # process_training_data(train_result)
     # run_cmdline(model_path)
@@ -46,8 +48,8 @@ def train_model():
 
 
 def test_model():
-    nlu_data_directory = data.get_nlu_directory(training_files)
-    stories_directory = data.get_core_directory(training_files)
+    nlu_data_directory = data.get_nlu_directory(training_files_dir)
+    stories_directory = data.get_core_directory(training_files_dir)
     rasa.test(model_path, stories_directory, nlu_data_directory)
     logging.info("Done testing.")
 
@@ -89,7 +91,7 @@ if __name__ == '__main__':
     # model_path = train_model()
     # test_model()
 
-    model_path = get_latest_model(output)
+    model_path = get_latest_model(output_dir)
     mdl = Model(model_path)
     sentences = ["Mach die Lampe an.",
                  "Dimm die Lampe im Wohnzimmer etwas heller",
