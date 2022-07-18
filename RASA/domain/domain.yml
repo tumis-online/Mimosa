@@ -1,95 +1,9 @@
 version: '3.1'
-slots:
-  first_name:
-    type: text
-    influence_conversation: true
-    mappings:
-    - type: from_text
-      entity: NAME
-  last_name:
-    type: text
-    influence_conversation: true
-    mappings:
-    - type: from_text
-      entity: NAME
-  item:
-    type: text
-    influence_conversation: true
-    mappings:
-    - type: from_entity
-      entity: ITEM
-  item_state:
-    type: categorical
-    values:
-    - on
-    - off
-    influence_conversation: false
-    mappings:
-    - type: from_entity
-      entity: STATE
-  color:
-    type: text
-    influence_conversation: false
-    mappings:
-    - type: from_entity
-      entity: COLOR
-  brightness:
-    type: categorical
-    values:
-    - low
-    - medium
-    - high
-    influence_conversation: false
-    mappings:
-    - type: from_entity
-      entity: BRIGHTNESS
-  location:
-    type: text
-    influence_conversation: false
-    mappings:
-    - type: from_entity
-      entity: LOC
-  value:
-    type: text
-    influence_conversation: false
-    mappings:
-    - type: from_entity
-      entity: VALUE
-  scene_name:
-    type: text
-    influence_conversation: true
-    mappings:
-    - type: from_text
-      entity: NAME
-      intent: add_scene
-forms:
-  name_form:
-    required_slots:
-    - first_name
-    - last_name
-  item_config_form:
-    required_slots:
-    - item
-    - location
-  light_form:
-    required_slots:
-    - item_state
-    - color
-    - brightness
-    - value
-  power_socket_form:
-    required_slots:
-    - item_state
-  fallback_item_form:
-    required_slots:
-    - item_state
-    - value
-  scene_form:
-    required_slots:
-    - scene_name
+
 session_config:
   session_expiration_time: 0
   carry_over_slots_to_new_session: true
+
 intents:
 - add_scene:
     use_entities:
@@ -137,6 +51,7 @@ intents:
     - COLOR
     - SCENE
 - nlu_fallback
+
 entities:
 - ITEM:
     groups:
@@ -148,6 +63,7 @@ entities:
 - STATE
 - BRIGHTNESS
 - NAME
+
 actions:
 - action_add_scene
 - action_change_color
@@ -161,6 +77,7 @@ actions:
 - validate_power_socket_form
 - validate_scene_form
 - validate_slot_mappings
+
 responses:
   utter_greet:
   - text: Hallo! Wie geht es dir?

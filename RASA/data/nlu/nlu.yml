@@ -5,66 +5,73 @@
 version: "3.1"
 
 nlu:
-  - intent: greet
-    examples: |
-      - hi
-      - hallo
-      - hey
-      - guten tag
-      - guten morgen
-      - wie geht's dir
-  - intent: goodbye
-    examples: |
-      - bye
-      - tschüss
-      - auf wiedersehen
-      - machs gut
-      - bis bald
-      - bis später
-      - tschau
-  - intent: mood_great
-    examples: |
-      - Gut
-      - Sehr gut
-      - Mir geht es gut
-      - Es geht mir blendend
-      - Ich fühl mich wohl
-      - Bestens
-      - Ging mir nie besser
-  - intent: mood_unhappy
-    examples: |
-      - Nicht gut
-      - Leider nicht so gut
-      - Mir geht es nicht gut
-      - Ich fühl mich unwohl
-      - Nicht so toll
-      - War schon mal besser
-      - Geht so
-  - intent: bot_request
-    examples: |
-      - Bist du ein Roboter?
-      - wie funktioniert das
-      - was kann ich sagen
-      - was kann ich hier sagen
-      - was kannst du
-      - was für möglichkeiten habe ich
-  - intent: affirm
-    examples: |
-      - okay
-      - einverstanden
-      - richtig
-      - in ordnung
-      - ja
-      - jo
-      - auf jeden fall
-      - gerne
-  - intent: deny
-    examples: |
-      - nein
-      - ne
-      - auf keinen fall
-      - nö
-      - nicht wirklich
-      - gar nicht
-      - nein danke
-      - nicht
+- intent: greet
+  examples: |
+    - hi
+    - hallo
+    - hey
+    - guten tag
+    - guten morgen
+    - wie geht's dir
+    - Hallo
+- intent: goodbye
+  examples: |
+    - bye
+    - tschüss
+    - auf wiedersehen
+    - machs gut
+    - bis bald
+    - bis später
+    - tschau
+- intent: mood_great
+  examples: |
+    - Gut
+    - Sehr gut
+    - Mir geht es gut
+    - Es geht mir blendend
+    - Ich fühl mich wohl
+    - Bestens
+    - Ging mir nie besser
+    - Gut.
+- intent: mood_unhappy
+  examples: |
+    - Nicht gut
+    - Leider nicht so gut
+    - Mir geht es nicht gut
+    - Ich fühl mich unwohl
+    - Nicht so toll
+    - War schon mal besser
+    - Geht so
+- intent: out_of_scope
+  examples: |
+    - Ich möchte Essen bestellen.
+    - Was is 2 + 2?
+    - Wer ist Bundeskanzler?
+- intent: bot_request
+  examples: |
+    - Bist du ein Roboter?
+    - wie funktioniert das
+    - was kann ich sagen
+    - was kann ich hier sagen
+    - was kannst du
+    - was für möglichkeiten habe ich
+- intent: affirm
+  examples: |
+    - okay
+    - einverstanden
+    - richtig
+    - in ordnung
+    - ja
+    - jo
+    - auf jeden fall
+    - gerne
+- intent: deny
+  examples: |
+    - nein
+    - ne
+    - auf keinen fall
+    - nö
+    - nicht wirklich
+    - gar nicht
+    - nein danke
+    - nicht

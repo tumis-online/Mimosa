@@ -9,13 +9,13 @@ slots:
     type: text
     influence_conversation: true
     mappings:
-      - type: from_text
+      - type: from_entity
         entity: NAME
   last_name:
     type: text
     influence_conversation: true
     mappings:
-      - type: from_text
+      - type: from_entity
         entity: NAME
   item:
     type: text

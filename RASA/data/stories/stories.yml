@@ -70,3 +70,9 @@ stories:
           Was kannst du?
         intent: bot_request
       - action: utter_iamabot
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great

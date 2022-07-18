@@ -6,6 +6,7 @@ nlu:
   - intent: enable_item
     examples: |
       - Lampe anmachen.
+      - Ich möchte das Licht in der Küche an haben.
       - Mach die [Lampen]{"entity": "ITEM", "group": "light"} im [Flur]{"entity": "LOC"} [an]{"entity": "STATE", "value": "on"}.
       - Kannst du [das]{"entity": "LOC", "value": "local_geo"} [Licht]{"entity": "ITEM", "group": "light"} [anmachen]{"entity": "STATE", "value": "on"}?
       - [Licht]{"entity": "ITEM", "group": "light"} [an]{"entity": "STATE", "value": "on"}.
@@ -19,6 +20,7 @@ nlu:
   - intent: disable_item
     examples: |
       - Lampe ausschalten.
+      - Ich möchte die Lampe aus haben.
       - Schalte [alle]{"entity": "LOC", "value": "local_geo"} [Lichter]{"entity": "ITEM", "group": "light"} [aus]{"entity": "STATE", "value": "off"}.
       - [lichter]{"entity": "ITEM", "group": "light"} [aus]{"entity": "STATE", "value": "off"}.
       - [Licht]{"entity": "ITEM", "group": "light"} im [Badezimmer]{"entity": "LOC", "value": "bathroom"} [ausschalten]{"entity": "STATE", "value": "off"}.
