@@ -1,68 +1,68 @@
-version: '3.1'
+version: "3.1"
 
 session_config:
   session_expiration_time: 0
   carry_over_slots_to_new_session: true
 
 intents:
-- add_scene:
-    use_entities:
-    - NAME
-- affirm
-- bot_request
-- change_color:
-    use_entities:
-    - ITEM
-    - LOC
-    - COLOR
-- deny
-- dim:
-    use_entities:
-    - ITEM
-    - LOC
-    - BRIGHTNESS
-    - VALUE
-- disable_item:
-    use_entities:
-    - ITEM
-    - LOC
-    - STATE
-- enable_item:
-    use_entities:
-    - ITEM
-    - LOC
-    - STATE
-- goodbye
-- greet
-- mood_great:
-    ignore_entities:
-    - ITEM
-    - LOC
-    - STATE
-    - BRIGHTNESS
-    - COLOR
-    - SCENE
-- mood_unhappy:
-    ignore_entities:
-    - ITEM
-    - LOC
-    - STATE
-    - BRIGHTNESS
-    - COLOR
-    - SCENE
-- nlu_fallback
+  - add_scene:
+      use_entities:
+      - NAME
+  - affirm
+  - bot_request
+  - change_color:
+      use_entities:
+      - ITEM
+      - LOC
+      - COLOR
+  - deny
+  - dim:
+      use_entities:
+      - ITEM
+      - LOC
+      - BRIGHTNESS
+      - VALUE
+  - disable_item:
+      use_entities:
+      - ITEM
+      - LOC
+      - STATE
+  - enable_item:
+      use_entities:
+      - ITEM
+      - LOC
+      - STATE
+  - goodbye
+  - greet
+  - mood_great:
+      ignore_entities:
+      - ITEM
+      - LOC
+      - STATE
+      - BRIGHTNESS
+      - COLOR
+      - SCENE
+  - mood_unhappy:
+      ignore_entities:
+      - ITEM
+      - LOC
+      - STATE
+      - BRIGHTNESS
+      - COLOR
+      - SCENE
+  - nlu_fallback
 
 entities:
-- ITEM:
-    groups:
-    - light
-    - power_socket
-- LOC
-- VALUE
-- COLOR
-- STATE
-- BRIGHTNESS
-- NAME
+  - ITEM:
+      groups:
+      - light
+      - power_socket
+  - LOC
+  - VALUE
+  - COLOR
+  - STATE
+  - BRIGHTNESS
+  - NAME
 
 actions:
 - action_add_scene
