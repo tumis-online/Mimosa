@@ -70,7 +70,6 @@ actions:
 - action_dim
 - action_disable_item
 - action_enable_item
-- utter_greet
 - validate_fallback_item_form
 - validate_item_config_form
 - validate_light_form
@@ -91,6 +90,9 @@ responses:
   - text: Kannst du das noch einmal wiederholen?
   - text: Leider verstehe ich das nicht richtig.
   - text: Ich verstehe nicht. Bitte noch einmal umformulieren.
+  utter_out_of_scope:
+  - text: Tut mir leid. Mit dieser Aufgabe kann ich nicht umgehen.
+  - text: Ich weiß nicht, was ich machen soll.
   utter_happy:
   - text: Super!
   - text: Klasse!
