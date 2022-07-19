@@ -8,7 +8,10 @@ stories:
     steps:
       - intent: greet
       - action: utter_greet
-
+      - user: |
+          Es geht mir gut.
+      - intent: mood_great
+      - action: utter_happy
       - user: |
           Mach das Licht im Schlafzimmer an.
       - intent: enable_item
@@ -33,9 +36,10 @@ stories:
           Schalte alle Lichter im Bad aus.
       - intent: disable_item
         entities:
-          - ITEM
-          - LOC
-          - STATE
+          - ITEM: Lichter
+            group: light
+          - LOC: Bad
+          - STATE: aus
       - action: item_config_form
       - active_loop: item_config_form
       - slot_was_set:

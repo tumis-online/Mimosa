@@ -5,16 +5,16 @@ version: "3.1"
 nlu:
   - intent: enable_item
     examples: |
-      - Lampe anmachen.
-      - Ich möchte das Licht in der Küche an haben.
+      - [Lampe]{"entity": "ITEM", "group": "light"} [anmachen]{"entity": "STATE", "value": "on"}.
+      - Ich möchte das [Licht]{"entity": "ITEM", "group": "light"} in der [Küche]{"entity": "LOC"} [an]{"entity": "STATE", "value": "on"} haben.
       - Mach die [Lampen]{"entity": "ITEM", "group": "light"} im [Flur]{"entity": "LOC"} [an]{"entity": "STATE", "value": "on"}.
       - Kannst du [das]{"entity": "LOC", "value": "local_geo"} [Licht]{"entity": "ITEM", "group": "light"} [anmachen]{"entity": "STATE", "value": "on"}?
       - [Licht]{"entity": "ITEM", "group": "light"} [an]{"entity": "STATE", "value": "on"}.
-      - Ich hätte das [Licht]{"entity": "ITEM", "group": "light"} gerne [angeschaltet]{"entity": "STATE", "value": "on"}.
+      - Ich hätte das [Licht]{"entity": "ITEM", "group": "light"} in der [Küche]{"entity": "LOC"} gerne [angeschaltet]{"entity": "STATE", "value": "on"}.
       - Mach das [Licht]{"entity": "ITEM", "group": "light"} [an]{"entity": "STATE", "value": "on"}.
       - Die [Lichter]{"entity": "ITEM", "group": "light"} im [Wohnzimmer]{"entity": "LOC"} sollen [an]{"entity": "STATE", "value": "on"} sein.
       - Mach [überall]{"entity": "LOC"} die [Lichter]{"entity": "ITEM", "group": "light"} [an]{"entity": "STATE", "value": "on"}.
-      - Schalte [alle]{"entity": "LOC", "value": "local_geo"} [Lichter]{"entity": "ITEM", "group": "light"} [an]{"entity": "STATE", "value": "on"}.
+      - Schalte [alle]{"entity": "LOC", "value": "local_geo"} [Steckdosen]{"entity": "ITEM", "group": "power_socket"} [an]{"entity": "STATE", "value": "on"}.
       - Die [Stecker]{"entity": "ITEM", "group": "power_socket"} im [Schlafzimmer]{"entity": "LOC"} sollen [alle]{"entity": "LOC"} [angeschaltet]{"entity": "STATE", "value": "on"} sein.
       - Mach [alle]{"entity": "LOC"} [Steckdosen]{"entity": "ITEM", "group": "power_socket"} [an]{"entity": "STATE", "value": "on"}.
   - intent: disable_item

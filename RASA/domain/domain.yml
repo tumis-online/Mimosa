@@ -5,17 +5,42 @@ session_config:
   carry_over_slots_to_new_session: true
 
 intents:
-  - add_scene:
+  - say_name:
       use_entities:
-      - NAME
-  - affirm
-  - bot_request
+        - FIRST_NAME
+        - LAST_NAME
+  - bot_request:
+      ignore_entities:
+        - ITEM
+        - LOC
+        - STATE
+        - BRIGHTNESS
+        - COLOR
+        - SCENE
+  - affirm:
+      ignore_entities:
+        - ITEM
+        - LOC
+        - STATE
+        - BRIGHTNESS
+        - COLOR
+        - SCENE
+  - deny:
+      ignore_entities:
+        - ITEM
+        - LOC
+        - STATE
+        - BRIGHTNESS
+        - COLOR
+        - SCENE
   - change_color:
       use_entities:
-      - ITEM
-      - LOC
-      - COLOR
-  - deny
+        - ITEM
+        - LOC
+        - COLOR
+  - add_scene:
+      use_entities:
+        - SCENE_NAME
   - dim:
       use_entities:
       - ITEM
@@ -32,8 +57,22 @@ intents:
       - ITEM
       - LOC
       - STATE
-  - goodbye
-  - greet
+  - goodbye:
+      ignore_entities:
+        - ITEM
+        - LOC
+        - STATE
+        - BRIGHTNESS
+        - COLOR
+        - SCENE
+  - greet:
+      ignore_entities:
+        - ITEM
+        - LOC
+        - STATE
+        - BRIGHTNESS
+        - COLOR
+        - SCENE
   - mood_great:
       ignore_entities:
       - ITEM
@@ -55,16 +94,19 @@ intents:
 entities:
   - ITEM:
       groups:
-      - light
-      - power_socket
+        - light
+        - power_socket
   - LOC
   - VALUE
   - COLOR
   - STATE
   - BRIGHTNESS
-  - NAME
+  - FIRST_NAME
+  - LAST_NAME
+  - SCENE_NAME
 
 actions:
+- action_repeat_name
 - action_add_scene
 - action_change_color
 - action_dim
@@ -86,6 +128,9 @@ responses:
   utter_did_that_help:
   - text: Hat das geholfen?
   - text: War das richtig so?
+  utter_ask_name:
+  - text: Wie ist dein Name?
+  - text: Wie heißt du?
   utter_rephrase:
   - text: Kannst du das noch einmal wiederholen?
   - text: Leider verstehe ich das nicht richtig.

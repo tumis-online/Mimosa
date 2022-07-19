@@ -61,7 +61,9 @@ class Entity:
     COLOR = "COLOR"
     STATE = "STATE"
     BRIGHTNESS = "BRIGHTNESS"
-    NAME = "NAME"
+    SCENE_NAME = "SCENE_NAME"
+    FIRST_NAME = "FIRST_NAME"
+    LAST_NAME = "LAST_NAME"
 
     """dataclass describing extracted entity in text."""
     entity_type: str

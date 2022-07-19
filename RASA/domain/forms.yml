@@ -10,13 +10,13 @@ slots:
     influence_conversation: true
     mappings:
       - type: from_entity
-        entity: NAME
+        entity: FIRST_NAME
   last_name:
     type: text
     influence_conversation: true
     mappings:
       - type: from_entity
-        entity: NAME
+        entity: LAST_NAME
   item:
     type: text
     influence_conversation: true
@@ -65,7 +65,7 @@ slots:
     influence_conversation: true
     mappings:
       - type: from_text
-        entity: NAME
+        entity: SCENE_NAME
         intent: add_scene
 
 # Activating via stories or rules
