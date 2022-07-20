@@ -2,7 +2,7 @@ from typing import Text, Dict, Any, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.events import SlotSet
 from rasa_sdk.executor import CollectingDispatcher
-from RASA import domain as nlu
+from RASA.domain import domain as nlu
 
 
 class EnableItemAction(Action):
@@ -13,6 +13,7 @@ class EnableItemAction(Action):
     async def run(
         self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]
     ) -> List[Dict[Text, Any]]:
+        dispatcher.utter_message(f"Run '{nlu.Action.ENABLE_ITEM}' action.")
         current_user_intent = tracker.get_intent_of_latest_message()
         slot_item = tracker.get_slot(nlu.Slot.ITEM)
         slot_location = tracker.get_slot(nlu.Slot.LOCATION)

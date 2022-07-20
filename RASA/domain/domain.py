@@ -1,3 +1,4 @@
+from typing import Dict, List
 from dataclasses import dataclass
 
 
@@ -57,6 +58,10 @@ class Entity:
     """NLU Entity names"""
     ITEM = "ITEM"
     LOC = "LOC"
+    LOCAL_GEO = {
+        "THIS": ["diese", "das", "dieses", "hier", "da"],
+        "ALL": ["alle", "überall"]
+    }
     VALUE = "VALUE"
     COLOR = "COLOR"
     STATE = "STATE"
