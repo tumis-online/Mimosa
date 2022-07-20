@@ -106,7 +106,8 @@ entities:
   - SCENE_NAME
 
 actions:
-- action_repeat_name
+- action_greet
+- action_create_user
 - action_add_scene
 - action_change_color
 - action_dim
