@@ -1,8 +1,9 @@
+from enum import Enum
 from typing import Dict, List
 from dataclasses import dataclass
 
 
-class Action:
+class Action(Enum):
     """NLU action names"""
     ENABLE_ITEM = "action_enable_item"
     DISABLE_ITEM = "action_disable_item"
@@ -10,11 +11,11 @@ class Action:
     CHANGE_COLOR = "action_change_color"
     ADD_SCENE = "action_add_scene"
 
-    class Validate:
+    class Validate(Enum):
         """Validation Actions"""
         SLOT_MAPPINGS = "validate_slot_mappings"
 
-        class Form:
+        class Form(Enum):
             """Validate Form Actions"""
             ITEM_CONFIG = "validate_item_config_form"
             LIGHT = "validate_light_form"
@@ -23,8 +24,7 @@ class Action:
             SCENE = "validate_scene_form"
 
 
-@dataclass
-class Slot:
+class Slot(Enum):
     """NLU Slot names"""
     FIRST_NAME = "first_name"
     LAST_NAME = "last_name"
@@ -37,8 +37,7 @@ class Slot:
     SCENE_NAME = "scene_name"
 
 
-@dataclass
-class Form:
+class Form(Enum):
     """NLU Slots required for forms."""
     # General forms
     NAME = [Slot.FIRST_NAME, Slot.LAST_NAME]

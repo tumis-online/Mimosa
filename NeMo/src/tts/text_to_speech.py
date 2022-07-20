@@ -11,12 +11,11 @@ from pathlib import Path
 from tqdm.notebook import tqdm
 import soundfile as sf
 from phonemizer.backend import EspeakBackend
-import json
 
 from nemo.collections.tts.models import FastPitchModel
 from nemo.collections.tts.models import Vocoder
 
-"""Start FastPitch Model (en)"""
+### Start FastPitch Model (en)
 
 # Load Tacotron2
 
@@ -34,7 +33,7 @@ audio = model.convert_spectrogram_to_audio(spec=spectrogram)
 # Save the audio to disk in a file called speech.wav
 sf.write("speech.wav", audio.to('cpu').numpy(), 22050)
 
-"""End FastPitch Model"""
+### End FastPitch Model
 
 
 backend = EspeakBackend('de')
@@ -51,7 +50,7 @@ for input_manifest_filepath in input_manifest_filepaths:
     output_manifest_filepath = input_manifest_filepath+"_phonemes"
     records = []
     n_text = []
-    with open(input_manifest_filepath + ".json", "r") as f:
+    with open(input_manifest_filepath + ".json", "r", encoding="utf-8") as f:
         for i, line in enumerate(f):
             d = json.loads(line)
             records.append(d)
@@ -68,6 +67,6 @@ for input_manifest_filepath in input_manifest_filepaths:
         phoneme_record["is_phoneme"] = 1
         new_records.append(phoneme_record)
 
-    with open(output_manifest_filepath + ".json", "w") as f:
+    with open(output_manifest_filepath + ".json", "w", encoding="utf-8") as f:
         for r in new_records:
             f.write(json.dumps(r) + '\n')

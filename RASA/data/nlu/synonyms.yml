@@ -1,6 +1,6 @@
 ## Further nlu configuration containing synonyms.
 
-version: "3.1"
+version: '$RASA_VERSION'
 
 nlu:
   - synonym: bathroom

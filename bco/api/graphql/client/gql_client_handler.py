@@ -1,4 +1,5 @@
 import asyncio
+import json
 import logging
 import os.path
 
@@ -33,14 +34,22 @@ def parse_graphql_file(request_file):
     return query
 
 
-async def execute_query(session, query):
-    result = await session.execute(query)
-    print(result)
+async def execute_query(session: Client, query) -> json:
+    """Execute query via gql.
+    :param session gql client
+    :param query
+    """
+    result = session.execute(query)
+    return result
 
 
-async def execute_subscription(session, subscription):
-    async for result in session.subscribe(subscription):
-        print(result)
+async def execute_subscription(session: Client, subscription) -> json:
+    """Execute subscription via gql.
+    :param session gql client
+    :param subscription
+    """
+    result = session.subscribe(subscription)
+    return result
 
 
 class GraphQLClientHandler:
@@ -56,7 +65,7 @@ class GraphQLClientHandler:
         """Executing GraphQL query asynchronously."""
         # file_upload = False if params is None else True
         file_upload = False
-        result = await self.session.execute(query, variable_values=params, upload_files=file_upload)
+        result = self.session.execute(query, variable_values=params, upload_files=file_upload)
         return result
 
     async def send_graphql_request(self, graphql_request, params=None):
@@ -70,7 +79,7 @@ class GraphQLClientHandler:
         """Send multiple query files.
         :return result of GraphQL request
         """
-        logging.info(f"Send multiple GraphQL requests from multiple files: {graphql_files}.")
+        logging.info("Send multiple GraphQL requests from multiple files: %s.", graphql_files)
         query = gql(GQL_MULTIPLE_UPLOAD_MUTATION)
         files: list = []
         for f_path in graphql_files:
@@ -89,7 +98,7 @@ class GraphQLClientHandler:
         """Send a query file.
         :return result of GraphQL request
         """
-        logging.info(f"Sending GraphQL request from file: {graphql_file}.")
+        logging.info("Sending GraphQL request from file: %s.", graphql_file)
         file_size = os.path.getsize(graphql_file)
         if file_size > MAX_LOCAL_FILE_SIZE:
             return await self.stream_graphql_request_file(graphql_file)
@@ -101,19 +110,19 @@ class GraphQLClientHandler:
             result = await self.async_execute_query(query, params)
         return result
 
-    async def stream_graphql_request_file(self, graphql_file):
+    async def stream_graphql_request_file(self, graphql_file: str):
         """Use streaming for big file to limit amount of memory used.
         :return result of GraphQL request
         """
-        logging.info(f"Streaming GraphQL request from file: {graphql_file}.")
+        logging.info("Streaming GraphQL request from file: %s.", graphql_file)
         query = gql(GQL_MULTIPLE_UPLOAD_MUTATION)
 
         async def file_sender(file_name):
-            async with aiofiles.open(file_name, 'rb') as f:
-                chunk = await f.read(64 * 1024)
+            async with aiofiles.open(file_name, 'rb') as file:
+                chunk = await file.read(64 * 1024)
                 while chunk:
                     yield chunk
-                    chunk = await f.read(64 * 1024)
+                    chunk = await file.read(64 * 1024)
 
         params = {"file": file_sender(file_name=graphql_file)}
 

@@ -1,11 +1,16 @@
 ## NLU intents for scenes.
 
-version: "3.1"
+version: "3.2"
 
 nlu:
-  - intent: add_scene
+  - intent: edit_scene
     examples: |
-      - Ich möchte eine Szene erstellen.
-      - Erstelle eine neue Szene.
-      - Bitte Szene erstellen.
-      - Neue Szene
+      - Ich möchte eine Szene [hinzufügen]{"entity": "EDIT_SCENE", "role": "add"}.
+      - [Erstelle]{"entity": "EDIT_SCENE", "role": "add"} eine neue Szene.
+      - Bitte Szene [erstellen]{"entity": "EDIT_SCENE", "role": "add"}.
+      - Neue Szene [Küchenbeleuchtung]{"entity": "SCENE_NAME"}
+      - Ich möchte die Szene Party [bearbeiten]{"entity": "EDIT_SCENE", "role": "change"}.
+      - Szene [Abend]{"entity": "SCENE_NAME"} [ändern]{"entity": "EDIT_SCENE", "role": "change"}.
+      - Ich möchte diese Szene [löschen]{"entity": "EDIT_SCENE", "role": "remove"}.
+      - Bitte [lösche]{"entity": "EDIT_SCENE", "role": "remove"} diese Szene.
+      - [Entferne]{"entity": "EDIT_SCENE", "role": "remove"} die Szene [szene-1]{"entity": "SCENE_NAME"}

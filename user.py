@@ -7,4 +7,4 @@ class User(BaseModel):
     last_name: str
 
     class Settings(BaseModel):
-        pass
+        """Settings from the user."""

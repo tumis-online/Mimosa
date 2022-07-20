@@ -41,8 +41,8 @@ class ValidateItemConfigForm(FormValidationAction):
         if slot_value in self.item_db():
             # validation succeeded, set the value of the "item" slot to value
             return {"item": slot_value}
-        else:
-            # validation failed, set this slot to None so that the
-            # user will be asked for the slot again (Trigger)
-            dispatcher.utter_message(text=f"Leider kann ich ein Gerät '{slot_value}' nicht finden.")
-            return {"item": None}
+
+        # validation failed, set this slot to None so that the
+        # user will be asked for the slot again (Trigger)
+        dispatcher.utter_message(text=f"Leider kann ich ein Gerät '{slot_value}' nicht finden.")
+        return {"item": None}

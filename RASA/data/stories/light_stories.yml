@@ -1,7 +1,7 @@
 ## Stories for conversations with light sources.
 #  Stories have to contain "happy" and "unhappy" paths
 
-version: "3.1"
+version: "3.2"
 
 stories:
   - story: Turn light on in bedroom
@@ -10,11 +10,11 @@ stories:
       - action: utter_greet
       - user: |
           Es geht mir gut.
-      - intent: mood_great
+        intent: mood_great
       - action: utter_happy
       - user: |
           Mach das Licht im Schlafzimmer an.
-      - intent: enable_item
+        intent: enable_item
       - action: item_config_form
       - active_loop: item_config_form
       - slot_was_set:
@@ -34,7 +34,7 @@ stories:
       - action: utter_greet
       - user: |
           Schalte alle Lichter im Bad aus.
-      - intent: disable_item
+        intent: disable_item
         entities:
           - ITEM: Lichter
             group: light
@@ -58,7 +58,7 @@ stories:
     steps:
       - user: |
           Dimme das Licht um 20% herunter.
-      - intent: dim
+        intent: dim
       - action: action_dim
       - action: utter_action_performed
       - checkpoint: ask_feedback
@@ -67,7 +67,7 @@ stories:
     steps:
       - user: |
           Schalte das Licht in der Küche bitte blau.
-      - intent: change_color
+        intent: change_color
       - action: action_change_color
       - action: utter_action_performed
       - checkpoint: ask_feedback

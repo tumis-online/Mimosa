@@ -1,9 +1,8 @@
 from os import path
 
 from fastapi import FastAPI
-from pydantic import BaseModel
-from asr import speech_recognition as asr
-from tts import text_to_speech as tts
+
+from NeMo.src.asr import speech_recognition as asr
 
 app = FastAPI()
 

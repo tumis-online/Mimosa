@@ -2,7 +2,7 @@
 #  See https://www.youtube.com/watch?v=8gvGh6H2NO0&list=PL75e0qA87dlEjGAc9j9v3a5h1mxI2Z9fi&index=4
 #  for further examples of Training data and rules
 
-version: "3.1"
+version: '$RASA_VERSION'
 
 rules:
   - rule: Greeting Rule
@@ -32,7 +32,7 @@ rules:
               - first_name: Hans
           - slot_was_set:
               - first_name: Tom
-      - action: action_repeat_name
+      - action: action_create_user
   - rule: Ask the user to rephrase in case of low NLU confidence
     steps:
       - intent: nlu_fallback

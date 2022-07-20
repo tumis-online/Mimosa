@@ -1,4 +1,0 @@
-fastapi[all]
-pydantic==1.8.2
-uvicorn[standard]
-starlette==0.20.4

@@ -2,7 +2,7 @@
 #  See https://learning.rasa.com/archive/rasa-forms-2/rasa-forms/ (RASA 2.x),
 #  https://learning.rasa.com/rasa-forms-3/ and https://rasa.com/docs/rasa/forms/
 
-version: "3.1"
+version: '$RASA_VERSION'
 
 slots:
   first_name:
@@ -69,13 +69,6 @@ slots:
     mappings:
       - type: from_entity
         entity: VALUE
-  scene_name:
-    type: text
-    influence_conversation: true
-    mappings:
-      - type: from_text
-        entity: SCENE_NAME
-        intent: add_scene
 
 # Activating via stories or rules
 forms:
@@ -100,6 +93,3 @@ forms:
     required_slots:
       - item_state
       - value
-  scene_form:
-    required_slots:
-      - scene_name

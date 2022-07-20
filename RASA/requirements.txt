@@ -1,3 +1,0 @@
-spacy==3.3.1
-rasa==3.2.1
-rasa-sdk

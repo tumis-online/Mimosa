@@ -17,10 +17,10 @@ class ValidatePredefinedSlots(ValidationAction):
     ) -> Dict[Text, Any]:
         """Validate item value."""
         request = ""
-        gql_client_handler.send_graphql_request(request)
+        client_handler = gql_client_handler.GraphQLClientHandler()
+        client_handler.send_graphql_request(request)
         if isinstance(slot_value, str):
             # validation succeeded, capitalize the value of the "location" slot
             return {"": slot_value.capitalize()}
-        else:
-            # validation failed, set this slot to None
-            return {"location": None}
+        # validation failed, set this slot to None
+        return {"location": None}

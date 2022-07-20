@@ -1,3 +1,5 @@
+import sys
+
 import aiohttp.client_exceptions
 import argparse
 import asyncio
@@ -34,16 +36,16 @@ def load_gql_api_endpoint(config_file=None) -> str:
     if config_file is None:
         config_file = DEFAULT_CONFIG_FILE
     if not os.path.exists(config_file):
-        logging.error(f"Config file {config_file} could not be located.")
+        logging.error("Config file %s could not be located.", config_file)
     # Open and load the config file and return api url
-    with open(config_file, 'r') as config:
+    with open(config_file, 'r', encoding='utf-8') as config:
         data = yaml.load(config, Loader=SafeLoader)
         error: bool = False
         if "url" in data and data["url"] is not None:
             return data["url"]
         for val in "host", "port", "suffix":
             if data[val] is None:
-                logging.error(f"Missing {val} in GraphQL client configuration file.")
+                logging.error("Missing %s in GraphQL client configuration file.", val)
                 error = True
         if error:
             logging.error("Configuration file is not valid. No api endpoint provided.")
@@ -51,7 +53,7 @@ def load_gql_api_endpoint(config_file=None) -> str:
     port = data["port"]
     suffix = data["suffix"]
     api_endpoint = f"http://{host}:{str(port)}{suffix}"
-    logging.info(f"Establish GraphQL Client connection to {api_endpoint}...")
+    logging.info("Establish GraphQL Client connection to %s...", api_endpoint)
     return api_endpoint
 
 
@@ -86,12 +88,12 @@ async def start_client_handler(config: str):
     try:
         client = Client(transport=transport, fetch_schema_from_transport=True)
         auth_token = str(await client.execute_async(login_query))
-        logging.info(f"Token for authentication retrieved: {auth_token}")
+        logging.info("Token for authentication retrieved: %s", auth_token)
         transport = AIOHTTPTransport(url=api_endpoint, headers={'Authorization': auth_token})
     except (aiohttp.ClientError, aiohttp.ClientConnectionError) as err:
-        logging.error(f"Could not connect to client with api endpoint: {api_endpoint}.\n")
+        logging.error("Could not connect to client with api endpoint: %s.\n", api_endpoint)
         logging.debug(err)
-        exit(1)
+        sys.exit(1)
 
     # Using `async with` on the client will start a connection on the transport
     # and provide a `session` variable to execute queries on this connection
@@ -104,7 +106,7 @@ async def start_client_handler(config: str):
         # TODO upload files possible?
         # https://levelup.gitconnected.com/how-to-add-file-upload-to-your-graphql-api-34d51e341f38
         client_handler = GraphQLClientHandler(session)
-        logging.info(f"Starting authenticated session...")
+        logging.info("Starting authenticated session...")
 
         get_lights_query = parse_graphql_file(GET_LIGHTS_QUERY_FILE)
         switch_light_mutation = parse_graphql_file(SWITCH_LIGHT_MUTATION_FILE)
@@ -141,6 +143,7 @@ async def graphql_connection():
 
 
 def main():
+    """Starting gql client handler."""
     parser = argparse.ArgumentParser(description="")
     parser.add_argument('-v', '--verbose', help='', action='store_true')
     parser.add_argument('-d', '--debug', help='', action='store_true')

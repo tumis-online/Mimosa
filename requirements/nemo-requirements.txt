@@ -1,0 +1,11 @@
+nemo_toolkit==1.6.2
+NEMO~=4.1.1
+pytorch_lightning
+torch~=1.12.0
+numpy~=1.19.5
+hydra.core
+youtokentome
+sacremoses
+sacrebleu
+hypothesis~=6.48.3
+phonemizer~=3.2.1

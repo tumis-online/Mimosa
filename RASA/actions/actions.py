@@ -21,7 +21,7 @@ class GreetAction(Action):
     def name(self) -> Text:
         return "action_greet"
 
-    def run(self, dispatcher: CollectingDispatcher,
+    async def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         user: str = "Benutzer"
@@ -35,7 +35,7 @@ class CreateUserAction(Action):
     def name(self) -> Text:
         return "action_create_user"
 
-    def run(self, dispatcher: CollectingDispatcher,
+    async def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         first_name = tracker.get_slot(nlu.Slot.FIRST_NAME)

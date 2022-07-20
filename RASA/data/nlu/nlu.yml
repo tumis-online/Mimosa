@@ -2,7 +2,7 @@
 #  See https://www.youtube.com/watch?v=8gvGh6H2NO0&list=PL75e0qA87dlEjGAc9j9v3a5h1mxI2Z9fi&index=4
 #  for further examples of Training data and rules
 
-version: "3.1"
+version: "3.2"
 
 nlu:
 - intent: greet
@@ -61,10 +61,13 @@ nlu:
     - einverstanden
     - richtig
     - in ordnung
+    - Ja
     - ja
     - jo
     - auf jeden fall
     - gerne
+    - danke
+    - Danke
 - intent: deny
   examples: |
     - nein

@@ -1,4 +1,4 @@
-version: "3.1"
+version: "3.2"
 
 session_config:
   session_expiration_time: 0
@@ -38,7 +38,7 @@ intents:
         - ITEM
         - LOC
         - COLOR
-  - add_scene:
+  - edit_scene:
       use_entities:
         - SCENE_NAME
   - dim:
@@ -93,7 +93,7 @@ intents:
 
 entities:
   - ITEM:
-      groups:
+      roles:
         - light
         - power_socket
   - LOC
@@ -104,11 +104,16 @@ entities:
   - FIRST_NAME
   - LAST_NAME
   - SCENE_NAME
+  - EDIT_SCENE
+      roles:
+        - add
+        - edit
+        - remove
 
 actions:
 - action_greet
 - action_create_user
-- action_add_scene
+- action_edit_scene
 - action_change_color
 - action_dim
 - action_disable_item

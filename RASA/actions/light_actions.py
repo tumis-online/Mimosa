@@ -2,7 +2,7 @@ from typing import Text, Dict, Any, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.events import SlotSet
 from rasa_sdk.executor import CollectingDispatcher
-from RASA.domain import domain as nlu
+from ..domain import domain as nlu
 
 
 class EnableItemAction(Action):
@@ -51,7 +51,7 @@ class DimLightAction(Action):
         scene_name = tracker.get_slot(nlu.Slot.SCENE_NAME)
         # TODO action should query graphql api
         q = "select * from restaurants where cuisine='{0}' limit 1".format(scene_name)
-        result = db.query(q)
+        result = "" # db.query(q)
 
         return [SlotSet("matches", result if result is not None else [])]
 
@@ -68,6 +68,6 @@ class ChangeColorAction(Action):
         scene_name = tracker.get_slot(nlu.Slot.SCENE_NAME)
         # TODO action should query graphql api
         q = "select * from restaurants where cuisine='{0}' limit 1".format(scene_name)
-        result = db.query(q)
+        result = "" # db.query(q)
 
         return [SlotSet("matches", result if result is not None else [])]
