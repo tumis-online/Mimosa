@@ -1,3 +1,5 @@
+"""User model to access settings and individual profile."""
+
 from pydantic import BaseModel
 
 

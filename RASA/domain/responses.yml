@@ -1,0 +1,46 @@
+version: "3.2"
+
+responses:
+  utter_greet:
+  - text: Hallo! Wie geht es dir?
+  utter_cheer_up:
+  - text: 'Hier ist etwas zur Aufheiterung:'
+    image: https://i.imgur.com/nGF1K8f.jpg
+  utter_did_that_help:
+  - text: Hat das geholfen?
+  - text: War das richtig so?
+  utter_ask_name:
+  - text: Wie ist dein Name?
+  - text: Wie heißt du?
+  utter_rephrase:
+  - text: Kannst du das noch einmal wiederholen?
+  - text: Leider verstehe ich das nicht richtig.
+  - text: Ich verstehe nicht. Bitte noch einmal umformulieren.
+  utter_out_of_scope:
+  - text: Tut mir leid. Mit dieser Aufgabe kann ich nicht umgehen.
+  - text: Ich weiß nicht, was ich machen soll.
+  utter_happy:
+  - text: Super!
+  - text: Klasse!
+  - text: Prima!
+  utter_goodbye:
+  - text: Tschüs.
+  - text: Tschau.
+  - text: Bis zum nächsten Mal!
+  utter_iamabot:
+  - text: Ich bin ein Assistenzsystem für Heimautomatisierung.
+  - text: Ich unterstütze dich im Umgang mit Smart Home Geräten.
+  utter_ask_feedback:
+  - text: War das korrekt?
+  - text: Habe ich das richtig verstanden?
+  utter_no_problem:
+  - text: Kein Problem.
+  utter_anything_else:
+  - text: Okay, das macht nichts.
+  utter_action_performed:
+  - text: Ich habe die Aktion ausgeführt.
+  - text: Alles erledigt.
+  utter_thank_you:
+  - text: Dankeschön.
+  - text: Danke
+  - text: Vielen Dank!

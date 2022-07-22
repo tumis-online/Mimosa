@@ -1,3 +1,4 @@
+"""Train, Test Model and parsing Model messages."""
 import asyncio
 import json
 import logging
@@ -8,7 +9,7 @@ from rasa.core.agent import Agent
 from rasa.model import get_latest_model
 from rasa.shared import data
 
-from RASA.domain import domain as nlu
+from RASA.domain.constants import actions as nlu
 
 CONFIDENCE_THRESHOLD = 0.7
 
@@ -22,8 +23,8 @@ OUTPUT_DIR = "models"
 DEFAULT_MODEL_PATH = path.join(OUTPUT_DIR, "nlu.tar.gz")
 
 
-class Model:
-    """"""
+class ModelHandler:
+    """Handles model agent message processing."""
     current_request: dict
 
     def __init__(self, m_path: str) -> None:
@@ -32,9 +33,9 @@ class Model:
 
     def message(self, message: str) -> dict:
         """
-        Sends message to RASA agent
-        :param message:
-        :return:
+        Sends message to RASA agent.
+        :param message: text provided by user
+        :return: result from nlu with detected intent, entities and according actions
         """
         message = message.strip()
         result = asyncio.run(self.agent.parse_message(message))
@@ -97,12 +98,12 @@ async def send_message(message: str) -> None:
 
 
 if __name__ == '__main__':
-    """According to https://rasa.com/docs/rasa/next/jupyter-notebooks/#train-a-model"""
+    # According to https://rasa.com/docs/rasa/next/jupyter-notebooks/#train-a-model.
     # model_path = train_model()
     # test_model()
 
     model_path = get_latest_model(OUTPUT_DIR)
-    mdl = Model(model_path)
+    mdl = ModelHandler(model_path)
     sentences = [
         "Mach die Lampe an.",
         "Dimm die Lampe im Wohnzimmer etwas heller",

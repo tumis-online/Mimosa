@@ -1,0 +1,16 @@
+version: "3.2"
+
+actions:
+- action_greet
+- action_create_user
+- action_edit_scene
+- action_change_color
+- action_dim
+- action_disable_item
+- action_enable_item
+- validate_fallback_item_form
+- validate_item_config_form
+- validate_light_form
+- validate_power_socket_form
+- validate_scene_form
+- validate_slot_mappings
