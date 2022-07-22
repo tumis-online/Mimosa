@@ -1,3 +1,5 @@
+## NLU domain including intents and entities.
+
 version: "3.2"
 
 session_config:
@@ -41,6 +43,7 @@ intents:
   - edit_scene:
       use_entities:
         - SCENE_NAME
+        - EDIT_SCENE
   - dim:
       use_entities:
       - ITEM

@@ -8,10 +8,10 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.events import SlotSet
 
 
-class AddSceneAction(Action):
+class EditSceneAction(Action):
     """NLU Action to process add scene request and pass to Smart Home Control API."""
     def name(self) -> Text:
-        return "action_add_scene"
+        return "action_edit_scene"
 
     async def run(
         self, dispatcher, tracker: Tracker, domain: Dict[Text, Any],
@@ -20,8 +20,7 @@ class AddSceneAction(Action):
         scene_name = tracker.get_slot('scene_name')
         current_user_intent = tracker.get_intent_of_latest_message()
         # TODO action should query graphql api
-        q = "select * from restaurants where cuisine='{0}' limit 1".format(scene_name)
-        result = db.query(q)
+        result = []
 
         return [SlotSet("matches", result if result is not None else [])]
 

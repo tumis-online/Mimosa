@@ -19,8 +19,7 @@ jieba
 opencc
 backoff~=2.1.2
 SoundFile~=0.10.3.post1
-fastapi==0.78.0
+fastapi[all]==0.78.0
 pydantic==1.9.1
 grequests~=0.6.0
 PyAudio~=0.2.11
-domain~=0.1.4

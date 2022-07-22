@@ -8,7 +8,7 @@ class Action(Enum):
     DISABLE_ITEM = "action_disable_item"
     DIM = "action_dim"
     CHANGE_COLOR = "action_change_color"
-    ADD_SCENE = "action_add_scene"
+    EDIT_SCENE = "action_edit_scene"
 
     class Validate(Enum):
         """Validation Actions."""
