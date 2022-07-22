@@ -79,4 +79,4 @@ rules:
   - rule: Edit Scene
     steps:
       - intent: edit_scene
-      - action: edit_scene
+      - action: action_edit_scene
