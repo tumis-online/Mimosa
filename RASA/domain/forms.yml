@@ -2,7 +2,7 @@
 #  See https://learning.rasa.com/archive/rasa-forms-2/rasa-forms/ (RASA 2.x),
 #  https://learning.rasa.com/rasa-forms-3/ and https://rasa.com/docs/rasa/forms/
 
-version: "3.2"
+version: "3.1"
 
 slots:
   first_name:

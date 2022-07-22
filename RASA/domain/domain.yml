@@ -1,6 +1,6 @@
 ## NLU domain including intents and entities.
 
-version: "3.2"
+version: "3.1"
 
 session_config:
   session_expiration_time: 0 # No expiration
@@ -107,7 +107,7 @@ entities:
   - FIRST_NAME
   - LAST_NAME
   - SCENE_NAME
-  - EDIT_SCENE
+  - EDIT_SCENE:
       roles:
         - add
         - edit

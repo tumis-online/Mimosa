@@ -1,6 +1,6 @@
 ## Further nlu configuration containing synonyms.
 
-version: "3.2"
+version: "3.1"
 
 nlu:
   - synonym: bathroom

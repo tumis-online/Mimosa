@@ -1,7 +1,7 @@
 ## Stories for conversations with light sources.
 #  Stories have to contain "happy" and "unhappy" paths
 
-version: "3.2"
+version: "3.1"
 
 stories:
   - story: Turn light on in bedroom
