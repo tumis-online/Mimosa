@@ -46,7 +46,7 @@ async def stream_sound(pa_interface: pyaudio, sample_format: int,
 
     # Store data in chunks for x seconds
     # TODO might be set as variable for speakers with lower speech rate.
-    seconds = AudioSettings.RECORDING_TIME
+    seconds = AudioSettings.RECORDING_TIME.value
     for i in range(0, int(sample_rate / chunk * seconds)):
         data = stream.read(chunk)
         frames.append(data)
@@ -61,10 +61,10 @@ async def start_recording() -> str:
     """Recording with audio device and saving in wav file.
     :return filename
     """
-    sample_format = AudioSettings.SAMPLE_FORMAT
-    channels = AudioSettings.CHANNELS
-    sample_rate = AudioSettings.SAMPLE_RATE
-    chunk = AudioSettings.CHUNK
+    sample_format = AudioSettings.SAMPLE_FORMAT.value
+    channels = AudioSettings.CHANNELS.value
+    sample_rate = AudioSettings.SAMPLE_RATE.value
+    chunk = AudioSettings.CHUNK.value
 
     p = pyaudio.PyAudio()  # Create an interface to PortAudio
 

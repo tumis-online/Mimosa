@@ -1,0 +1,7 @@
+mutation remove_item($unit_id: String) {
+  removeUnitConfig(unitId: $unit_id) {
+    id
+    labelString
+    unitType
+  }
+}

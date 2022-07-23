@@ -4,10 +4,10 @@ import wave
 from recording.audio_settings import AudioSettings
 
 
-def play_sound_file(sound_file=AudioSettings.RECORD_FILE_NAME):
+def play_sound_file(sound_file=AudioSettings.RECORD_FILE_NAME.value):
     """Plays sound_file as stream from wav file."""
     # Set chunk size of 1024 samples per data frame
-    chunk = AudioSettings.CHUNK
+    chunk = AudioSettings.CHUNK.value
 
     # Open the sound file
     wf = wave.open(sound_file, 'rb')

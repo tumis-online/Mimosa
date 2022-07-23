@@ -1,0 +1,18 @@
+query get_locations {
+  unitConfigs(
+    filter: {
+      properties: {
+        unitType: LOCATION
+      }
+    }
+  ) {
+    id
+    labelString
+    placementConfig {
+      location {
+        id
+        labelString
+      }
+    }
+  }
+}
