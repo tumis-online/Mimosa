@@ -69,3 +69,4 @@ The user will be more satisfied working with a multi-modal speech assistance tha
 ### License
 
 This project is licensed under the Apache License, Version 2.0. [License](LICENSE).
+Copyright 2022 by Tim Dilger.
