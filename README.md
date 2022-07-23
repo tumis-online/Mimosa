@@ -65,3 +65,7 @@ User wants to *hear music* [title].
 The time it takes to perform the tasks in the different use cases will be less given multi-modal input.
 
 The user will be more satisfied working with a multi-modal speech assistance than without.
+
+### License
+
+This project is licensed under the Apache License, Version 2.0. [License](LICENSE).
