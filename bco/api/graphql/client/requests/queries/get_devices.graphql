@@ -1,0 +1,12 @@
+query allDevices {
+  unitConfigs(filter: {}, includeDisabledUnits: false) {
+    labelString
+    unitType
+    deviceConfig {
+      units {
+        id
+        labelString
+      }
+    }
+  }
+}

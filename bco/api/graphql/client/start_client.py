@@ -23,8 +23,8 @@ from bco.api.graphql.smart_env import State
 
 DEFAULT_CONFIG_FILE = "gql-config.yml"
 """GraphQL Requests"""
-LOGIN_QUERY_FILE = "requests/queries/login_query.graphql"
-GET_LIGHTS_QUERY_FILE = "requests/queries/get_lights_query.graphql"
+LOGIN_QUERY_FILE = "requests/queries/login.graphql"
+GET_LIGHTS_QUERY_FILE = "requests/queries/get_lights.graphql"
 SWITCH_LIGHT_MUTATION_FILE = "requests/mutations/switch_light_mutation.graphql"
 
 
@@ -127,8 +127,8 @@ async def start_client_handler(config: str):
 
 @backoff.on_exception(backoff.expo, Exception, max_time=300)
 async def graphql_connection():
-    """Websocket async implementation as described
-    in https://gql.readthedocs.io/en/latest/advanced/async_advanced_usage.html#async-advanced-usage
+    """Websocket async implementation as described in
+    https://gql.readthedocs.io/en/latest/advanced/async_advanced_usage.html#async-advanced-usage
     """
 
     transport = WebsocketsTransport(url="wss://YOUR_URL")
@@ -143,7 +143,7 @@ async def graphql_connection():
 
 
 def main():
-    """Starting gql client handler."""
+    """Parsing input and starting gql client handler."""
     parser = argparse.ArgumentParser(description="")
     parser.add_argument('-v', '--verbose', help='', action='store_true')
     parser.add_argument('-d', '--debug', help='', action='store_true')
