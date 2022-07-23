@@ -20,7 +20,7 @@ def req_file(filename: str, folder="requirements"):
     return [x.strip() for x in content]
 
 
-requirement_files = ["requirements.txt", "rasa-requirements.txt", "nemo-requirements.txt"]
+requirement_files = ["requirements.txt", "rasa-requirements.txt", "nemo-requirements.txt", "recording-requirements.txt"]
 install_requires = []
 for file in requirement_files:
     install_requires.append(req_file(file))
@@ -43,7 +43,7 @@ setup(
     name='Saphir',
     # Versions should comply with PEP 440:
     # https://www.python.org/dev/peps/pep-0440/
-    version='1',    # Required
+    version='0.1.0',    # Required
     # This is a one-line description or tagline of what your project does. This
     # corresponds to the "Summary" metadata field:
     # https://packaging.python.org/specifications/core-metadata/#summary
@@ -64,6 +64,6 @@ setup(
     # TODO add license
     license='undefined',
     install_requires=install_requires,
-    packages=['.', 'RASA', 'NeMo', 'bco'],
+    packages=['.', 'recording', 'RASA', 'NeMo', 'bco'],
     zip_safe=False,
 )

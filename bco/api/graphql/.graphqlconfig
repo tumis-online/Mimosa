@@ -1,0 +1,16 @@
+{
+  "name": "BCO GraphQL Schema",
+  "schemaPath": "schema.graphql",
+  "includes": ["*.graphql"],
+  "extensions": {
+    "endpoints": {
+      "Default GraphQL Endpoint": {
+        "url": "${env:GRAPHQL_API_URL}",
+        "headers": {
+          "Authorization": "${env:GRAPHQL_AUTH_KEY}"
+        },
+        "introspect": false
+      }
+    }
+  }
+}
