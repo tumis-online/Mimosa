@@ -4,6 +4,7 @@ import pyaudio
 
 
 class AudioSettings(Enum):
+    """Settings to save audio in file."""
     CHUNK = 1024  # Record in chunks of 1024 samples
     SAMPLE_FORMAT = pyaudio.paInt16  # 16 bits per sample
     CHANNELS = 1  # Mono

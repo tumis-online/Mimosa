@@ -65,6 +65,7 @@ async def start_recording() -> str:
     channels = AudioSettings.CHANNELS.value
     sample_rate = AudioSettings.SAMPLE_RATE.value
     chunk = AudioSettings.CHUNK.value
+    filename = AudioSettings.RECORD_FILE_NAME.value
 
     p = pyaudio.PyAudio()  # Create an interface to PortAudio
 
@@ -84,7 +85,6 @@ async def start_recording() -> str:
     logging.info("Finished recording.")
 
     # Save the recorded data as a WAV file
-    filename = AudioSettings.RECORD_FILE_NAME
     wf = wave.open(filename, 'wb')
     wf.setnchannels(channels)
     wf.setsampwidth(p.get_sample_size(sample_format))

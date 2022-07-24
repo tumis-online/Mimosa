@@ -42,6 +42,10 @@ responses:
   utter_action_performed:
   - text: Ich habe die Aktion ausgeführt.
   - text: Alles erledigt.
+  utter_action_failed:
+  - text: Leider hat das nicht geklappt.
+  - text: Das hat leider nicht funktioniert.
+  - text: Aktion konnte nicht durchgeführt werden.
   utter_thank_you:
   - text: Dankeschön.
   - text: Danke

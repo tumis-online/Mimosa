@@ -1,3 +1,5 @@
+"""Takes formatted wav file as input and processes to text."""
+
 import asyncio
 import logging
 from os import path
