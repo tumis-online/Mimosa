@@ -1,9 +1,12 @@
+torch
+torchvision
+torchaudio
+--extra-index-url https://download.pytorch.org/whl/cpu
+numpy~=1.23.1
+pytorch_lightning
+hydra.core
 nemo_toolkit==1.6.2
 NEMO~=4.1.1
-pytorch_lightning
-torch~=1.12.0
-numpy~=1.19.5
-hydra.core
 youtokentome
 sacremoses
 sacrebleu

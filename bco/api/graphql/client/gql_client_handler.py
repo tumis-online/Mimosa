@@ -7,6 +7,8 @@ import aiofiles
 
 from gql import gql, Client
 
+from setup import file
+
 GQL_SINGLE_FILE_UPLOAD_MUTATION = '''
       mutation($file: Upload!) {
         singleUpload(file: $file) {
@@ -24,22 +26,33 @@ GQL_MULTIPLE_FILE_UPLOAD_MUTATION = '''
 MAX_LOCAL_FILE_SIZE = 300
 
 
-def parse_graphql_file(request_file):
+def parse_graphql_file(request_file: file) -> gql:
     """Parse to get string of graphql file.
-    :return: string of GraphQL file
+    :param request_file GraphQL-file with request
+    :return: gql request
     """
     with open(request_file, 'r') as request:
         query_str = request.read()
-    query = gql(query_str)
-    return query
+    gql_query = gql(query_str)
+    return gql_query
 
 
-async def execute_query(session: Client, query) -> json:
-    """Execute query via gql.
+async def execute_query(session: Client, gql_query: gql) -> json:
+    """Execute query via gql, converting str to gql request.
     :param session gql client
-    :param query
+    :param gql_query gql query parsed from file
     """
-    result = session.execute(query)
+    result = session.execute(gql_query)
+    return result
+
+
+async def execute_query_from_str(session: Client, str_query: str) -> json:
+    """Execute query via gql, converting str to gql request.
+    :param session gql client
+    :param str_query query directly provided as string not parsed from file
+    """
+    gql_query = gql(str_query)
+    result = session.execute(gql_query)
     return result
 
 
@@ -53,7 +66,7 @@ async def execute_subscription(session: Client, subscription) -> json:
 
 
 class GraphQLClientHandler:
-    """Handles GQL Client async session for sending requests to API."""
+    """Handles GQL Client async continuous session for sending requests to API."""
     session: Client
     current_request: str = None
 

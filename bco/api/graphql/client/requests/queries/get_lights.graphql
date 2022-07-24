@@ -2,7 +2,8 @@ query get_lights {
   unitConfigs(filter: {
     properties: {
       unitType: COLORABLE_LIGHT
-    }
+    },
+  	or: { properties: { unitType: LIGHT} }
   }) {
     id
     labelString

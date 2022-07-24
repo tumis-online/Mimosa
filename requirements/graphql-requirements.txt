@@ -1,0 +1,5 @@
+gql==3.4.0
+graphql-core==3.2.1
+PyYAML~=6.0
+aiofiles==0.8.0
+aiohttp~=3.8.1
