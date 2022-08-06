@@ -1,0 +1,20 @@
+# Exclude directories
+
+docker*
+docs
+.git*
+uml-diagrams
+tests
+icons
+images
+venv/*
+RASA/results
+
+# Exclude files
+
+# TODO Into separate docs folder
+*.md
+*.pdf
+setup.cfg
+setup.py
+user.py

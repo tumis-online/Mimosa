@@ -1,18 +1,36 @@
-from typing import Text, List, Any, Dict
+import logging
+from typing import Text, List, Any, Dict, Set
 
 from rasa_sdk import Tracker, FormValidationAction
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.types import DomainDict
 
+from domain.constants.response import Response
+from domain.constants.actions import Action as NLU_Actions
+from bco.api.graphql import smart_env
+
+
+def check_intent(current_user_intent: str, class_intent: str) -> bool:
+    """
+    Checks, whether current user intent is equal to class intent.
+    :param current_user_intent: intent predicted by nlu
+    :param class_intent: intent which should cause action
+    :return: True, if intents match
+    """
+    if current_user_intent is not class_intent:
+        logging.error("Intent %s is leading to a wrong action.", current_user_intent)
+        return False
+    return True
+
 
 class ValidateItemConfigForm(FormValidationAction):
     def name(self) -> Text:
-        return "validate_item_config_form"
+        return NLU_Actions.Validate.Form.ITEM_CONFIG
 
     @staticmethod
-    def item_db() -> List[Text]:
+    def item_db() -> Set[Text]:
         """Database of supported items"""
-        return ["light", "power_socket"]
+        return smart_env.item_db
 
     async def required_slots(
             self,
@@ -21,6 +39,11 @@ class ValidateItemConfigForm(FormValidationAction):
             tracker: "Tracker",
             domain: "DomainDict",
     ) -> List[Text]:
+        current_user_intent = tracker.get_intent_of_latest_message()
+        if not check_intent(current_user_intent, self._intent):
+            out_of_scope_utterance: str = Response.OUT_OF_SCOPE
+            dispatcher.utter_message(template=out_of_scope_utterance)
+            return []
         additional_slots = ["outdoor_seating"]
         if tracker.slots.get("outdoor_seating") is True:
             # If the user wants to sit outside, ask

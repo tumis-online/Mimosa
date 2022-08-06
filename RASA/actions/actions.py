@@ -8,7 +8,7 @@ Custom Actions run by rasa action server.
 from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
-from RASA.domain.constants.forms import Slot as NLU_Slots
+from RASA.domain.constants import Slot as NLU_Slots
 from user import User
 
 

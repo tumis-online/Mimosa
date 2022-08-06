@@ -1,0 +1,57 @@
+# Dockerfile for RASA NLU Server image
+
+ARG BASE_IMAGE="python"
+ARG BASE_IMAGE_HASH="3.9-slim-bullseye"
+ARG BASE_BUILDER_IMAGE_HASH="3.9-slim-bullseye"
+
+FROM ${BASE_IMAGE}:${BASE_BUILDER_IMAGE_HASH} AS builder
+
+WORKDIR /app
+
+COPY requirements/rasa-requirements.txt .
+
+RUN python -m venv /opt/venv && \
+    . /opt/venv/bin/activate && \
+    pip install --no-cache-dir -U -r rasa-requirements.txt
+
+RUN python -V
+
+RUN pip list
+
+# Install spacy dependencies
+RUN python -m spacy download de_core_news_sm
+
+# Start new build stage
+FROM ${BASE_IMAGE}:${BASE_IMAGE_HASH} AS runner
+
+WORKDIR /app
+
+# copy everything from /opt
+COPY --from=builder /opt/venv /opt/venv
+
+COPY --from=builder /app /app
+
+# Copy RASA dir to container work dir
+COPY RASA .
+
+# make sure we use the virtualenv
+ENV PATH="/opt/venv/bin:$PATH"
+
+# set HOME environment variable
+ENV HOME=/app
+
+ENV RASA_NLU_SERVER_PORT=5005
+
+# Best Practices, Set user to run
+USER 1001
+
+# Set entrypoint for interactive shells
+ENTRYPOINT ["rasa"]
+
+# Run Container, Port forwarding handled by docker-compose file
+CMD ["run", "--enable-api", \
+    "--auth-token", "${RASA_AUTH_TOKEN}", \
+    "--port", "${RASA_NLU_SERVER_PORT}", \
+    "--nlu", "data/", \
+    "--config", "config.yml", \
+    "--domain", "domain/"]

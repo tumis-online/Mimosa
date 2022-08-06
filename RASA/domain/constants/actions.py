@@ -10,11 +10,11 @@ class Action(Enum):
     CHANGE_COLOR = "action_change_color"
     EDIT_SCENE = "action_edit_scene"
 
-    class Validate(Enum):
+    class Validate:
         """Validation Actions."""
         SLOT_MAPPINGS = "validate_slot_mappings"
 
-        class Form(Enum):
+        class Form:
             """Validate Form Actions."""
             ITEM_CONFIG = "validate_item_config_form"
             LIGHT = "validate_light_form"

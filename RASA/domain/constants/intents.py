@@ -1,5 +1,6 @@
 """Stores NLU domain specific intent and entity constants to be accessible."""
 from dataclasses import dataclass
+from typing import List
 
 
 @dataclass
@@ -46,4 +47,4 @@ class Intent:
     """dataclass describing extracted intent in given text."""
     name: str
     confidence: float
-    entities: list[Entity]
+    entities: List[Entity]

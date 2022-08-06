@@ -1,3 +1,4 @@
+"""Starting GQL Client to communicate with Base Cube One API."""
 import sys
 
 import aiohttp.client_exceptions
@@ -19,13 +20,10 @@ from yaml.loader import SafeLoader
 
 from bco.api.graphql.client.gql_client_handler import parse_graphql_file, GraphQLClientHandler, \
     execute_query
+from bco.api.graphql.client.requests.files import RequestFile
 from bco.api.graphql.smart_env import State
 
 DEFAULT_CONFIG_FILE = "gql-config.yml"
-"""GraphQL Requests"""
-LOGIN_QUERY_FILE = "requests/queries/login.graphql"
-GET_LIGHTS_QUERY_FILE = "requests/queries/get_lights.graphql"
-SWITCH_LIGHT_MUTATION_FILE = "requests/mutations/switch_light_mutation.graphql"
 
 
 def load_gql_api_endpoint(config_file=None) -> str:
@@ -84,7 +82,7 @@ async def start_client_handler(config: str):
     transport = AIOHTTPTransport(url=api_endpoint, headers={'Authorization': 'token'})
     # Password is default admin base64 password hash from BCO doc:
     # https://basecubeone.org/developer/addon/bco-api-graphql.html#supported-headers
-    login_query = parse_graphql_file(LOGIN_QUERY_FILE)
+    login_query = parse_graphql_file(RequestFile.LOGIN_QUERY)
     try:
         client = Client(transport=transport, fetch_schema_from_transport=True)
         auth_token = str(await client.execute_async(login_query))
@@ -108,8 +106,8 @@ async def start_client_handler(config: str):
         client_handler = GraphQLClientHandler(session)
         logging.info("Starting authenticated session...")
 
-        get_lights_query = parse_graphql_file(GET_LIGHTS_QUERY_FILE)
-        switch_light_mutation = parse_graphql_file(SWITCH_LIGHT_MUTATION_FILE)
+        get_lights_query = parse_graphql_file(RequestFile.GET_LIGHTS_QUERY)
+        switch_light_mutation = parse_graphql_file(RequestFile.SWITCH_LIGHT_MUTATION)
         # request = await session.execute(get_lights_query)
         # request = await client_handler.receive_requests(get_lights_query)
         # unit_id_base64_str = "89783086-0f7e-476e-816d-417f24dc7896"

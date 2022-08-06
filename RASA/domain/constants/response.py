@@ -1,8 +1,7 @@
 """Messages to be uttered in Custom Actions."""
-from enum import Enum
 
 
-class Responses(Enum):
+class Response:
     """NLU responses - Stores constant str messages from responses.yml file."""
     GREET = "utter_greet"
     CHEER_UP = "utter_cheer_up"
@@ -18,4 +17,3 @@ class Responses(Enum):
     ANYTHING_ELSE = "utter_anything_else"
     ACTION_PERFORMED = "utter_action_performed"
     THANK_YOU = "utter_thank_you"
-

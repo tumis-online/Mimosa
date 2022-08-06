@@ -1,0 +1,44 @@
+# Dockerfile for RASA Action Server image
+
+ARG BASE_IMAGE="rasa/rasa"
+ARG BASE_BUILDER_IMAGE="rasa/rasa-sdk"
+ARG BASE_IMAGE_HASH="3.2.0"
+ARG BASE_BUILDER_IMAGE_HASH="3.0.0"
+
+# Extend the official Rasa SDK image
+FROM ${BASE_BUILDER_IMAGE}:${BASE_BUILDER_IMAGE_HASH} AS builder
+
+# Use subdirectory as working directory
+WORKDIR /RASA
+
+# Copy any additional custom requirements, if necessary (uncomment next line)
+# COPY actions/requirements-actions.txt ./
+
+# Change back to root user to install dependencies
+USER root
+
+# Install extra requirements for actions code, if necessary (uncomment next line)
+# No further rasa requirements needed when running rasa image
+# RUN pip install -r requirements-actions.txt
+
+# Copy actions folder to working directory
+COPY RASA/actions /RASA/actions
+
+# Copy domain.constants to constants directory
+COPY RASA/domain/constants /RASA/domain/constants
+
+# New build stage from RASA image
+FROM ${BASE_IMAGE}:${BASE_IMAGE_HASH} AS runner
+
+ENV RASA_ACTION_SERVER_PORT=5055
+
+# By best practices, don't run the code with root user
+USER 1001
+
+# Set entrypoint for interactive shells
+ENTRYPOINT ["rasa"]
+
+# Run Container, Port forwarding handled by docker-compose file
+CMD ["run", "actions", \
+    "--port", "${RASA_ACTION_SERVER_PORT}", \
+    "--actions", "actions"]

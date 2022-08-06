@@ -3,13 +3,14 @@ import asyncio
 import json
 import logging
 from os import path
+from typing import List
 
 import rasa
 from rasa.core.agent import Agent
 from rasa.model import get_latest_model
 from rasa.shared import data
 
-from RASA.domain.constants import actions as nlu
+from domain.constants import actions, intents as nlu
 
 CONFIDENCE_THRESHOLD = 0.7
 
@@ -71,7 +72,7 @@ async def parse_result(result: json) -> nlu.Intent:
     intent_name = result["intent"]["name"]
     intent_confidence = result["intent"]["confidence"]
     req_entities = result["entities"]
-    entities: list[nlu.Entity] = []
+    entities: List[nlu.Entity] = []
     for entity in req_entities:
         entity_type = entity["entity"]
         position = (entity["start"], entity["end"])
