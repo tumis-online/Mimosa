@@ -59,5 +59,5 @@ check_status
 
 echo "Starting Docker containers via Docker Compose..."
 # Start Docker Containers via docker-compose
-docker-compose --project-directory . --env-file docker/.env --file docker/docker-compose.yml up
+docker-compose --project-directory . --env-file .env --file docker/docker-compose.yml up --build
 check_status

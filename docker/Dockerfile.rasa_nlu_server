@@ -14,9 +14,8 @@ RUN python -m venv /opt/venv && \
     . /opt/venv/bin/activate && \
     pip install --no-cache-dir -U -r rasa-requirements.txt
 
-RUN python -V
-
-RUN pip list
+# make sure we use the virtualenv
+ENV PATH="/opt/venv/bin:$PATH"
 
 # Install spacy dependencies
 RUN python -m spacy download de_core_news_sm
@@ -51,7 +50,7 @@ ENTRYPOINT ["rasa"]
 # Run Container, Port forwarding handled by docker-compose file
 CMD ["run", "--enable-api", \
     "--auth-token", "${RASA_AUTH_TOKEN}", \
-    "--port", "${RASA_NLU_SERVER_PORT}", \
-    "--nlu", "data/", \
+    "--port", "5005", \
+    "--nlu", "data/nlu", \
     "--config", "config.yml", \
     "--domain", "domain/"]

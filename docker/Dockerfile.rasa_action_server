@@ -40,5 +40,5 @@ ENTRYPOINT ["rasa"]
 
 # Run Container, Port forwarding handled by docker-compose file
 CMD ["run", "actions", \
-    "--port", "${RASA_ACTION_SERVER_PORT}", \
+    "--port", "5055", \
     "--actions", "actions"]
