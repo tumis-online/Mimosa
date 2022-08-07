@@ -1,3 +1,17 @@
 [build-system]
-requires = ["setuptools>=42", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "smart-home-voice-assistant"
+version = "0.1.0"
+description = "Smart Assistance Project for Home Interconnection Realization"
+authors = ["'Tim Dilger' <tdilger@mailbox.org>"]
+license = "Apache-2.0"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pytest = "^7.1.2"
+PyYAML = "6.0"
+
+[tool.poetry.dev-dependencies]
