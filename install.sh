@@ -29,6 +29,10 @@ On_White="\033[47m"       # White
 
 # ENV Variables
 export PYTHONPATH="${PYTHONPATH}:/RASA"
+SAPHIR_DIR="$(pwd)"
+export SAPHIR_DIR
+
+echo -e "${On_Purple}****** SAPHIR ******${Color_Off}"
 
 check_status() {
   if [ $? -eq 0 ]; then
@@ -44,10 +48,11 @@ check_status() {
 #               -f docker/Dockerfile.rasa_nlu_server
 #check_status
 #
-#echo "Building RASA Action Server Docker Image..."
-#docker build . -t rasa-action-server:${RASA_ACTION_SERVER_TAG} \
-#               -f docker/Dockerfile.rasa_action_server
-#check_status
+export RASA_ACTION_SERVER_TAG=0.2
+echo "Building RASA Action Server Docker Image..."
+docker build . -t rasa-action-server:${RASA_ACTION_SERVER_TAG} \
+               -f docker/Dockerfile.rasa_action_server
+check_status
 
 # Generate secure Token for the application admin at start and store persistently in .bashrc
 # TODO: Generate individual token, https://pypi.org/project/secrets/,
@@ -59,5 +64,7 @@ check_status
 
 echo "Starting Docker containers via Docker Compose..."
 # Start Docker Containers via docker-compose
-docker-compose --project-directory . --env-file .env --file docker/docker-compose.yml up --build
+docker compose --project-directory . --env-file .env --file docker/docker-compose.yml up \
+  --detach \
+  # --build
 check_status

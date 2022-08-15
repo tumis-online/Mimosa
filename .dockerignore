@@ -8,7 +8,9 @@ tests
 icons
 images
 venv/*
+RASA/.rasa
 RASA/results
+# RASA/models
 
 # Exclude files
 

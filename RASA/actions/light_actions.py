@@ -10,15 +10,15 @@ from typing import Text, Dict, Any, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.events import SlotSet, FollowupAction
 from rasa_sdk.executor import CollectingDispatcher
-from RASA.domain.constants import Action as NLU_Action
-from RASA.domain.constants import Intent as NLU_Intent
-from RASA.domain.constants import Slot as NLU_Slot
-from RASA.domain.constants import Response as NLU_Response
+from RASA.domain.constants.actions import Action as NLU_Action
+from RASA.domain.constants.intents import Intent as NLU_Intent
+from RASA.domain.constants.forms import Slot as NLU_Slot
+from RASA.domain.constants.response import Response as NLU_Response
 
 
 class EnableItemAction(Action):
     """NLU Action to process enable item request and pass to Smart Home Control API."""
-    _action: str = NLU_Action.ENABLE_ITEM
+    _action: str = NLU_Action.ENABLE_ITEM.value
     _intent: str = NLU_Intent.ENABLE_ITEM
 
     def name(self) -> Text:

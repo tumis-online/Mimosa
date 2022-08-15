@@ -9,7 +9,6 @@ from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from RASA.domain.constants import Slot as NLU_Slots
-from user import User
 
 
 class GreetAction(Action):
@@ -34,7 +33,7 @@ class CreateUserAction(Action):
                         domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         first_name = tracker.get_slot(NLU_Slots.FIRST_NAME)
         last_name = tracker.get_slot(NLU_Slots.LAST_NAME)
-        user: User = User(first_name=first_name, last_name=last_name)
+        # user: User = User(first_name=first_name, last_name=last_name)
         # TODO send to database
         dispatcher.utter_message(text=f"Hallo {user.first_name} {user.last_name}!")
         return []

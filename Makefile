@@ -78,9 +78,14 @@ release:
 	poetry run python scripts/release.py
 
 build-docker:
+	export RASA_ACTION_SERVER_TAG=0.2
+	docker build . -t rasa-action-server:${RASA_ACTION_SERVER_TAG} \
+               -f docker/Dockerfile.rasa_action_server
+	@echo "Starting Docker containers via Docker Compose..."
 	export IMAGE_NAME=rasa && \
 	docker buildx use default && \
-	docker-compose --project-directory . --env-file docker/.env --file docker/docker-compose.yml up
+	docker compose --project-directory . --env-file docker/.env --file docker/docker-compose.yml up
 
-stop-integration-containers: ## Stop the integration test containers.
-	docker-compose --file docker/docker-compose.yml down
+stop-containers:
+	@echo "Removing Docker containers via Docker Compose..."
+	docker compose --project-directory . --env-file .env --file docker/docker-compose.yml down

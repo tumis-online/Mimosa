@@ -5,8 +5,8 @@ from rasa_sdk import Tracker, FormValidationAction
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.types import DomainDict
 
-from domain.constants.response import Response
-from domain.constants.actions import Action as NLU_Actions
+from RASA.domain.constants.response import Response
+from RASA.domain.constants.actions import Action as NLU_Actions
 from bco.api.graphql import smart_env
 
 
@@ -24,6 +24,9 @@ def check_intent(current_user_intent: str, class_intent: str) -> bool:
 
 
 class ValidateItemConfigForm(FormValidationAction):
+    """
+    Validate form input by requesting item database from Smart Home API.
+    """
     def name(self) -> Text:
         return NLU_Actions.Validate.Form.ITEM_CONFIG
 
@@ -59,7 +62,7 @@ class ValidateItemConfigForm(FormValidationAction):
         tracker: Tracker,
         domain: DomainDict,
     ) -> Dict[Text, Any]:
-        """Validate item value."""
+        """Validates, if item value can be found in database."""
         print(domain)
         if slot_value in self.item_db():
             # validation succeeded, set the value of the "item" slot to value

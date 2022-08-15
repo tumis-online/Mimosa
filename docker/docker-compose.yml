@@ -3,25 +3,26 @@
 version: '3.8'
 services:
   rasa-nlu-server:
-    image: rasa-nlu-server:${RASA_NLU_SERVER_TAG}  # Official image: rasa/rasa:3.2.4-full
+    container_name: rasa-nlu-server
+    image: rasa-nlu-server:${RASA_NLU_SERVER_TAG}
     build:
       context: .
-      dockerfile: docker/Dockerfile.rasa_nlu_server
+      dockerfile: ./docker/Dockerfile.rasa_nlu_server
     restart: unless-stopped
-    expose: ['${RASA_NLU_SERVER_PORT}']
+    ports:
+      - "${RASA_NLU_SERVER_PORT}:${RASA_NLU_SERVER_PORT}"
     environment:
       - RASA_AUTH_TOKEN=${SAPHIR_AUTH_TOKEN}
-      - RASA_NLU_SERVER_PORT=5005
     volumes:
-      - ../RASA:/app
-  rasa-action-server:
+      - RASA:/RASA
+  app:
+    container_name: rasa-action-server
     image: rasa-action-server:${RASA_ACTION_SERVER_TAG}
-    build:
-      context: .
-      dockerfile: docker/Dockerfile.rasa_action_server
-    restart: unless-stopped
-    expose: ['${RASA_ACTION_SERVER_PORT}']
-    environment:
-      - RASA_ACTION_SERVER_PORT=5055
+    expose: [$RASA_ACTION_SERVER_PORT]
     volumes:
-      - ../RASA/actions:/RASA/actions
+      - RASA.actions:/RASA/actions
+      - RASA.domain.constants:/RASA/domain/constants
+volumes:
+  RASA:
+  RASA.actions:
+  RASA.domain.constants:

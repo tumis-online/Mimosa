@@ -64,6 +64,6 @@ setup(
     # TODO add license
     license='undefined',
     install_requires=install_requires,
-    packages=['.', 'recording', 'RASA', 'NeMo', 'bco'],
+    packages=['recording', 'RASA', 'NeMo', 'bco'],
     zip_safe=False,
 )

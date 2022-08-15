@@ -1,1 +1,2 @@
-from RASA import domain
+from RASA.validations.validate_forms import ValidateItemConfigForm
+from RASA.validations.validate_slots import ValidatePredefinedSlots
