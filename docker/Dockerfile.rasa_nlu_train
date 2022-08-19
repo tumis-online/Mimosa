@@ -1,4 +1,4 @@
-# Build Stage Dockerfile for RASA NLU Server image Train and Test
+# Dockerfile for RASA NLU Model Trainer image
 
 # Official image: rasa/rasa:3.2.4-full
 ARG BASE_IMAGE="python"
@@ -9,10 +9,11 @@ FROM ${BASE_IMAGE}:${BASE_BUILDER_IMAGE_HASH} AS builder
 
 WORKDIR /app
 
-COPY requirements/rasa-requirements.txt /app
+COPY requirements/rasa-requirements.txt .
 
 RUN python -m venv /opt/venv && \
     . /opt/venv/bin/activate && \
+    pip install --upgrade pip && \
     pip install --no-cache-dir -U -r rasa-requirements.txt
 
 # make sure we use the virtualenv
@@ -24,7 +25,7 @@ RUN python -m spacy download de_core_news_sm
 # Start new build stage
 FROM ${BASE_IMAGE}:${BASE_IMAGE_HASH} AS runner
 
-WORKDIR /app
+WORKDIR /RASA
 
 # copy everything from /opt
 COPY --from=builder /opt/venv /opt/venv
@@ -32,30 +33,23 @@ COPY --from=builder /opt/venv /opt/venv
 # make sure we use the virtualenv
 ENV PATH="/opt/venv/bin:$PATH"
 
-# Copy RASA dir to container work dir
-COPY ./RASA /app
+# Copy RASA train data to container work dir
+COPY ./RASA/data ./data
+COPY ./RASA/domain ./domain
+COPY ./RASA/config.yml ./
 
 # set HOME environment variable
-ENV HOME=/app
-
-ENV RASA_NLU_SERVER_PORT=5005
+ENV HOME=/RASA
 
 # Best Practices, Set user to run
 USER 1001
-
-ENV NLU_MODEL = "saphir-nlu-model"
 
 # Set entrypoint for interactive shells
 ENTRYPOINT ["rasa"]
 
 CMD ["train", \
     "--fixed-model-name", "${NLU_MODEL}", \
-    "--nlu", "data/nlu", \
-    "--config", "config.yml", \
-    "--domain", "domain/"]
-
-# Run Container, Port forwarding handled by docker-compose file
-CMD ["run", \
-    "--enable-api", \
-    "--auth-token", "${RASA_AUTH_TOKEN}", \
-    "--port", "5005"]
+    "--data", "RASA/data/", \
+    "--config", "RASA/config.yml", \
+    "--domain", "RASA/domain/", \
+    "nlu"]

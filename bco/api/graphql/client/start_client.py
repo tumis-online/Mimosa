@@ -82,7 +82,7 @@ async def start_client_handler(config: str):
     transport = AIOHTTPTransport(url=api_endpoint, headers={'Authorization': 'token'})
     # Password is default admin base64 password hash from BCO doc:
     # https://basecubeone.org/developer/addon/bco-api-graphql.html#supported-headers
-    login_query = parse_graphql_file(RequestFile.LOGIN_QUERY)
+    login_query = parse_graphql_file(RequestFile.Query.LOGIN)
     try:
         client = Client(transport=transport, fetch_schema_from_transport=True)
         auth_token = str(await client.execute_async(login_query))
@@ -106,8 +106,8 @@ async def start_client_handler(config: str):
         client_handler = GraphQLClientHandler(session)
         logging.info("Starting authenticated session...")
 
-        get_lights_query = parse_graphql_file(RequestFile.GET_LIGHTS_QUERY)
-        switch_light_mutation = parse_graphql_file(RequestFile.SWITCH_LIGHT_MUTATION)
+        get_lights_query = parse_graphql_file(RequestFile.Query.GET_LIGHTS)
+        switch_light_mutation = parse_graphql_file(RequestFile.Mutation.SWITCH_LIGHT)
         # request = await session.execute(get_lights_query)
         # request = await client_handler.receive_requests(get_lights_query)
         # unit_id_base64_str = "89783086-0f7e-476e-816d-417f24dc7896"

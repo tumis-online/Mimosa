@@ -32,7 +32,7 @@ export PYTHONPATH="${PYTHONPATH}:/RASA"
 SAPHIR_DIR="$(pwd)"
 export SAPHIR_DIR
 
-echo -e "${On_Purple}****** SAPHIR ******${Color_Off}"
+echo -e "${On_Purple}******** SAPHIR ********${Color_Off}"
 
 check_status() {
   if [ $? -eq 0 ]; then

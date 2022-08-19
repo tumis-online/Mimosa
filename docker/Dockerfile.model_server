@@ -1,0 +1,18 @@
+# Dockerfile for Model Server API
+
+FROM python:3.9
+
+WORKDIR /code
+
+COPY ./requirements/api-requirements.txt /code/requirements.txt
+
+RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+
+# Copy FastAPI file to container workdir
+COPY ./RASA/model_server.py .
+
+# Copy models to container model dir
+COPY ./RASA/models ./models
+
+# Start uvicorn Server on Container Port 80 (HTTP)
+CMD ["uvicorn", "model_server:app", "--host", "0.0.0.0", "--port", "80"]

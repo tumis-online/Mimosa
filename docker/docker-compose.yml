@@ -2,6 +2,14 @@
 
 version: '3.8'
 services:
+  rasa-nlu-model-server:
+    container_name: rasa-nlu-model-server
+    # TODO Use Docker Hub to get image from remote optionally
+    image: rasa-nlu-model-server:${RASA_NLU_MODEL_SERVER_TAG}
+    ports:
+      - "5555:80"
+    volumes:
+      - "RASA.models:/RASA/models"
   rasa-nlu-server:
     container_name: rasa-nlu-server
     image: rasa-nlu-server:${RASA_NLU_SERVER_TAG}
@@ -14,15 +22,16 @@ services:
     environment:
       - RASA_AUTH_TOKEN=${SAPHIR_AUTH_TOKEN}
     volumes:
-      - RASA:/RASA
+      - "RASA:/RASA"
   app:
     container_name: rasa-action-server
     image: rasa-action-server:${RASA_ACTION_SERVER_TAG}
     expose: [$RASA_ACTION_SERVER_PORT]
     volumes:
-      - RASA.actions:/RASA/actions
-      - RASA.domain.constants:/RASA/domain/constants
+      - "RASA.actions:/RASA/actions"
+      - "RASA.domain.constants:/RASA/domain/constants"
 volumes:
   RASA:
   RASA.actions:
   RASA.domain.constants:
+  RASA.models:

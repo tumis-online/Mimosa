@@ -1,0 +1,16 @@
+# TODO
+mutation add_item(
+  $item_label: Input_openbase_type_language_Label,
+  $location_type: openbase_type_domotic_unit_location_LocationConfig_LocationType) {
+  registerUnitConfig(
+    unitConfig:
+    {
+      label: $item_label
+      deviceConfig: {}
+      locationConfig: {locationType: $location_type}
+    }) {
+    id
+    labelString
+    unitType
+  }
+}
