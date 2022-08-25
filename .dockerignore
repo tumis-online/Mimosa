@@ -7,16 +7,16 @@ uml-diagrams
 tests
 icons
 images
-venv/*
 RASA/.rasa
 RASA/results
-# RASA/models
+RASA/models
 
 # Exclude files
 
 # TODO Into separate docs folder
 *.md
 *.pdf
+*.ipynb
 setup.cfg
 setup.py
 user.py

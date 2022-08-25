@@ -7,14 +7,14 @@ services:
     # TODO Use Docker Hub to get image from remote optionally
     image: rasa-nlu-model-server:${RASA_NLU_MODEL_SERVER_TAG}
     ports:
-      - "5555:80"
+      - "${RASA_NLU_MODEL_PORT}:80"
     volumes:
       - "RASA.models:/RASA/models"
   rasa-nlu-server:
     container_name: rasa-nlu-server
     image: rasa-nlu-server:${RASA_NLU_SERVER_TAG}
     build:
-      context: .
+      context: docker
       dockerfile: ./docker/Dockerfile.rasa_nlu_server
     restart: unless-stopped
     ports:

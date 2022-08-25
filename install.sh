@@ -31,8 +31,17 @@ On_White="\033[47m"       # White
 export PYTHONPATH="${PYTHONPATH}:/RASA"
 SAPHIR_DIR="$(pwd)"
 export SAPHIR_DIR
+export PROJECT_GROUP="saphir"
+export RASA_ACTION_SERVER_TAG=0.2
+export NEMO_ASR_TAG=0.1
 
+echo -e "${On_Purple}************************${Color_Off}"
+echo -e "${On_Purple}**********    **********${Color_Off}"
+echo -e "${On_Purple}*********      *********${Color_Off}"
 echo -e "${On_Purple}******** SAPHIR ********${Color_Off}"
+echo -e "${On_Purple}*********      *********${Color_Off}"
+echo -e "${On_Purple}**********    **********${Color_Off}"
+echo -e "${On_Purple}************************${Color_Off}"
 
 check_status() {
   if [ $? -eq 0 ]; then
@@ -42,13 +51,25 @@ check_status() {
   fi
 }
 
+# Add group, add user to group and grant permission to user and group
+groupadd $PROJECT_GROUP
+usermod -aG $PROJECT_GROUP "$(whoami)"
+chgrp -R -v $PROJECT_GROUP -
+
 #echo "Building Docker images..."
 #echo "Building RASA NLU Server Docker Image..."
 #docker build . -t rasa-nlu-server:${RASA_NLU_SERVER_TAG} \
 #               -f docker/Dockerfile.rasa_nlu_server
 #check_status
 #
-export RASA_ACTION_SERVER_TAG=0.2
+
+echo "Building Base Cube One Docker Containers..."
+# TODO build bco docker containers according to doc
+
+echo "Building NeMo Docker Images..."
+docker build . -t nemo-asr:${NEMO_ASR_TAG} \
+               -f docker/Dockerfile.nemo_asr
+
 echo "Building RASA Action Server Docker Image..."
 docker build . -t rasa-action-server:${RASA_ACTION_SERVER_TAG} \
                -f docker/Dockerfile.rasa_action_server
@@ -64,7 +85,9 @@ check_status
 
 echo "Starting Docker containers via Docker Compose..."
 # Start Docker Containers via docker-compose
-docker compose --project-directory . --env-file .env --file docker/docker-compose.yml up \
-  --detach \
+docker compose \
+  --project-directory . \
+  --env-file .env \
+  --file docker/docker-compose.yml up --detach
   # --build
 check_status

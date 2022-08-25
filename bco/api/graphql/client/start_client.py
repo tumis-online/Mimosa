@@ -1,4 +1,5 @@
-"""Starting GQL Client to communicate with Base Cube One API."""
+"""Starting GQL Client to communicate with Base Cube One API.
+Started in BCO GraphQL Client docker container with """
 import sys
 
 import aiohttp.client_exceptions

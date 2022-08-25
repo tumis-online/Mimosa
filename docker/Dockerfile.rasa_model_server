@@ -1,12 +1,16 @@
 # Dockerfile for Model Server API
 
-FROM python:3.9
+ARG BASE_IMAGE="python"
+# latest tested working version
+ARG BASE_IMAGE_HASH="3.9"
 
-WORKDIR /code
+FROM $BASE_IMAGE:$BASE_IMAGE_HASH
 
-COPY ./requirements/api-requirements.txt /code/requirements.txt
+WORKDIR /RASA
 
-RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+COPY ./requirements/api-requirements.txt ./requirements.txt
+
+RUN pip install --no-cache-dir --upgrade -r ./requirements.txt
 
 # Copy FastAPI file to container workdir
 COPY ./RASA/model_server.py .

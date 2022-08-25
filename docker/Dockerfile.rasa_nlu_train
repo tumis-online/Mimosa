@@ -11,6 +11,9 @@ WORKDIR /app
 
 COPY requirements/rasa-requirements.txt .
 
+# Change back to root user to install dependencies
+USER root
+
 RUN python -m venv /opt/venv && \
     . /opt/venv/bin/activate && \
     pip install --upgrade pip && \
@@ -36,7 +39,7 @@ ENV PATH="/opt/venv/bin:$PATH"
 # Copy RASA train data to container work dir
 COPY ./RASA/data ./data
 COPY ./RASA/domain ./domain
-COPY ./RASA/config.yml ./
+COPY ./RASA/config.yml .
 
 # set HOME environment variable
 ENV HOME=/RASA
@@ -49,7 +52,7 @@ ENTRYPOINT ["rasa"]
 
 CMD ["train", \
     "--fixed-model-name", "${NLU_MODEL}", \
-    "--data", "RASA/data/", \
-    "--config", "RASA/config.yml", \
-    "--domain", "RASA/domain/", \
+    "--data", "data/", \
+    "--config", "config.yml", \
+    "--domain", "domain/", \
     "nlu"]
