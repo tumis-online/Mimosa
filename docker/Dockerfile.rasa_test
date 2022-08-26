@@ -34,11 +34,13 @@ COPY --from=builder /opt/venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 
 # Copy RASA dir to container work dir
-# TODO get latest model from model server
-COPY ./RASA/models/ ./models
+COPY ./models/ ./models
 
 # set HOME environment variable
 ENV HOME=/RASA
+
+# TODO dynamic Port
+EXPOSE 5004
 
 # Best Practices, Set user to run
 USER 1001
@@ -47,8 +49,6 @@ USER 1001
 ENTRYPOINT ["rasa"]
 
 # Run Container, Port forwarding handled by docker-compose file
-CMD ["run", \
-    "--model", "/RASA/models", \
-    "--enable-api", \
-    "--auth-token", "${RASA_AUTH_TOKEN}", \
-    "--port", "5005"]
+CMD ["data", "validate", "-vv", "--config config.yml", "--data data/", "--domain domain/", "&&", \
+    "test", "-vv", "--config config.yml", "--domain domain/", "--model models/", "--nlu data/nlu/", \
+    "--stories data/stories/", "nlu"]

@@ -22,7 +22,8 @@ class STTHandler:
     def __init__(self):
         self.pretrained_punctuation_model = "punctuation_en_distilbert"
         self.pretrained_asr_model = "stt_de_citrinet_1024"
-        self.nemo_asr_model = nemo_asr.models.EncDecCTCModelBPE.from_pretrained(self.pretrained_asr_model)
+        self.nemo_asr_model = \
+            nemo_asr.models.EncDecCTCModelBPE.from_pretrained(self.pretrained_asr_model)
 
     @NotImplemented
     async def stt_from_stream(self, stream) -> str:

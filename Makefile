@@ -78,9 +78,8 @@ release:
 	poetry run python scripts/release.py
 
 build-docker:
-	export RASA_ACTION_SERVER_TAG=0.2
-	docker build . -t rasa-action-server:${RASA_ACTION_SERVER_TAG} \
-               -f docker/Dockerfile.rasa_action_server
+	make -f NeMo/Makefile build-docker
+	make -f RASA/Makefile build-docker
 	@echo "Starting Docker containers via Docker Compose..."
 	export IMAGE_NAME=rasa && \
 	docker buildx use default && \

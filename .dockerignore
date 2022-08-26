@@ -7,7 +7,7 @@ uml-diagrams
 tests
 icons
 images
-RASA/.rasa
+#RASA/.rasa
 RASA/results
 RASA/models
 

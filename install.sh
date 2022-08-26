@@ -32,8 +32,6 @@ export PYTHONPATH="${PYTHONPATH}:/RASA"
 SAPHIR_DIR="$(pwd)"
 export SAPHIR_DIR
 export PROJECT_GROUP="saphir"
-export RASA_ACTION_SERVER_TAG=0.2
-export NEMO_ASR_TAG=0.1
 
 echo -e "${On_Purple}************************${Color_Off}"
 echo -e "${On_Purple}**********    **********${Color_Off}"
@@ -66,13 +64,6 @@ chgrp -R -v $PROJECT_GROUP -
 echo "Building Base Cube One Docker Containers..."
 # TODO build bco docker containers according to doc
 
-echo "Building NeMo Docker Images..."
-docker build . -t nemo-asr:${NEMO_ASR_TAG} \
-               -f docker/Dockerfile.nemo_asr
-
-echo "Building RASA Action Server Docker Image..."
-docker build . -t rasa-action-server:${RASA_ACTION_SERVER_TAG} \
-               -f docker/Dockerfile.rasa_action_server
 check_status
 
 # Generate secure Token for the application admin at start and store persistently in .bashrc
