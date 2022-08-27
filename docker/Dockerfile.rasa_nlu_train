@@ -37,9 +37,7 @@ COPY --from=builder /opt/venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 
 # Copy RASA train data to container work dir
-COPY ./RASA/data ./data
-COPY ./RASA/domain ./domain
-COPY ./RASA/config.yml .
+COPY ./RASA .
 
 # set HOME environment variable
 ENV HOME=/RASA

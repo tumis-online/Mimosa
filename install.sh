@@ -15,6 +15,9 @@ Purple="\033[0;35m"       # Purple
 Cyan="\033[0;36m"         # Cyan
 White="\033[0;37m"        # White
 
+DarkOrange="\033[38;5;202m"   # DarkOrange
+Orange="\033[38;5;220m"   # Orange
+
 # Background
 On_Black="\033[40m"       # Black
 On_Red="\033[41m"         # Red
@@ -25,21 +28,31 @@ On_Purple="\033[45m"      # Purple
 On_Cyan="\033[46m"        # Cyan
 On_White="\033[47m"       # White
 
+On_Orange="\033[48;5;220m"  # Orange
+
 # apt install portaudio19-dev python3-pyaudio
 
 # ENV Variables
 export PYTHONPATH="${PYTHONPATH}:/RASA"
 SAPHIR_DIR="$(pwd)"
 export SAPHIR_DIR
-export PROJECT_GROUP="saphir"
+export PROJECT_GROUP="mimosa"
 
-echo -e "${On_Purple}************************${Color_Off}"
-echo -e "${On_Purple}**********    **********${Color_Off}"
-echo -e "${On_Purple}*********      *********${Color_Off}"
-echo -e "${On_Purple}******** SAPHIR ********${Color_Off}"
-echo -e "${On_Purple}*********      *********${Color_Off}"
-echo -e "${On_Purple}**********    **********${Color_Off}"
-echo -e "${On_Purple}************************${Color_Off}"
+echo -e "************************"
+echo -e "************************"
+echo -e "********${On_White}        ${Color_Off}********"
+echo -e "********${On_White}        ${Color_Off}********"
+echo -e "********${On_White}${Orange}~MIMOSA~${Color_Off}********"
+echo -e "********${On_Orange}     °  ${Color_Off}********"
+echo -e "********${On_Orange}      ° ${Color_Off}********"
+echo -e "********${On_Orange}  o     ${Color_Off}********"
+echo -e "*********${On_Orange}   °  ${Color_Off}*********"
+echo -e "**********${On_Orange}    ${Color_Off}**********"
+echo -e "***********${On_Orange}  ${Color_Off}***********"
+echo -e "***********${On_White}  ${Color_Off}***********"
+echo -e "********${On_White}        ${Color_Off}********"
+echo -e "************************"
+echo -e "************************"
 
 check_status() {
   if [ $? -eq 0 ]; then
@@ -70,15 +83,13 @@ check_status
 # TODO: Generate individual token, https://pypi.org/project/secrets/,
 #       https://blog.miguelgrinberg.com/post/the-new-way-to-generate-secure-tokens-in-python
 echo "Creating auth token for the application..."
-echo "export SAPHIR_AUTH_TOKEN='PbnveAR7aAY-M5Cw1cIvyDZDvO8'" >> ~/.bashrc
-export SAPHIR_AUTH_TOKEN='PbnveAR7aAY-M5Cw1cIvyDZDvO8'
+if [[ -z "${SAPHIR_AUTH_TOKEN}" ]]; then
+  echo "export SAPHIR_AUTH_TOKEN='PbnveAR7aAY-M5Cw1cIvyDZDvO8'" >> ~/.bashrc
+fi
 check_status
 
 echo "Starting Docker containers via Docker Compose..."
 # Start Docker Containers via docker-compose
-docker compose \
-  --project-directory . \
-  --env-file .env \
-  --file docker/docker-compose.yml up --detach
+
   # --build
 check_status

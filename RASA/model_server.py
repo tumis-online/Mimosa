@@ -7,7 +7,7 @@ from fastapi import FastAPI
 from fastapi.responses import FileResponse
 
 MODEL_DIR_PATH: str = "models"
-MODEL_FILE_NAME: str = "saphir-nlu-model.tar.gz"
+MODEL_FILE_NAME: str = "rasa-nlu-model.tar.gz"
 MODEL_FILE_TYPE = r'\*tar.gz'
 
 app = FastAPI()

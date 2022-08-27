@@ -78,12 +78,11 @@ release:
 	poetry run python scripts/release.py
 
 build-docker:
-	make -f NeMo/Makefile build-docker
+	# make -f NeMo/Makefile build-docker
 	make -f RASA/Makefile build-docker
 	@echo "Starting Docker containers via Docker Compose..."
 	export IMAGE_NAME=rasa && \
-	docker buildx use default && \
-	docker compose --project-directory . --env-file docker/.env --file docker/docker-compose.yml up
+	docker compose --project-directory . --env-file .env --file docker-compose.yml up
 
 stop-containers:
 	@echo "Removing Docker containers via Docker Compose..."

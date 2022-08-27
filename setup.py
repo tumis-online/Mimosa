@@ -40,7 +40,7 @@ setup(
     # $ pip install sampleproject
     #
     # And where it will live on PyPI: https://pypi.org/project/sampleproject/
-    name='Saphir',
+    name='MIMOSA',
     # Versions should comply with PEP 440:
     # https://www.python.org/dev/peps/pep-0440/
     version='0.1.0',    # Required
