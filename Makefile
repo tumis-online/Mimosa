@@ -65,14 +65,14 @@ test: clean
 	# TF_CPP_MIN_LOG_LEVEL=2 sets C code log level for tensorflow to error suppressing lower log events
 	OMP_NUM_THREADS=1 TF_CPP_MIN_LOG_LEVEL=2 poetry run pytest tests -n $(JOBS) --cov rasa --ignore $(INTEGRATION_TEST_FOLDER)
 
-prepare-docs:
-	cd docs/ && poetry run yarn pre-build
+install-docs:
+	cd docs/ && npm install
 
-docs: prepare-docs
-	cd docs/ && yarn build
+docs:
+	cd docs/ && npm run build
 
 livedocs:
-	cd docs/ && poetry run yarn start
+	cd docs/ && poetry run npm run start
 
 release:
 	poetry run python scripts/release.py
