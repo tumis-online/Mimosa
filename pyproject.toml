@@ -3,9 +3,9 @@ requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
-name = "smart-home-voice-assistant"
+name = "Mimosa"
 version = "0.1.0"
-description = "Smart Assistance Project for Home Interconnection Realization"
+description = "Multimodal Smart Home Assistance"
 authors = ["'Tim Dilger' <tdilger@mailbox.org>"]
 license = "Apache-2.0"
 
@@ -13,7 +13,7 @@ license = "Apache-2.0"
 python = ">=3.8,<=3.10"
 setuptools = ">=41.0.0"
 pytest = "^7.1.2"
-PyYAML = "6.0"
+PyYAML = "<6.0"
 
 [tool.poetry.dev-dependencies]
 pytest-cov = "^3.0.0"
@@ -23,7 +23,7 @@ pytest = "^7.1.1"
 flake8 = "^4.0.1"
 flake8-docstrings = "^1.5.0"
 toml = "^0.10.0"
-pydoc-markdown = "^4.5.1"
+pydoc-markdown = "^4.6.3"
 mypy = "^0.971"
 mypy-extensions = "^0.4.3"
 bandit = "^1.6.3"

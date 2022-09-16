@@ -11,7 +11,7 @@ from setuptools import setup
 def req_file(filename: str, folder="requirements"):
     """Loading requirement files.
     :param filename name of requirements file
-    :param folder folder where requirements are specified
+    :param folder where requirements are specified
     """
     with open(os.path.join(folder, filename), encoding='utf-8') as f:
         content = f.readlines()
@@ -20,7 +20,13 @@ def req_file(filename: str, folder="requirements"):
     return [x.strip() for x in content]
 
 
-requirement_files = ["requirements.txt", "rasa-requirements.txt", "nemo-requirements.txt", "recording-requirements.txt"]
+requirement_files = [
+    "requirements.txt",
+    "rasa-requirements.txt",
+    "nemo-requirements.txt",
+    "recording-requirements.txt"
+]
+
 install_requires = []
 for file in requirement_files:
     install_requires.append(req_file(file))
@@ -47,7 +53,7 @@ setup(
     # This is a one-line description or tagline of what your project does. This
     # corresponds to the "Summary" metadata field:
     # https://packaging.python.org/specifications/core-metadata/#summary
-    description='Smart Assistance Project for Home Interconnection Realization',
+    description='Multimodal Smart Home Assistance',
     # This is an optional longer description of your project that represents
     # the body of text which users will see when they visit PyPI.
     #
