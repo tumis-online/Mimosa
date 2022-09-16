@@ -49,8 +49,9 @@ USER 1001
 ENTRYPOINT ["rasa"]
 
 CMD ["train", \
-    "--fixed-model-name", "${NLU_MODEL}", \
-    "--data", "data/", \
-    "--config", "config.yml", \
-    "--domain", "domain/", \
+    "--fixed-model-name nlu-model", \
+    "--data data/", \
+    "--config config.yml", \
+    "--domain domain/", \
+    "--out models", \
     "nlu"]

@@ -34,8 +34,8 @@ On_Orange="\033[48;5;220m"  # Orange
 
 # ENV Variables
 export PYTHONPATH="${PYTHONPATH}:/RASA"
-SAPHIR_DIR="$(pwd)"
-export SAPHIR_DIR
+MIMOSA_DIR="$(pwd)"
+export MIMOSA_DIR
 export PROJECT_GROUP="mimosa"
 
 echo -e "************************"
@@ -83,8 +83,8 @@ check_status
 # TODO: Generate individual token, https://pypi.org/project/secrets/,
 #       https://blog.miguelgrinberg.com/post/the-new-way-to-generate-secure-tokens-in-python
 echo "Creating auth token for the application..."
-if [[ -z "${SAPHIR_AUTH_TOKEN}" ]]; then
-  echo "export SAPHIR_AUTH_TOKEN='PbnveAR7aAY-M5Cw1cIvyDZDvO8'" >> ~/.bashrc
+if [[ -z "${MIMOSA_AUTH_TOKEN}" ]]; then
+  echo "export MIMOSA_AUTH_TOKEN='PbnveAR7aAY-M5Cw1cIvyDZDvO8'" >> ~/.bashrc
 fi
 check_status
 

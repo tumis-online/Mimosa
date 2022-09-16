@@ -9,7 +9,7 @@ ARG BASE_BUILDER_IMAGE_HASH="3.0.0"
 FROM ${BASE_BUILDER_IMAGE}:${BASE_BUILDER_IMAGE_HASH} AS builder
 
 # Use subdirectory as working directory
-WORKDIR /app
+WORKDIR /RASA
 
 # Copy any additional custom requirements, if necessary (uncomment next line)
 # COPY actions/requirements-actions.txt ./
@@ -21,16 +21,16 @@ USER root
 #RUN pip install --no-cache-dir --upgarde -r /app/rasa-actions-requirements.txt
 
 # Copy actions folder to working directory
-COPY ./RASA/actions ./RASA/actions
+COPY ./RASA/actions ./actions
 
 # Copy domain.constants to constants directory
-COPY ./RASA/domain/constants ./RASA/domain/constants
+COPY ./RASA/domain/constants ./domain/constants
 
 ## According to https://medium.com/@racinemamadou.ly/rasa-deploy-one-or-multiple-rasa-project-with-docker-compose-31984a0f99ea
 ## Run the action server (if you want to specify the port use this instead:
 ## CMD ["start","--actions","actions", "--port", "xxxx" ]
 ## where xxxx  is the port you want to specify
-CMD ["start","--actions","RASA.actions"]
+CMD ["start","--actions","actions"]
 
 # By best practices, don't run the code with root user
 USER 1001

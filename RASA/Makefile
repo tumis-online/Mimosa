@@ -42,7 +42,7 @@ build-docker:
 train-nlu:
 	docker build . -t ${RASA_NLU_TRAIN_IMAGE}:${RASA_NLU_TRAIN_TAG} \
 				   -f docker/Dockerfile.rasa_nlu_train
-	docker run -d -v RASA.models:/RASA/models ${RASA_NLU_TRAIN_IMAGE}:${RASA_NLU_TRAIN_TAG}
+	docker run -v RASA.models:/RASA/models ${RASA_NLU_TRAIN_IMAGE}:${RASA_NLU_TRAIN_TAG}
 
 start-model-server:
 	docker run -v RASA.models:/RASA/models \
