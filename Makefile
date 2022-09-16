@@ -19,6 +19,8 @@ help:
 	@echo "        Use the JOBS environment variable to configure number of workers (default: 1)."
 	@echo "    docs"
 	@echo "        Build the docs locally."
+	@echo "	   livedocs"
+	@echo "        Starting localhost server with documentation."
 	@echo "    release"
 	@echo "        Prepare a release."
 	@echo "    build-docker"
