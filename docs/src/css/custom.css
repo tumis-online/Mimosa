@@ -14,7 +14,7 @@
 }
 
 :root {
-  --ifm-color-primary: #2e8555;
+  --ifm-color-primary: #FFFADE;
   --ifm-color-primary-dark: #29784c;
   --ifm-color-primary-darker: #277148;
   --ifm-color-primary-darkest: #205d3b;
@@ -25,6 +25,15 @@
   --ifm-font-family-base: "Poppins Medium";
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+/* Custom colors */
+  --ifm-navbar-background-color: #496B72;
+  --ifm-heading-color: #000000;
+  --ifm-font-color-base-inverse: #000000;
+  --ifm-button-background-color: #BEB5AA !important;
+  --ifm-link-color: #496B72;
+  --ifm-breadcrumb-color-active: #496B72;
+  --ifm-color-emphasis-700: #496B72;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -37,4 +46,13 @@
   --ifm-color-primary-lighter: #32d8b4;
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+.button {
+    background-color: #BEB5AA;
+    border-width: 0;
+}
+
+.button:hover {
+    background-color: #CFC6BB;
 }

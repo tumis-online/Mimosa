@@ -4,32 +4,32 @@ import styles from './styles.module.css';
 
 const FeatureList = [
   {
-    title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    title: 'Einfache Nutzung',
+    Svg: require('@site/static/img/accessibility.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Durch das Zusammenspiel von sprachlicher und haptischer Interaktion mit dem System
+        fällt es spielend leicht, smarte Geräte in Ihrem Haus zu steuern.
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    title: 'Schnelle Einrichtung',
+    Svg: require('@site/static/img/setup.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Die Einrichtung sollte unkompliziert und schnell gehen.
+        Mehr dazu unter <a href="../../../docs/intro">Installation</a>.
       </>
     ),
   },
   {
-    title: 'Powered by React',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    title: 'Open Source',
+    Svg: require('@site/static/img/lock_open.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Durch offenen Quellcode ist es für alle möglich, das System frei zu verwenden
+        und, wo nötig, an individuelle Bedürfnisse anzupassen.
       </>
     ),
   },
