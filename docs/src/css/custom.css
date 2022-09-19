@@ -56,3 +56,19 @@
 .button:hover {
     background-color: #CFC6BB;
 }
+
+.hero {
+    min-height: 50vh;
+    display: block;
+}
+
+.container {
+    z-index: 2;
+}
+
+.hero-img {
+    z-index: 0;
+    margin: 2em auto -4% auto;
+    width: 40%;
+    box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.3), 0 6px 24px 0 rgba(0, 0, 0, 0.19);
+}

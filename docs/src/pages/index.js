@@ -18,10 +18,11 @@ function HomepageHeader() {
           <Link
             className="button button--secondary button--lg"
             to="/docs/intro">
-            Mimosa Tutorial - Setup und Nutzung
+            Tutorial - Setup und Nutzung
           </Link>
         </div>
       </div>
+      <img src={ require('@site/static/img/overview_mimosa-gui.webp').default } class="hero-img" />
     </header>
   );
 }
