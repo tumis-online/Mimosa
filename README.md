@@ -50,7 +50,7 @@ The documentation can be build and deployed as well.
 - Phillips Hue Light Bulbs and Hue Bridge control center
 
 
-### User Stories ([Link](./user-stories.md))
+### User Stories ([Link](./use-cases.md))
 
 ### Hypothesis
 
