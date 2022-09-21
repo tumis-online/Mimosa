@@ -23,16 +23,24 @@ For detailed information about the project build process, please visit:
 To install the *Mimosa* smart Home Assistance, follow the steps below.  
 
 **Git**  
-`git clone https://gitlab.ub.uni-bielefeld.de/mas-projects/smart-home-voice-assistant`
+```
+git clone https://gitlab.ub.uni-bielefeld.de/mas-projects/smart-home-voice-assistant
+cd smart-home-voice-assistant
+bash ./install.sh
+```
 
-
+## Development
+If you're a developer, you are encouraged to use the Makefile in the root directory.  
+List all options by typing `make`.  
+You can build docker images and run and stop containers of the different modules separately.  
+Additionally, tests can be run and the code can be lint-checked. 
+The documentation can be build and deployed as well.
 
 ### Research ([Link](./research.md))
 
 - Speech Assistance for people with Impairments
 - Multimodal Speech Recognition
 - Open Source Voice Assistance
-
 
 
 ### Hardware ([Link](./hardware.md))
@@ -42,38 +50,7 @@ To install the *Mimosa* smart Home Assistance, follow the steps below.
 - Phillips Hue Light Bulbs and Hue Bridge control center
 
 
-
-### User Stories
-
-**Scene 1**  
-*Kitchen*, *Lights kitchen* workspace bright, other lights dimmed. Music playing (e.g. Jazz) in background. Different recipes will be presented.
-
-**Scene 2**  
-Dinner in *dining room*, lamp bright, other *lights* dimmed or off, calm music (e.g. Piano).
-
-**Scene 3**  
-*Living Room* TV, dim lights next to the TV and switch off others. Start TV. Music off.  
-
------
-**Use Case 1**  
-User wants to create *Scene 1*. 
-
-**Use Case 2**  
-User wants to change music in *Scene 2*.
-
-**Use Case 3**  
-User wants to add a *new light*.
-
-**Use Case 4**  
-User wants to add a new scene (*Scene 3*).
-
-**Use Case 5**  
-User wants to know the *current time*.
-
-**Use Case 6**  
-User wants to *hear music* [title].
-
-
+### User Stories ([Link](./user-stories.md))
 
 ### Hypothesis
 
@@ -101,5 +78,5 @@ NLU conversation automation.
 
 ### License
 
-This project is licensed under the Apache License, Version 2.0. [License](LICENSE).
+This project is licensed under the Apache License, Version 2.0. [License](LICENSE).  
 Copyright 2022 by Tim Dilger.
